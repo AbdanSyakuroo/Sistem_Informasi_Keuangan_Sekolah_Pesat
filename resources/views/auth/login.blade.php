@@ -7,12 +7,12 @@
                 </a>
             </div>
 
-            <div class="rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700  bg-yellow-500">
+            <div class="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl  bg-slate-50 dark:bg-slate-900">
                 <div class="px-10 py-12 ">
                     <!-- Header -->
                     <div class="text-center mb-6">
-                        <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">Masuk ke Akun Anda</h2>
-                        <p class="mt-1 text-sm text-white">
+                        <h2 class="text-3xl font-semibold text-gray-900 dark:text-slate-100">Masuk ke Akun Anda</h2>
+                        <p class="mt-1 text-sm dark:text-gray-400">
                             Silakan masukkan email dan password untuk melanjutkan.
                         </p>
                     </div>
@@ -36,7 +36,7 @@
                                 autocomplete="username"
                                 value="{{ old('email') }}"
                                 placeholder="you@example.com"
-                                class="w-full px-4 py-3 rounded-xl bg-[#0f1f3f] border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                                class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-slate-800 border border-gray-600 dark:border-slate-700 placeholder-gray-400 dark:placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                             />
                             <x-input-error :messages="$errors->get('email')" class="text-xs text-red-400 mt-1" />
                         </div>
@@ -52,7 +52,7 @@
                                     required
                                     autocomplete="current-password"
                                     placeholder="••••••••"
-                                    class="w-full px-4 py-3 rounded-xl bg-[#0f1f3f] border border-gray-600 placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition pr-12"
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-slate-800 border border-gray-600 dark:border-slate-700 placeholder-gray-400 dark:placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                                 />
                                 <button
                                     type="button"
@@ -81,19 +81,19 @@
 
                         <!-- Options -->
                         <div class="flex items-center justify-between text-sm">
-                            <label for="remember_me" class="inline-flex items-center gap-2 text-white">
+                            <label for="remember_me" class="inline-flex items-center gap-2 dark:text-slate-50">
                                 <input
                                     id="remember_me"
                                     type="checkbox"
                                     name="remember"
-                                    class="h-4 w-4 rounded text-indigo-500 border-gray-600 bg-[#0f1f3f] focus:ring-indigo-400"
+                                    class="h-4 w-4 rounded text-indigo-500 border-gray-600 focus:ring-indigo-400"
                                 />
                                 <span>Remember me</span>
                             </label>
 
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}"
-                                   class="text-white hover:underline">
+                                   class="text-gray-500 dark:text-slate-50 hover:underline">
                                     Forgot your password?
                                 </a>
                             @endif
@@ -102,7 +102,7 @@
                         <!-- Submit -->
                         <div>
                             <button type="submit"
-                                class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl tracking-wide transition">
+                                class="w-full bg-blue-500 hover:bg-blue-800 text-white font-semibold py-3 rounded-xl tracking-wide transition">
                                 LOG IN
                             </button>
                         </div>
