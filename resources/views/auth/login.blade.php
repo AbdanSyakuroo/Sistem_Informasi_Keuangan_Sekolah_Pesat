@@ -86,7 +86,7 @@
                                     id="remember_me"
                                     type="checkbox"
                                     name="remember"
-                                    class="h-4 w-4 rounded text-indigo-500 border-gray-600 focus:ring-indigo-400"
+                                    class="h-4 w-4 rounded dark:bg-slate-900 text-indigo-500 border-gray-600 focus:ring-indigo-400"
                                 />
                                 <span>Remember me</span>
                             </label>
