@@ -1,5 +1,10 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
+        <div class="w-full min-h-screen flex flex-col sm:justify-center items-center">
+                <a href="/">
+                    <img src="{{ asset('img/pesat.png') }}" alt="logo" class="w-70 h-40">
+                </a>
+        </div>
         @csrf
 
         <!-- Name -->

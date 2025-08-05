@@ -7,12 +7,12 @@
                 </a>
             </div>
 
-            <div class="rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0f172a]">
+            <div class="rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700  bg-yellow-500">
                 <div class="px-10 py-12 ">
                     <!-- Header -->
                     <div class="text-center mb-6">
                         <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">Masuk ke Akun Anda</h2>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                        <p class="mt-1 text-sm text-white">
                             Silakan masukkan email dan password untuk melanjutkan.
                         </p>
                     </div>
@@ -26,7 +26,7 @@
 
                         <!-- Email Input -->
                         <div class="space-y-1">
-                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
+                            <label for="email" class="block text-sm font-medium text-white">Email</label>
                             <input
                                 id="email"
                                 name="email"
@@ -43,7 +43,7 @@
 
                         <!-- Password Input -->
                         <div class="space-y-1 relative">
-                            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Password</label>
+                            <label for="password" class="block text-sm font-medium text-white">Password</label>
                             <div class="relative">
                                 <input
                                     id="password"
@@ -93,7 +93,7 @@
 
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}"
-                                   class="text-indigo-400 hover:underline">
+                                   class="text-white hover:underline">
                                     Forgot your password?
                                 </a>
                             @endif
@@ -102,19 +102,11 @@
                         <!-- Submit -->
                         <div>
                             <button type="submit"
-                                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl tracking-wide transition">
+                                class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl tracking-wide transition">
                                 LOG IN
                             </button>
                         </div>
                     </form>
-                </div>
-
-                <!-- Footer -->
-                <div class="bg-[#0f1f3f] px-10 py-4 text-center border-t border-gray-700">
-                    <p class="text-xs text-gray-400">
-                        Belum punya akun?
-                        <a href="{{ route('register') }}" class="text-indigo-400 font-medium hover:underline">Daftar sekarang</a>.
-                    </p>
                 </div>
             </div>
         </div>
