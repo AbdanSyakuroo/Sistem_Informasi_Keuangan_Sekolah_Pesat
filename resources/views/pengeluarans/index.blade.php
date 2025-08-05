@@ -1,56 +1,159 @@
-<x-app-layout>
-    <div class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <div class="flex justify-between items-center mb-4">
-            <h1 class="text-xl font-bold">Daftar Pengeluaran</h1>
-            <a href="{{ route('pengeluarans.create') }}" 
-               class="bg-blue-500 text-black px-4 py-2 rounded">Tambah</a>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
+    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
 
-        @if (session('success'))
-            <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <table class="min-w-full border border-gray-200">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="px-4 py-2">#</th>
-                    <th class="px-4 py-2">Tanggal</th>
-                    <th class="px-4 py-2">Kegiatan</th>
-                    <th class="px-4 py-2">Sumber Dana</th>
-                    <th class="px-4 py-2">Uraian</th>
-                    <th class="px-4 py-2">Nominal</th>
-                    <th class="px-4 py-2">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($pengeluarans as $key => $item)
-                    <tr class="border-b">
-                        <td class="px-4 py-2">{{ $pengeluarans->firstItem() + $key }}</td>
-                        <td class="px-4 py-2">{{ $item->tanggal }}</td>
-                        <td class="px-4 py-2">{{ $item->kegiatan->kode_kegiatan }}</td>
-                        <td class="px-4 py-2">{{ $item->sumberDana->nama_sumber }}</td>
-                        <td class="px-4 py-2">{{ $item->uraian }}</td>
-                        <td class="px-4 py-2">Rp {{ number_format($item->nominal, 0, ',', '.') }}</td>
-                        <td class="px-4 py-2">
-                            <a href="{{ route('pengeluarans.edit', $item->id) }}" 
-                               class="text-blue-600">Edit</a>
-                            <form action="{{ route('pengeluarans.destroy', $item->id) }}" 
-                                  method="POST" class="inline">
-                                @csrf @method('DELETE')
-                                <button type="submit" 
-                                        class="text-red-600 ml-2" 
-                                        onclick="return confirm('Hapus data ini?')">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <div class="mt-4">
-            {{ $pengeluarans->links() }}
-        </div>
+    <!-- ========== All CSS files linkup ========= -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/lineicons.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
+    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <!-- ======== Preloader =========== -->
+    <div id="preloader">
+      <div class="spinner"></div>
     </div>
-</x-app-layout>
+    <!-- ======== Preloader =========== -->
+
+    <!-- ======== sidebar-nav start =========== -->
+   <!-- ======== sidebar-nav start =========== -->
+<x-sidenav></x-sidenav>
+
+<div class="overlay"></div>
+<!-- ======== sidebar-nav end =========== -->
+
+<!-- ======== main-wrapper start =========== -->
+<main class="main-wrapper">
+  <!-- ========== header start ========== -->
+  <x-topheader></x-topheader>
+  <!-- ========== header end ========== -->
+
+  <section class="section">
+    <div class="container-fluid">
+      <!-- ========== title-wrapper start ========== -->
+      <div class="title-wrapper pt-30">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="title">
+              <h2>Daftar Pengeluaran</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="breadcrumb-wrapper">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Pengeluaran
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ========== title-wrapper end ========== -->
+
+      <div class="tables-wrapper mt-4">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-style mb-30">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="mb-0">Data Pengeluaran</h6>
+                <a href="{{ route('pengeluarans.create') }}" class="btn btn-primary btn-sm">
+                  Tambah
+                </a>
+              </div>
+
+              @if (session('success'))
+                <div class="alert alert-success mb-3">
+                  {{ session('success') }}
+                </div>
+              @endif
+
+              <div class="table-wrapper table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th><h6>#</h6></th>
+                      <th><h6>Tanggal</h6></th>
+                      <th><h6>Kegiatan</h6></th>
+                      <th><h6>Sumber Dana</h6></th>
+                      <th><h6>Uraian</h6></th>
+                      <th><h6>Nominal</h6></th>
+                      <th><h6>Aksi</h6></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($pengeluarans as $key => $item)
+                      <tr>
+                        <td><p>{{ $pengeluarans->firstItem() + $key }}</p></td>
+                        <td><p>{{ $item->tanggal }}</p></td>
+                        <td><p>{{ $item->kegiatan->kode_kegiatan }}</p></td>
+                        <td><p>{{ $item->sumberDana->nama_sumber }}</p></td>
+                        <td><p>{{ $item->uraian }}</p></td>
+                        <td><p>Rp {{ number_format($item->nominal, 0, ',', '.') }}</p></td>
+                        <td>
+                          <div class="action d-flex gap-2">
+                            <a href="{{ route('pengeluarans.edit', $item->id) }}" class="text-primary">
+                              <i class="lni lni-pencil"></i>
+                            </a>
+                            <form action="{{ route('pengeluarans.destroy', $item->id) }}" method="POST" class="d-inline">
+                              @csrf @method('DELETE')
+                              <button type="submit" class="text-danger border-0 bg-transparent p-0"
+                                      onclick="return confirm('Hapus data ini?')">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                            </form>
+                          </div>
+                        </td>
+                      </tr>
+                    @empty
+                      <tr>
+                        <td colspan="7">
+                          <p class="text-center text-muted">Tidak ada data pengeluaran.</p>
+                        </td>
+                      </tr>
+                    @endforelse
+                  </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="mt-4">
+                  {{ $pengeluarans->links() }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+<!-- ======== main-wrapper end =========== -->
+
+    <!-- ======== main-wrapper end =========== -->
+
+    <!-- ========= All Javascript files linkup ======== -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/Chart.min.js"></script>
+    <script src="assets/js/dynamic-pie-chart.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/fullcalendar.js"></script>
+    <script src="assets/js/jvectormap.min.js"></script>
+    <script src="assets/js/world-merc.js"></script>
+    <script src="assets/js/polyfill.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
