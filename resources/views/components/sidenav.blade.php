@@ -234,6 +234,18 @@
               <span class="text">Notifications</span>
             </a>
           </li>
+
+          <li class="flex items-center">
+    <form method="POST" action="{{ route('logout') }}" class="w-full">
+        @csrf
+        <button type="submit" 
+            class="flex items-center w-full px-4 py-2 text-sm font-semibold text-red-500 hover:text-white hover:bg-red-500 rounded-md transition-all">
+            <i class="fa fa-sign-out-alt mr-2"></i>
+            Logout
+        </button>
+    </form>
+</li>
+
         </ul>
       </nav>
      
