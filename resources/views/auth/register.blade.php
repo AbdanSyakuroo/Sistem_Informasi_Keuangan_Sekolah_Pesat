@@ -1,10 +1,26 @@
 <x-guest-layout>
+    <div class="w-full flex flex-col sm:justify-center items-center">
+                <a href="/">
+                    <img src="{{ asset('img/pesat.png') }}" alt="logo" class="w-70 h-40">
+                </a>
+    </div>
+
+     <div class="rounded-3xl overflow-hidden border border-yellow-500 shadow-xl  bg-yellow-500">
+                <div class="px-10 py-12 ">
+                    <!-- Header -->
+                    <div class="text-center mb-6">
+                        <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">Buat Akun Anda</h2>
+                        <p class="mt-1 text-sm text-white">
+                            Silahkan buat akun anda.
+                        </p>
+                    </div>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Name')"/>
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -40,13 +56,15 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <a class="underline text-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ms-4">
+            <x-primary-button class="ms-4 bg-indigo-500 hover:bg-indigo-700">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
     </form>
+                </div>
+     </div>
 </x-guest-layout>
