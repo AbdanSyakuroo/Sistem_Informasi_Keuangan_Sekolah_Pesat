@@ -116,7 +116,12 @@
            <div class="row">
   <div class="col-lg-12">
     <div class="card-style mb-30">
-      <h6 class="mb-10">Data Table</h6>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+          <h6 class="mb-0">Daftar Kegiatan</h6>
+          <a href="{{ route('kegiatans.create') }}" class="btn btn-primary btn-sm">
+            Tambah
+          </a>
+        </div>
       <p class="text-sm mb-20">
         Daftar kegiatan yang tersedia dalam database.
       </p>

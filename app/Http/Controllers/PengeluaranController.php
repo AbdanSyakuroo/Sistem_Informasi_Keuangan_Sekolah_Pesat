@@ -77,29 +77,29 @@ class PengeluaranController extends Controller
     }
 
     public function bySumberDana(Request $request)
-    {
-        $request->validate([
-            'sumber_dana_id' => 'required|exists:sumber_danas,id',
-            'tanggal_mulai'  => 'nullable|date',
-            'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
-        ]);
+{
+    $request->validate([
+        'sumber_dana_id' => 'required|exists:sumber_danas,id',
+        'tanggal_mulai'  => 'nullable|date',
+        'tanggal_selesai' => 'nullable|date',
+    ]);
 
-        $pengeluaran = Pengeluaran::with(['kegiatan', 'sumberDana'])
-            ->where('sumber_dana_id', $request->sumber_dana_id)
-            ->when($request->filled('tanggal_mulai'), function ($query) use ($request) {
-                $query->whereDate('tanggal', '>=', $request->tanggal_mulai);
-            })
-            ->when($request->filled('tanggal_selesai'), function ($query) use ($request) {
-                $query->whereDate('tanggal', '<=', $request->tanggal_selesai);
-            })
-            ->orderBy('tanggal', 'asc')
-            ->get();
+    $pengeluaran = Pengeluaran::with(['kegiatan', 'sumberDana'])
+        ->where('sumber_dana_id', $request->sumber_dana_id)
+        ->when($request->filled('tanggal_mulai'), function ($query) use ($request) {
+            $query->whereDate('tanggal', '>=', $request->tanggal_mulai);
+        })
+        ->when($request->filled('tanggal_selesai'), function ($query) use ($request) {
+            $query->whereDate('tanggal', '<=', $request->tanggal_selesai);
+        })
+        ->orderBy('tanggal', 'asc')
+        ->get();
 
-        $namaSumber = $pengeluaran->first()->sumberDana->nama_sumber ?? 'Tidak Diketahui';
-        // dd($pengeluaran->toArray()); // tampilkan dalam bentuk array
-        // dd($namaSumber);
+    // Ambil nama sumber dana langsung dari tabel sumber_danas
+    $namaSumber = SumberDana::find($request->sumber_dana_id)->nama_sumber;
+
+    return view('pengeluarans.by_sumber_dana', compact('pengeluaran', 'namaSumber'));
+}
 
 
-        return view('pengeluarans.by_sumber_dana', compact('pengeluaran', 'namaSumber'));
-    }
 }
