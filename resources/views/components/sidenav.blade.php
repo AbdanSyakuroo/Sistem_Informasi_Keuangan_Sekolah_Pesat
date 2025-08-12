@@ -26,11 +26,6 @@
               </span>
               <span class="text">Dashboard</span>
             </a>
-            <ul id="ddmenu_1" class="collapse show dropdown-nav">
-              <li>
-                <a href="index.html" class="active"> eCommerce </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item nav-item-has-children">
             <a
@@ -50,37 +45,33 @@
                     d="M13.125 2.29167L16.0417 5.20834H14.1667C13.5913 5.20834 13.125 4.74197 13.125 4.16667V2.29167Z" />
                 </svg>
               </span>
-              <span class="text">Pages</span>
+              <span class="text">Laporan</span>
             </a>
             <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> Settings </a>
+                <a href="/laporan"> Data keseluruhan </a>
               </li>
               <li>
-                <a href="blank-page.html"> Blank Page </a>
+                <a href="blank-page.html"> Pencarian kategori </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="invoice.html">
+            <a href="/sumber_dana">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M3.33334 3.35442C3.33334 2.4223 4.07954 1.66666 5.00001 1.66666H15C15.9205 1.66666 16.6667 2.4223 16.6667 3.35442V16.8565C16.6667 17.5519 15.8827 17.9489 15.3333 17.5317L13.8333 16.3924C13.537 16.1673 13.1297 16.1673 12.8333 16.3924L10.5 18.1646C10.2037 18.3896 9.79634 18.3896 9.50001 18.1646L7.16668 16.3924C6.87038 16.1673 6.46298 16.1673 6.16668 16.3924L4.66668 17.5317C4.11731 17.9489 3.33334 17.5519 3.33334 16.8565V3.35442ZM4.79168 5.04218C4.79168 5.39173 5.0715 5.6751 5.41668 5.6751H10C10.3452 5.6751 10.625 5.39173 10.625 5.04218C10.625 4.69264 10.3452 4.40927 10 4.40927H5.41668C5.0715 4.40927 4.79168 4.69264 4.79168 5.04218ZM5.41668 7.7848C5.0715 7.7848 4.79168 8.06817 4.79168 8.41774C4.79168 8.76724 5.0715 9.05066 5.41668 9.05066H10C10.3452 9.05066 10.625 8.76724 10.625 8.41774C10.625 8.06817 10.3452 7.7848 10 7.7848H5.41668ZM4.79168 11.7932C4.79168 12.1428 5.0715 12.4262 5.41668 12.4262H10C10.3452 12.4262 10.625 12.1428 10.625 11.7932C10.625 11.4437 10.3452 11.1603 10 11.1603H5.41668C5.0715 11.1603 4.79168 11.4437 4.79168 11.7932ZM13.3333 4.40927C12.9882 4.40927 12.7083 4.69264 12.7083 5.04218C12.7083 5.39173 12.9882 5.6751 13.3333 5.6751H14.5833C14.9285 5.6751 15.2083 5.39173 15.2083 5.04218C15.2083 4.69264 14.9285 4.40927 14.5833 4.40927H13.3333ZM12.7083 8.41774C12.7083 8.76724 12.9882 9.05066 13.3333 9.05066H14.5833C14.9285 9.05066 15.2083 8.76724 15.2083 8.41774C15.2083 8.06817 14.9285 7.7848 14.5833 7.7848H13.3333C12.9882 7.7848 12.7083 8.06817 12.7083 8.41774ZM13.3333 11.1603C12.9882 11.1603 12.7083 11.4437 12.7083 11.7932C12.7083 12.1428 12.9882 12.4262 13.3333 12.4262H14.5833C14.9285 12.4262 15.2083 12.1428 15.2083 11.7932C15.2083 11.4437 14.9285 11.1603 14.5833 11.1603H13.3333Z" />
                 </svg>
               </span>
-              <span class="text">Invoice</span>
+              <span class="text">Sumber Dana</span>
             </a>
           </li>
-          <li class="nav-item nav-item-has-children">
+          <li class="nav-item">
             <a
-              href="#0"
-              class="collapsed"
-              data-bs-toggle="collapse"
-              data-bs-target="#ddmenu_3"
-              aria-controls="ddmenu_3"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+              href="/pengeluarans"
+              class=""
+              
             >
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +81,7 @@
                     d="M11.6383 15.18L15.805 11.0133C16.5373 10.2811 16.5373 9.09391 15.805 8.36166L11.6383 4.195C11.2722 3.82888 10.7923 3.64582 10.3125 3.64582V3.02082C10.3125 2.10035 11.0587 1.35416 11.9792 1.35416H16.9792C17.8997 1.35416 18.6458 2.10035 18.6458 3.02082V16.3542C18.6458 17.2747 17.8997 18.0208 16.9792 18.0208H11.9792C11.0587 18.0208 10.3125 17.2747 10.3125 16.3542V15.7292C10.7923 15.7292 11.2722 15.5461 11.6383 15.18Z" />
                 </svg>
               </span>
-              <span class="text">Auth</span>
+              <span class="text">Pengeluaran</span>
             </a>
             <ul id="ddmenu_3" class="collapse dropdown-nav">
               <li>
@@ -101,16 +92,10 @@
               </li>
             </ul>
           </li>
-          <span class="divider"><hr /></span>
-          <li class="nav-item nav-item-has-children">
+          <li class="nav-item">
             <a
-              href="#0"
-              class="collapsed"
-              data-bs-toggle="collapse"
-              data-bs-target="#ddmenu_4"
-              aria-controls="ddmenu_4"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+              href="/kegiatans"
+              class=""
             >
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,32 +109,15 @@
                     d="M10.8333 14.5834C10.8333 12.5123 12.5123 10.8334 14.5833 10.8334C16.6544 10.8334 18.3333 12.5123 18.3333 14.5834C18.3333 16.6545 16.6544 18.3334 14.5833 18.3334C12.5123 18.3334 10.8333 16.6545 10.8333 14.5834Z" />
                 </svg>
               </span>
-              <span class="text">UI Elements </span>
+              <span class="text">Kegiatan </span>
             </a>
-            <ul id="ddmenu_4" class="collapse dropdown-nav">
-              <li>
-                <a href="alerts.html"> Alerts </a>
-              </li>
-              <li>
-                <a href="buttons.html"> Buttons </a>
-              </li>
-              <li>
-                <a href="cards.html"> Cards </a>
-              </li>
-              <li>
-                <a href="typography.html"> Typography </a>
-              </li>
-            </ul>
+            
           </li>
-          <li class="nav-item nav-item-has-children">
+          <li class="nav-item">
             <a
-              href="#0"
-              class="collapsed"
-              data-bs-toggle="collapse"
-              data-bs-target="#ddmenu_55"
-              aria-controls="ddmenu_55"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+              href="/penerimaans"
+              class=""
+              
             >
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -165,7 +133,7 @@
                     d="M2.49999 16.6667C2.03976 16.6667 1.66666 17.0398 1.66666 17.5C1.66666 17.9602 2.03976 18.3334 2.49999 18.3334H14.1667C14.6269 18.3334 15 17.9602 15 17.5C15 17.0398 14.6269 16.6667 14.1667 16.6667H2.49999Z" />
                 </svg>
               </span>
-              <span class="text">Icons</span>
+              <span class="text">Penerimaan</span>
             </a>
             <ul id="ddmenu_55" class="collapse dropdown-nav">
               <li>
@@ -176,6 +144,8 @@
               </li>
             </ul>
           </li>
+          <span class="divider"><hr /></span>
+          
           <li class="nav-item nav-item-has-children">
             <a
               href="#0"
