@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-900 via-sky-800 to-blue-900 min-h-screen flex items-center justify-center p-6">
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
 
     <!-- Card container for the form -->
     <div class="w-full max-w-xl mx-auto bg-white bg-opacity-95 backdrop-blur-sm shadow-2xl rounded-3xl p-10 transform transition-all hover:scale-105 duration-300">
