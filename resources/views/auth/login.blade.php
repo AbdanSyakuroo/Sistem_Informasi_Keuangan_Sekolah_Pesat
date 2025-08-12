@@ -1,6 +1,6 @@
 <x-guest-layout>
-    <div class="min-h-screen flex items-center justify-center bg-none py-10 px-4">
-        <div class="w-full max-w-lg min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-none">
+    <div class="max-h-screen flex items-center justify-center bg-none py-10 px-4">
+        <div class="w-full max-w-lg max-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-none">
            <div>
                 <a href="/">
                     <img src="{{ asset('img/pesat.png') }}" alt="logo" class="w-70 h-40">

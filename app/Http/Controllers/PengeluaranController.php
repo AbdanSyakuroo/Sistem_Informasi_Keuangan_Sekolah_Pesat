@@ -67,4 +67,39 @@ class PengeluaranController extends Controller
         return redirect()->route('pengeluarans.index')
             ->with('success', 'Pengeluaran berhasil dihapus.');
     }
+
+
+
+    public function filterForm()
+    {
+        $sumberDanas = SumberDana::all();
+        return view('pengeluarans.filter', compact('sumberDanas'));
+    }
+
+    public function bySumberDana(Request $request)
+    {
+        $request->validate([
+            'sumber_dana_id' => 'required|exists:sumber_danas,id',
+            'tanggal_mulai'  => 'nullable|date',
+            'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
+        ]);
+
+        $pengeluaran = Pengeluaran::with(['kegiatan', 'sumberDana'])
+            ->where('sumber_dana_id', $request->sumber_dana_id)
+            ->when($request->filled('tanggal_mulai'), function ($query) use ($request) {
+                $query->whereDate('tanggal', '>=', $request->tanggal_mulai);
+            })
+            ->when($request->filled('tanggal_selesai'), function ($query) use ($request) {
+                $query->whereDate('tanggal', '<=', $request->tanggal_selesai);
+            })
+            ->orderBy('tanggal', 'asc')
+            ->get();
+
+        $namaSumber = $pengeluaran->first()->sumberDana->nama_sumber ?? 'Tidak Diketahui';
+        // dd($pengeluaran->toArray()); // tampilkan dalam bentuk array
+        // dd($namaSumber);
+
+
+        return view('pengeluarans.by_sumber_dana', compact('pengeluaran', 'namaSumber'));
+    }
 }

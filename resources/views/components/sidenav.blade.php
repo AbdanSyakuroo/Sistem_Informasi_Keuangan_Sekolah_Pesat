@@ -7,14 +7,9 @@
       </div>
       <nav class="sidebar-nav">
         <ul>
-          <li class="nav-item nav-item-has-children">
+          <li class="nav-item">
             <a
-              href="#0"
-              data-bs-toggle="collapse"
-              data-bs-target="#ddmenu_1"
-              aria-controls="ddmenu_1"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+              href="/dashboard"
             >
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,10 +44,10 @@
             </a>
             <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
-                <a href="/laporan"> Data keseluruhan </a>
+                <a href="/laporan">Keseluruhan </a>
               </li>
               <li>
-                <a href="blank-page.html"> Pencarian kategori </a>
+                <a href="/pengeluarans/filter">By Sumber Dana </a>
               </li>
             </ul>
           </li>
