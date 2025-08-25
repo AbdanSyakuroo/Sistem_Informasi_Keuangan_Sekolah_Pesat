@@ -82,7 +82,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th><h6>#</h6></th>
+              <th><h6>No</h6></th>
               <th><h6>Nama Sumber</h6></th>
               <th><h6>Keterangan</h6></th>
               <th><h6>Aksi</h6></th>

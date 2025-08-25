@@ -129,7 +129,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th><h6>#</h6></th>
+              <th><h6>No</h6></th>
               <th><h6>Kode Kegiatan</h6></th>
               <th><h6>Nama Kegiatan</h6></th>
               <th><h6>Aksi</h6></th>

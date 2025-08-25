@@ -84,7 +84,7 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th><h6>#</h6></th>
+                      <th><h6>No</h6></th>
                       <th><h6>Tanggal</h6></th>
                       <th><h6>Kegiatan</h6></th>
                       <th><h6>Sumber Dana</h6></th>

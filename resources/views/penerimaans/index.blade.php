@@ -82,7 +82,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th><h6>#</h6></th>
+                <th><h6>No</h6></th>
                 <th><h6>Tanggal</h6></th>
                 <th><h6>Uraian</h6></th>
                 <th><h6>Nominal</h6></th>

@@ -32,7 +32,7 @@
                       </div>
                     </div>
                   </button>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                  {{-- <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                     <li>
                       <div class="author-info flex items-center !p-1">
                         <div class="image">
@@ -65,7 +65,7 @@
                     <li>
                       <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
                     </li>
-                  </ul>
+                  </ul> --}}
                 </div>
                 <!-- profile end -->
               </div>
