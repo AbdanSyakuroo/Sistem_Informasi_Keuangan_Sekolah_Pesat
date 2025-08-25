@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Kegiatan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -61,8 +61,22 @@ class LaporanController extends Controller
         $saldo += $penerimaan - $pengeluaran;
         $item->saldo = $saldo;
     }
+// === Tambahan untuk Sheet Kegiatan ===
+       // Ambil kegiatan yang berhubungan dengan data pengeluaran sesuai filter
+$kegiatan = DB::table('pengeluarans')
+    ->join('kegiatans', 'pengeluarans.kegiatan_id', '=', 'kegiatans.id')
+    ->select('kegiatans.kode_kegiatan', 'kegiatans.nama_kegiatan')
+    ->when($bulan, function ($query) use ($bulan) {
+        $query->whereMonth('pengeluarans.tanggal', $bulan);
+    })
+    ->when($tahun, function ($query) use ($tahun) {
+        $query->whereYear('pengeluarans.tanggal', $tahun);
+    })
+    ->distinct() // biar tidak dobel
+    ->get();
 
-    return view('laporan.index', compact('laporan', 'bulan', 'tahun'));
+// dd($kegiatan->toArray());
+        return view('laporan.index', compact('laporan', 'bulan', 'tahun', 'kegiatan'));
 }
 
 

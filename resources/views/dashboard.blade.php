@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
-    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
+    <title>FINSchool</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -42,7 +42,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>eCommerce Dashboard</h2>
+                  <h2>FINSchool Dashboard</h2>
                 </div>
               </div>
               <!-- end col -->
@@ -54,7 +54,7 @@
                         <a href="#0">Dashboard</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">
-                        eCommerce
+                        FINSchool
                       </li>
                     </ol>
                   </nav>
@@ -66,75 +66,66 @@
           </div>
           <!-- ========== title-wrapper end ========== -->
           <div class="row">
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30">
-                <div class="icon purple">
-                  <i class="lni lni-cart-full"></i>
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">New Orders</h6>
-                  <h3 class="text-bold mb-10">34567</h3>
-                  <p class="text-sm text-success">
-                    <i class="lni lni-arrow-up"></i> +2.00%
-                    <span class="text-gray">(30 days)</span>
-                  </p>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30">
-                <div class="icon success">
-                  <i class="lni lni-dollar"></i>
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">Total Income</h6>
-                  <h3 class="text-bold mb-10">$74,567</h3>
-                  <p class="text-sm text-success">
-                    <i class="lni lni-arrow-up"></i> +5.45%
-                    <span class="text-gray">Increased</span>
-                  </p>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30">
-                <div class="icon primary">
-                  <i class="lni lni-credit-cards"></i>
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">Total Expense</h6>
-                  <h3 class="text-bold mb-10">$24,567</h3>
-                  <p class="text-sm text-danger">
-                    <i class="lni lni-arrow-down"></i> -2.00%
-                    <span class="text-gray">Expense</span>
-                  </p>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30">
-                <div class="icon orange">
-                  <i class="lni lni-user"></i>
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">New User</h6>
-                  <h3 class="text-bold mb-10">34567</h3>
-                  <p class="text-sm text-danger">
-                    <i class="lni lni-arrow-down"></i> -25.00%
-                    <span class="text-gray"> Earning</span>
-                  </p>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-          </div>
+  <!-- Total Penerimaan -->
+  <div class="col-xl-3 col-lg-4 col-sm-6">
+    <div class="icon-card mb-30">
+      <div class="icon success">
+        <i class="lni lni-dollar"></i>
+      </div>
+      <div class="content">
+        <h6 class="mb-10">Total Penerimaan</h6>
+        <h3 class="text-bold mb-10">
+          Rp {{ number_format($totalPenerimaan, 0, ',', '.') }}
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total Pengeluaran -->
+  <div class="col-xl-3 col-lg-4 col-sm-6">
+    <div class="icon-card mb-30">
+      <div class="icon danger">
+        <i class="lni lni-credit-cards"></i>
+      </div>
+      <div class="content">
+        <h6 class="mb-10">Total Pengeluaran</h6>
+        <h3 class="text-bold mb-10">
+          Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sisa Saldo -->
+  <div class="col-xl-3 col-lg-4 col-sm-6">
+    <div class="icon-card mb-30">
+      <div class="icon primary">
+        <i class="lni lni-wallet"></i>
+      </div>
+      <div class="content">
+        <h6 class="mb-10">Sisa Saldo</h6>
+        <h3 class="text-bold mb-10">
+          Rp {{ number_format($sisaSaldo, 0, ',', '.') }}
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jumlah Kegiatan -->
+  <div class="col-xl-3 col-lg-4 col-sm-6">
+    <div class="icon-card mb-30">
+      <div class="icon orange">
+        <i class="lni lni-book"></i>
+      </div>
+      <div class="content">
+        <h6 class="mb-10">Jumlah Kegiatan</h6>
+        <h3 class="text-bold mb-10">{{ $jumlahKegiatan }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
           <!-- End Row -->
           <div class="row">
             <div class="col-lg-7">
@@ -144,7 +135,7 @@
                     <h6 class="text-medium mb-10">Yearly Stats</h6>
                     <h3 class="text-bold">$245,479</h3>
                   </div>
-                  <div class="right">
+                  {{-- <div class="right">
                     <div class="select-style-1">
                       <div class="select-position select-sm">
                         <select class="light-bg">
@@ -155,7 +146,7 @@
                       </div>
                     </div>
                     <!-- end select -->
-                  </div>
+                  </div> --}}
                 </div>
                 <!-- End Title -->
                 <div class="chart">
