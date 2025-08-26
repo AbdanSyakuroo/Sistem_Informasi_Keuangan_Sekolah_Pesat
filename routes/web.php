@@ -7,6 +7,8 @@ use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PenerimaanDanaController;
+use App\Http\Controllers\RealisasiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,6 +40,12 @@ Route::get('/pengeluarans/by-sumber-dana', [PengeluaranController::class, 'bySum
 
 Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 Route::get('/laporan1', [LaporanController::class, 'laporan1'])->name('laporan1.index');
+
+Route::get('laporan_realisasi', [RealisasiController::class, 'index'])
+    ->name('laporan_realisasi.index');
+
+
+Route::resource('penerimaan-sumber-dana', PenerimaanDanaController::class)->only(['index','create','store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -13,8 +13,28 @@ class SumberDana extends Model
     ];
 
     public function pengeluarans()
-{
-    return $this->hasMany(Pengeluaran::class);
-}
+    {
+        return $this->hasMany(Pengeluaran::class);
+    }
+
+    public function penerimaanSumberDanas()
+    {
+        return $this->hasMany(PenerimaanDana::class);
+    }
+
+    public function getTotalPenerimaanAttribute()
+    {
+        return $this->penerimaanSumberDanas()->sum('nominal');
+    }
+
+    public function getTotalPengeluaranAttribute()
+    {
+        return $this->pengeluarans()->sum('nominal');
+    }
+
+    public function getSaldoAttribute()
+    {
+        return $this->total_penerimaan - $this->total_pengeluaran;
+    }
 
 }
