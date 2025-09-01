@@ -44,6 +44,8 @@ Route::get('/laporan1', [LaporanController::class, 'laporan1'])->name('laporan1.
 Route::get('laporan_realisasi', [RealisasiController::class, 'index'])
     ->name('laporan_realisasi.index');
 
+Route::get('laporan_realisasi/{id}', [RealisasiController::class, 'show'])
+    ->name('laporan_realisasi.show');
 
 Route::resource('penerimaan-sumber-dana', PenerimaanDanaController::class)->only(['index','create','store']);
 

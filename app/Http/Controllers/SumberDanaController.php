@@ -9,7 +9,7 @@ class SumberDanaController extends Controller
 {
     /**
      * Tampilkan daftar sumber dana
-     */
+    */
     public function index()
     {
         $sumberDana = SumberDana::latest()->paginate(10);
@@ -18,7 +18,8 @@ class SumberDanaController extends Controller
 
     /**
      * Form tambah sumber dana
-     */
+    */
+
     public function create()
     {
         return view('sumber_dana.create');
@@ -26,7 +27,7 @@ class SumberDanaController extends Controller
 
     /**
      * Simpan sumber dana baru
-     */
+    */
     public function store(Request $request)
     {
         $request->validate([
@@ -41,7 +42,7 @@ class SumberDanaController extends Controller
 
     /**
      * Form edit sumber dana
-     */
+    */
     public function edit(SumberDana $sumber_dana)
     {
         return view('sumber_dana.edit', compact('sumber_dana'));
@@ -49,7 +50,8 @@ class SumberDanaController extends Controller
 
     /**
      * Update sumber dana
-     */
+    */
+
     public function update(Request $request, SumberDana $sumber_dana)
     {
         $request->validate([
@@ -64,7 +66,8 @@ class SumberDanaController extends Controller
 
     /**
      * Hapus sumber dana
-     */
+    */
+
     public function destroy(SumberDana $sumber_dana)
     {
         $sumber_dana->delete();
@@ -72,4 +75,5 @@ class SumberDanaController extends Controller
         return redirect()->route('sumber_dana.index')
                          ->with('success', 'Sumber dana berhasil dihapus.');
     }
+  
 }

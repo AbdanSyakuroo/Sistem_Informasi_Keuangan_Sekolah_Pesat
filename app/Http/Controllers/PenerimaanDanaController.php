@@ -13,7 +13,7 @@ class PenerimaanDanaController extends Controller
      */
     public function index()
     {
-        $penerimaans = PenerimaanDana::with('sumberDana')->orderBy('tanggal', 'desc')->get();
+        $penerimaans = PenerimaanDana::with('sumberDana')->orderBy('tanggal', 'desc')->paginate(10); // paginate 10 per halaman;
 
         return view('penerimaan_sumber_dana.index', compact('penerimaans'));
     }

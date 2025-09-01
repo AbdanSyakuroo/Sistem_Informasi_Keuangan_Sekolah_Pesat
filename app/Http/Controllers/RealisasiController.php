@@ -36,10 +36,19 @@ class RealisasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+public function show(string $id)
+{
+    // Ambil sumber dana beserta pengeluarannya
+    $sumberDana = SumberDana::with('pengeluarans')->findOrFail($id);
+
+    // Hitung total pengeluaran
+    $totalPengeluaran = $sumberDana->pengeluarans->sum('jumlah');
+
+    // Kirim ke view
+    return view('laporan_realisasi.show', compact('sumberDana', 'totalPengeluaran'));
+}
+
+
 
     /**
      * Show the form for editing the specified resource.
