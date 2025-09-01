@@ -92,7 +92,6 @@
                       <tr>
                         <td><p>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</p></td>
                         <td class="min-width"><p>{{ $p->sumberDana->nama_sumber }}</p></td>
-                        <td class="min-width"><p>{{ $p->uraian }}</p></td>
                         <td class="min-width"><p>{{ number_format($p->nominal, 0, ',', '.') }}</p></td>
                       </tr>
                       @empty

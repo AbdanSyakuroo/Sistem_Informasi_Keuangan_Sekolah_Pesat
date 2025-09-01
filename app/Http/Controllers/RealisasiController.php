@@ -38,15 +38,19 @@ class RealisasiController extends Controller
      */
 public function show(string $id)
 {
-    // Ambil sumber dana beserta pengeluarannya
-    $sumberDana = SumberDana::with('pengeluarans')->findOrFail($id);
+    // Ambil sumber dana beserta pengeluarannya + kegiatan
+    $sumberDana = SumberDana::with(['pengeluarans.kegiatan'])->findOrFail($id);
 
-    // Hitung total pengeluaran
-    $totalPengeluaran = $sumberDana->pengeluarans->sum('jumlah');
+    // Hitung total pengeluaran (pakai kolom nominal)
+    $totalPengeluaran = $sumberDana->pengeluarans->sum('nominal');
+
+    // Ambil detail pengeluaran
+    $pengeluarans = $sumberDana->pengeluarans;
 
     // Kirim ke view
-    return view('laporan_realisasi.show', compact('sumberDana', 'totalPengeluaran'));
+    return view('laporan_realisasi.show', compact('sumberDana', 'pengeluarans', 'totalPengeluaran'));
 }
+
 
 
 

@@ -68,34 +68,41 @@
                   <h6 class="mb-0">Realisasi Sumber Dana</h6>
                 </div>
 
-                <div class="table-wrapper table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th><h6>No</h6></th>
-                        <th><h6>Nama Sumber Dana</h6></th>
-                        <th class="text-end"><h6>Total Penerimaan</h6></th>
-                        <th class="text-end"><h6>Total Pengeluaran</h6></th>
-                        <th class="text-end"><h6>Sisa Saldo</h6></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @forelse($sumberDanas as $i => $sd)
-                        <tr>
-                          <td><p>{{ $i+1 }}</p></td>
-                          <td><p>{{ $sd->nama_sumber }}</p></td>
-                          <td class="text-end"><p>{{ number_format($sd->total_penerimaan, 0, ',', '.') }}</p></td>
-                          <td class="text-end"><p>{{ number_format($sd->total_pengeluaran, 0, ',', '.') }}</p></td>
-                          <td class="text-end fw-bold"><p>{{ number_format($sd->saldo, 0, ',', '.') }}</p></td>
-                        </tr>
-                      @empty
-                        <tr>
-                          <td colspan="5" class="text-center">Belum ada data realisasi</td>
-                        </tr>
-                      @endforelse
-                    </tbody>
-                  </table>
-                </div>
+               <div class="table-wrapper table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><h6>No</h6></th>
+        <th><h6>Nama Sumber Dana</h6></th>
+        <th class="text-end"><h6>Total Penerimaan</h6></th>
+        <th class="text-end"><h6>Total Pengeluaran</h6></th>
+        <th class="text-end"><h6>Sisa Saldo</h6></th>
+        <th class="text-center"><h6>Aksi</h6></th>
+      </tr>
+    </thead>
+    <tbody>
+      @forelse($sumberDanas as $i => $sd)
+        <tr>
+          <td><p>{{ $i+1 }}</p></td>
+          <td><p>{{ $sd->nama_sumber }}</p></td>
+          <td class="text-end"><p>{{ number_format($sd->total_penerimaan, 0, ',', '.') }}</p></td>
+          <td class="text-end"><p>{{ number_format($sd->total_pengeluaran, 0, ',', '.') }}</p></td>
+          <td class="text-end fw-bold"><p>{{ number_format($sd->saldo, 0, ',', '.') }}</p></td>
+          <td class="text-center">
+            <a href="{{ route('laporan_realisasi.show', $sd->id) }}" class="btn btn-primary btn-sm text-white">
+              Detail
+            </a>
+          </td>
+        </tr>
+      @empty
+        <tr>
+          <td colspan="6" class="text-center">Belum ada data realisasi</td>
+        </tr>
+      @endforelse
+    </tbody>
+  </table>
+</div>
+
               </div>
             </div>
           </div>
