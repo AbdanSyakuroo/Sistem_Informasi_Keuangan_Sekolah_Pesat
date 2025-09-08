@@ -126,12 +126,7 @@
                                 Data Penerimaan
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ url('laporan_realisasi') }}"
-                                class="{{ Request::is('laporan_realisasi') ? 'active' : '' }}">
-                                Realisasi
-                            </a>
-                        </li>
+                        
                     </ul>
                 </li>
 
@@ -193,13 +188,19 @@
                     </a>
                     <ul id="ddmenu_2" class="collapse dropdown-nav {{ $laporan_active ? 'show' : '' }}">
                         <li>
+                            <a href="{{ url('laporan_realisasi') }}"
+                                class="{{ Request::is('laporan_realisasi') ? 'active' : '' }}">
+                                Realisasi
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ url('laporan') }}"
                                 class="{{ Request::is('laporan') ? 'active' : '' }}">Keseluruhan</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{ url('pengeluarans/filter') }}"
                                 class="{{ Request::is('pengeluarans/filter') ? 'active' : '' }}">By Sumber Dana</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 

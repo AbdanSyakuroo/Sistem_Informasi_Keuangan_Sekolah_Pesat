@@ -41,7 +41,7 @@
                 <div class="title">
                   <h2>Laporan Realisasi per Sumber Dana</h2>
                 </div>
-                <form method="GET" action="{{ route('laporan_realisasi.index') }}" class="mb-4 flex gap-2">
+                {{-- <form method="GET" action="{{ route('laporan_realisasi.index') }}" class="mb-4 flex gap-2">
     <select name="bulan" class="border rounded p-2">
         <option value="">-- Pilih Bulan --</option>
         @for ($i = 1; $i <= 12; $i++)
@@ -60,10 +60,10 @@
         @endfor
     </select>
 
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+    <button type="submit" class="bg-primary text-white px-4 py-2 rounded">
         Filter
     </button>
-</form>
+</form> --}}
               </div>
               <div class="col-md-6">
                 <div class="breadcrumb-wrapper">

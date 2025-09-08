@@ -81,26 +81,25 @@ class RealisasiController extends Controller
      * Display the specified resource.
      */
     public function show(Request $request, string $id)
-    {
-        $bulan = $request->input('bulan');
-        $tahun = $request->input('tahun');
+{
+    $bulan = $request->input('bulan');
+    $tahun = $request->input('tahun');
 
-        // Ambil sumber dana beserta pengeluarannya + kegiatan (filtered)
-        $sumberDana = SumberDana::with(['pengeluarans' => function ($query) use ($bulan, $tahun) {
-            if ($bulan) {
-                $query->whereMonth('tanggal', $bulan);
-            }
-            if ($tahun) {
-                $query->whereYear('tanggal', $tahun);
-            }
-            $query->with('kegiatan');
-        }])->findOrFail($id);
+    $sumberDana = SumberDana::with(['pengeluarans' => function ($query) use ($bulan, $tahun) {
+        if ($bulan) {
+            $query->whereMonth('tanggal', $bulan);
+        }
+        if ($tahun) {
+            $query->whereYear('tanggal', $tahun);
+        }
+        $query->with('kegiatan');
+    }])->findOrFail($id);
 
-        $pengeluarans = $sumberDana->pengeluarans;
-        $totalPengeluaran = $pengeluarans->sum('nominal');
+    $pengeluarans = $sumberDana->pengeluarans;
+    $totalPengeluaran = $pengeluarans->sum('nominal');
 
-        return view('laporan_realisasi.show', compact('sumberDana', 'pengeluarans', 'totalPengeluaran', 'bulan', 'tahun'));
-    }
+    return view('laporan_realisasi.show', compact('sumberDana', 'pengeluarans', 'totalPengeluaran', 'bulan', 'tahun'));
+}
 
 
 

@@ -35,6 +35,35 @@
                 <div class="title">
                   <h2>Detail Pengeluaran - {{ $sumberDana->nama_sumber }}</h2>
                 </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+    <h6 class="mb-0">Detail Realisasi: {{ $sumberDana->nama_sumber }}</h6>
+</div>
+
+<!-- Filter Bulan & Tahun -->
+<form method="GET" action="{{ route('laporan_realisasi.show', $sumberDana->id) }}" class="mb-4 d-flex gap-2">
+    <select name="bulan" class="form-select" style="width: auto;">
+        <option value="">-- Pilih Bulan --</option>
+        @for ($i = 1; $i <= 12; $i++)
+            <option value="{{ $i }}" {{ $bulan == $i ? 'selected' : '' }}>
+                {{ \Carbon\Carbon::create()->month($i)->translatedFormat('F') }}
+            </option>
+        @endfor
+    </select>
+
+    <select name="tahun" class="form-select" style="width: auto;">
+        <option value="">-- Pilih Tahun --</option>
+        @for ($i = date('Y'); $i >= 2020; $i--)
+            <option value="{{ $i }}" {{ $tahun == $i ? 'selected' : '' }}>
+                {{ $i }}
+            </option>
+        @endfor
+    </select>
+
+    <button type="submit" class="btn btn-primary">
+        Filter
+    </button>
+</form>
+
               </div>
               <div class="col-md-6">
                 <div class="breadcrumb-wrapper">
