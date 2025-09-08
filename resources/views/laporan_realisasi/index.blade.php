@@ -41,6 +41,29 @@
                 <div class="title">
                   <h2>Laporan Realisasi per Sumber Dana</h2>
                 </div>
+                <form method="GET" action="{{ route('laporan_realisasi.index') }}" class="mb-4 flex gap-2">
+    <select name="bulan" class="border rounded p-2">
+        <option value="">-- Pilih Bulan --</option>
+        @for ($i = 1; $i <= 12; $i++)
+            <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
+                {{ \Carbon\Carbon::create()->month($i)->translatedFormat('F') }}
+            </option>
+        @endfor
+    </select>
+
+    <select name="tahun" class="border rounded p-2">
+        <option value="">-- Pilih Tahun --</option>
+        @for ($i = date('Y'); $i >= 2020; $i--)
+            <option value="{{ $i }}" {{ request('tahun') == $i ? 'selected' : '' }}>
+                {{ $i }}
+            </option>
+        @endfor
+    </select>
+
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+        Filter
+    </button>
+</form>
               </div>
               <div class="col-md-6">
                 <div class="breadcrumb-wrapper">

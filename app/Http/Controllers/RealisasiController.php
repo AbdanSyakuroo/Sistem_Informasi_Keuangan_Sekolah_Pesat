@@ -10,12 +10,56 @@ class RealisasiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sumberDanas = SumberDana::with(['penerimaanSumberDanas', 'pengeluarans'])->get();
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
 
-        return view('laporan_realisasi.index', compact('sumberDanas'));
+        $sumberDanas = SumberDana::with(['penerimaanSumberDanas', 'pengeluarans'])
+            ->when($bulan || $tahun, function ($query) use ($bulan, $tahun) {
+                $query->where(function ($q) use ($bulan, $tahun) {
+                    $q->whereHas('penerimaanSumberDanas', function ($q2) use ($bulan, $tahun) {
+                        if ($bulan) $q2->whereMonth('tanggal', $bulan);
+                        if ($tahun) $q2->whereYear('tanggal', $tahun);
+                    })->orWhereHas('pengeluarans', function ($q2) use ($bulan, $tahun) {
+                        if ($bulan) $q2->whereMonth('tanggal', $bulan);
+                        if ($tahun) $q2->whereYear('tanggal', $tahun);
+                    });
+                });
+            })
+            ->get()
+            ->map(function ($sd) use ($bulan, $tahun) {
+                // Hitung penerimaan per sumber dana
+                $total_penerimaan = $sd->penerimaanSumberDanas()
+                    ->when($bulan, fn($q) => $q->whereMonth('tanggal', $bulan))
+                    ->when($tahun, fn($q) => $q->whereYear('tanggal', $tahun))
+                    ->sum('nominal'); // <-- pastikan kolomnya
+
+                $total_pengeluaran = $sd->pengeluarans()
+                    ->when($bulan, fn($q) => $q->whereMonth('tanggal', $bulan))
+                    ->when($tahun, fn($q) => $q->whereYear('tanggal', $tahun))
+                    ->sum('nominal'); // <-- pastikan kolomnya
+
+
+                // Tambahkan properti baru
+                $sd->total_penerimaan = $total_penerimaan;
+                $sd->total_pengeluaran = $total_pengeluaran;
+                $sd->saldo = $total_penerimaan - $total_pengeluaran;
+
+                return $sd;
+            });
+
+            
+         
+        return view('laporan_realisasi.index', compact('sumberDanas', 'bulan', 'tahun'));
     }
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,20 +80,27 @@ class RealisasiController extends Controller
     /**
      * Display the specified resource.
      */
-public function show(string $id)
-{
-    // Ambil sumber dana beserta pengeluarannya + kegiatan
-    $sumberDana = SumberDana::with(['pengeluarans.kegiatan'])->findOrFail($id);
+    public function show(Request $request, string $id)
+    {
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
 
-    // Hitung total pengeluaran (pakai kolom nominal)
-    $totalPengeluaran = $sumberDana->pengeluarans->sum('nominal');
+        // Ambil sumber dana beserta pengeluarannya + kegiatan (filtered)
+        $sumberDana = SumberDana::with(['pengeluarans' => function ($query) use ($bulan, $tahun) {
+            if ($bulan) {
+                $query->whereMonth('tanggal', $bulan);
+            }
+            if ($tahun) {
+                $query->whereYear('tanggal', $tahun);
+            }
+            $query->with('kegiatan');
+        }])->findOrFail($id);
 
-    // Ambil detail pengeluaran
-    $pengeluarans = $sumberDana->pengeluarans;
+        $pengeluarans = $sumberDana->pengeluarans;
+        $totalPengeluaran = $pengeluarans->sum('nominal');
 
-    // Kirim ke view
-    return view('laporan_realisasi.show', compact('sumberDana', 'pengeluarans', 'totalPengeluaran'));
-}
+        return view('laporan_realisasi.show', compact('sumberDana', 'pengeluarans', 'totalPengeluaran', 'bulan', 'tahun'));
+    }
 
 
 

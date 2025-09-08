@@ -14,12 +14,12 @@ class SumberDana extends Model
 
     public function pengeluarans()
     {
-        return $this->hasMany(Pengeluaran::class);
+        return $this->hasMany(Pengeluaran::class , 'sumber_dana_id');
     }
 
     public function penerimaanSumberDanas()
     {
-        return $this->hasMany(PenerimaanDana::class);
+        return $this->hasMany(PenerimaanDana::class , 'sumber_dana_id');
     }
 
     public function getTotalPenerimaanAttribute()
