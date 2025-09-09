@@ -166,260 +166,275 @@
     <!-- Library SheetJS untuk Export Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-    <script>
-        const kegiatan = @json($kegiatan);
+<script>
+const bulanMap = {
+    "01": "Januari", "02": "Februari", "03": "Maret",
+    "04": "April", "05": "Mei", "06": "Juni",
+    "07": "Juli", "08": "Agustus", "09": "September",
+    "10": "Oktober", "11": "November", "12": "Desember"
+};
+
+const bulan = bulanMap["{{ $bulan }}"]; // hasilnya langsung nama bulan
+const tahun = "{{ $tahun }}";
+
+
+const kegiatan = @json($kegiatan);
 const realisasi = @json($realisasi);
-        function formatRupiah(angka) {
-            return 'Rp ' + parseInt(angka, 10).toLocaleString('id-ID');
-        }
+const sumberDanas = @json($sumberDanas);
+const realisasiKegiatan = @json($realisasiKegiatan);
 
-        document.getElementById('exportPDF').addEventListener('click', function() {
-            const {
-                jsPDF
-            } = window.jspdf;
-            const doc = new jsPDF();
-
-            const rows = Array.from(document.querySelectorAll('#laporanTable tbody tr'))
-                .map(tr => Array.from(tr.children).map((td, i) => {
-                    if ([2, 3, 6].includes(i)) {
-                        const val = parseInt(td.innerText.replace(/[^0-9\-]+/g, ""), 10) || 0;
-                        return val;
-                    }
-                    return td.innerText.trim();
-                }));
-
-            // === 1. Laporan Keseluruhan ===
-            doc.text("Laporan Keseluruhan", 14, 10);
-            doc.autoTable({
-                head: [
-                    ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber',
-                        'Saldo'
-                    ]
-                ],
-                body: rows.map(r => [r[0], r[1], formatRupiah(r[2]), formatRupiah(r[3]), r[4], r[5],
-                    formatRupiah(r[6])
-                ]),
-                startY: 20
-            });
-
-            // === 2. Daftar Kegiatan ===
-            if (kegiatan.length > 0) {
-                doc.addPage();
-                doc.text("Daftar Kegiatan", 14, 10);
-                doc.autoTable({
-                    head: [
-                        ['Kode Kegiatan', 'Nama Kegiatan']
-                    ],
-                    body: kegiatan.map(k => [k.kode_kegiatan, k.nama_kegiatan]),
-                    startY: 20
-                });
-            }
-
-            // === 3. Data Penerimaan ===
-            const penerimaanRows = rows.filter(r => r[2] > 0);
-            if (penerimaanRows.length > 0) {
-                const totalPenerimaan = penerimaanRows.reduce((sum, r) => sum + r[2], 0);
-                doc.addPage();
-                doc.text("Laporan Penerimaan", 14, 10);
-                doc.autoTable({
-                    head: [
-                        ['Tanggal', 'Uraian', 'Penerimaan']
-                    ],
-                    body: [
-                        ...penerimaanRows.map(r => [r[0], r[1], formatRupiah(r[2])]),
-                        [{
-                            content: "TOTAL",
-                            colSpan: 2,
-                            styles: {
-                                halign: 'right'
-                            }
-                        }, formatRupiah(totalPenerimaan)]
-                    ],
-                    startY: 20
-                });
-            }
-
-            // === 4. Data Pengeluaran ===
-            const pengeluaranRows = rows.filter(r => r[3] > 0);
-            if (pengeluaranRows.length > 0) {
-                const totalPengeluaran = pengeluaranRows.reduce((sum, r) => sum + r[3], 0);
-                doc.addPage();
-                doc.text("Laporan Pengeluaran", 14, 10);
-                doc.autoTable({
-                    head: [
-                        ['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran']
-                    ],
-                    body: [
-                        ...pengeluaranRows.map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
-                        [{
-                            content: "TOTAL",
-                            colSpan: 4,
-                            styles: {
-                                halign: 'right'
-                            }
-                        }, formatRupiah(totalPengeluaran)]
-                    ],
-                    startY: 20
-                });
-            }
-
-            // === 5. Data Pengeluaran per Sumber Dana ===
-            const groupedPengeluaran = {};
-            pengeluaranRows.forEach(row => {
-                const sumber = row[5] || 'Tanpa Sumber';
-                if (!groupedPengeluaran[sumber]) groupedPengeluaran[sumber] = [];
-                groupedPengeluaran[sumber].push(row);
-            });
-
-            for (const sumber in groupedPengeluaran) {
-                const totalSumber = groupedPengeluaran[sumber].reduce((sum, r) => sum + r[3], 0);
-                doc.addPage();
-                doc.text(`Laporan Pengeluaran - ${sumber}`, 14, 10);
-                doc.autoTable({
-                    head: [
-                        ['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran']
-                    ],
-                    body: [
-                        ...groupedPengeluaran[sumber].map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[
-                            3])]),
-                        [{
-                            content: "TOTAL",
-                            colSpan: 4,
-                            styles: {
-                                halign: 'right'
-                            }
-                        }, formatRupiah(totalSumber)]
-                    ],
-                    startY: 20
-                });
-            }
-
-            // === Laporan Realisasi per Sumber Dana ===
-            const groupedRealisasi = {};
-            // === Laporan Realisasi per Sumber Dana ===
-if (realisasi.length > 0) {
-    const realisasiBody = realisasi.map((r, i) => [
-        i + 1,
-        r.nama_sumber,
-        formatRupiah(r.total_penerimaan),
-        formatRupiah(r.total_pengeluaran),
-        formatRupiah(r.saldo)
-    ]);
-
-    doc.addPage();
-    doc.text("Laporan Realisasi Sumber Dana", 14, 10);
-    doc.autoTable({
-        head: [
-            ['No', 'Nama Sumber', 'Total Penerimaan', 'Total Pengeluaran', 'Sisa Saldo']
-        ],
-        body: realisasiBody,
-        startY: 20
-    });
+function formatRupiah(angka) {
+    return 'Rp ' + parseInt(angka, 10).toLocaleString('id-ID');
 }
 
-            doc.save('laporan.pdf');
+document.getElementById('exportPDF').addEventListener('click', function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const rows = Array.from(document.querySelectorAll('#laporanTable tbody tr'))
+        .map(tr => Array.from(tr.children).map((td, i) => {
+            if ([2, 3, 6].includes(i)) {
+                const val = parseInt(td.innerText.replace(/[^0-9\-]+/g, ""), 10) || 0;
+                return val;
+            }
+            return td.innerText.trim();
+        }));
+
+    // === 1. Laporan Keseluruhan ===
+    doc.text(`Laporan Keseluruhan - ${bulan} ${tahun}`, 14, 10);
+    doc.autoTable({
+        head: [['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber', 'Saldo']],
+        body: rows.map(r => [r[0], r[1], formatRupiah(r[2]), formatRupiah(r[3]), r[4], r[5], formatRupiah(r[6])]),
+        startY: 20
+    });
+
+    // === 2. Daftar Kegiatan ===
+    if (kegiatan.length > 0) {
+        doc.addPage();
+        doc.text(`Daftar Kegiatan - ${bulan} ${tahun}`, 14, 10);
+        doc.autoTable({
+            head: [['Kode Kegiatan', 'Nama Kegiatan']],
+            body: kegiatan.map(k => [k.kode_kegiatan, k.nama_kegiatan]),
+            startY: 20
+        });
+    }
+
+    // === 3. Data Penerimaan ===
+    const penerimaanRows = rows.filter(r => r[2] > 0);
+    if (penerimaanRows.length > 0) {
+        const totalPenerimaan = penerimaanRows.reduce((sum, r) => sum + r[2], 0);
+        doc.addPage();
+        doc.text(`Laporan Penerimaan - ${bulan} ${tahun}`, 14, 10);
+        doc.autoTable({
+            head: [['Tanggal', 'Uraian', 'Penerimaan']],
+            body: [
+                ...penerimaanRows.map(r => [r[0], r[1], formatRupiah(r[2])]),
+                [{ content: "TOTAL", colSpan: 2, styles: { halign: 'right' } }, formatRupiah(totalPenerimaan)]
+            ],
+            startY: 20
+        });
+    }
+
+    // === 4. Data Pengeluaran ===
+    const pengeluaranRows = rows.filter(r => r[3] > 0);
+    if (pengeluaranRows.length > 0) {
+        const totalPengeluaran = pengeluaranRows.reduce((sum, r) => sum + r[3], 0);
+        doc.addPage();
+        doc.text(`Laporan Pengeluaran - ${bulan} ${tahun}`, 14, 10);
+        doc.autoTable({
+            head: [['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran']],
+            body: [
+                ...pengeluaranRows.map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
+                [{ content: "TOTAL", colSpan: 4, styles: { halign: 'right' } }, formatRupiah(totalPengeluaran)]
+            ],
+            startY: 20
+        });
+    }
+
+    // === 5. Data Pengeluaran per Sumber Dana ===
+    const groupedPengeluaran = {};
+    pengeluaranRows.forEach(row => {
+        const sumber = row[5] || 'Tanpa Sumber';
+        if (!groupedPengeluaran[sumber]) groupedPengeluaran[sumber] = [];
+        groupedPengeluaran[sumber].push(row);
+    });
+
+    for (const sumber in groupedPengeluaran) {
+        const totalSumber = groupedPengeluaran[sumber].reduce((sum, r) => sum + r[3], 0);
+        doc.addPage();
+        doc.text(`Laporan Pengeluaran ${sumber} - ${bulan} ${tahun}`, 14, 10);
+        doc.autoTable({
+            head: [['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran']],
+            body: [
+                ...groupedPengeluaran[sumber].map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
+                [{ content: "TOTAL", colSpan: 4, styles: { halign: 'right' } }, formatRupiah(totalSumber)]
+            ],
+            startY: 20
+        });
+    }
+
+    // === 6. Realisasi per Sumber Dana ===
+    if (realisasi.length > 0) {
+        const realisasiBody = realisasi.map((r, i) => [
+            i + 1, r.nama_sumber,
+            formatRupiah(r.total_penerimaan),
+            formatRupiah(r.total_pengeluaran),
+            formatRupiah(r.saldo)
+        ]);
+
+        doc.addPage();
+        doc.text(`Laporan Realisasi Sumber Dana - ${bulan} ${tahun}`, 14, 10);
+        doc.autoTable({
+            head: [['No', 'Nama Sumber', 'Total Penerimaan', 'Total Pengeluaran', 'Sisa Saldo']],
+            body: realisasiBody,
+            startY: 20
+        });
+    }
+
+    // === 7. Realisasi per Kegiatan (Matrix) ===
+    if (Array.isArray(realisasiKegiatan) && realisasiKegiatan.length > 0) {
+        const head = [['Kode Kegiatan', 'Nama Kegiatan', ...sumberDanas, 'Total']];
+        const body = realisasiKegiatan.map(r => {
+            let total = 0;
+            const row = [r.kode_kegiatan ?? '', r.nama_kegiatan ?? ''];
+            sumberDanas.forEach(sumber => {
+                const num = Number(r[sumber]) || 0;
+                total += num;
+                row.push(formatRupiah(num));
+            });
+            row.push(formatRupiah(total));
+            return row;
         });
 
-        // ======================= EXCEL =======================
-        document.getElementById('exportExcel').addEventListener('click', function() {
-            const wb = XLSX.utils.book_new();
+        doc.addPage();
+        doc.text(`Realisasi per Kegiatan - ${bulan} ${tahun}`, 14, 10);
+        doc.autoTable({ head, body, startY: 20 });
+    }
 
-            const rows = Array.from(document.querySelectorAll('#laporanTable tbody tr'))
-                .map(tr => Array.from(tr.children).map((td, i) => {
-                    if ([2, 3, 6].includes(i)) {
-                        const val = parseInt(td.innerText.replace(/[^0-9\-]+/g, ""), 10) || 0;
-                        return val;
-                    }
-                    return td.innerText.trim();
-                }));
+    doc.save('laporan.pdf');
+});
 
-            // 1. Keseluruhan
-            const wsAll = XLSX.utils.aoa_to_sheet([
-                ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber', 'Saldo'],
-                ...rows.map(r => [r[0], r[1], formatRupiah(r[2]), formatRupiah(r[3]), r[4], r[5],
-                    formatRupiah(r[6])
-                ])
-            ]);
-            XLSX.utils.book_append_sheet(wb, wsAll, 'Keseluruhan');
+// ======================= EXCEL =======================
+document.getElementById('exportExcel').addEventListener('click', function() {
+    const wb = XLSX.utils.book_new();
 
-            // 2. Kegiatan
-            if (kegiatan.length > 0) {
-                const wsKegiatan = XLSX.utils.aoa_to_sheet([
-                    ['Kode Kegiatan', 'Nama Kegiatan'],
-                    ...kegiatan.map(k => [k.kode_kegiatan, k.nama_kegiatan])
-                ]);
-                XLSX.utils.book_append_sheet(wb, wsKegiatan, 'Kegiatan');
+    const rows = Array.from(document.querySelectorAll('#laporanTable tbody tr'))
+        .map(tr => Array.from(tr.children).map((td, i) => {
+            if ([2, 3, 6].includes(i)) {
+                const val = parseInt(td.innerText.replace(/[^0-9\-]+/g, ""), 10) || 0;
+                return val;
             }
+            return td.innerText.trim();
+        }));
 
-            // 3. Penerimaan
-            const penerimaanRows = rows.filter(r => r[2] > 0);
-            if (penerimaanRows.length > 0) {
-                const totalPenerimaan = penerimaanRows.reduce((sum, r) => sum + r[2], 0);
-                const wsPenerimaan = XLSX.utils.aoa_to_sheet([
-                    ['Tanggal', 'Uraian', 'Penerimaan'],
-                    ...penerimaanRows.map(r => [r[0], r[1], formatRupiah(r[2])]),
-                    ['TOTAL', '', formatRupiah(totalPenerimaan)]
-                ]);
-                XLSX.utils.book_append_sheet(wb, wsPenerimaan, 'Penerimaan');
-            }
+    // 1. Keseluruhan
+    const wsAll = XLSX.utils.aoa_to_sheet([
+        [`Laporan Keseluruhan - ${bulan} ${tahun}`], [],
+        ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber', 'Saldo'],
+        ...rows.map(r => [r[0], r[1], formatRupiah(r[2]), formatRupiah(r[3]), r[4], r[5], formatRupiah(r[6])])
+    ]);
+    wsAll['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:6 } }];
+    XLSX.utils.book_append_sheet(wb, wsAll, 'Keseluruhan');
 
-            // 4. Pengeluaran
-            const pengeluaranRows = rows.filter(r => r[3] > 0);
-            if (pengeluaranRows.length > 0) {
-                const totalPengeluaran = pengeluaranRows.reduce((sum, r) => sum + r[3], 0);
-                const wsPengeluaran = XLSX.utils.aoa_to_sheet([
-                    ['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran'],
-                    ...pengeluaranRows.map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
-                    ['TOTAL', '', '', '', formatRupiah(totalPengeluaran)]
-                ]);
-                XLSX.utils.book_append_sheet(wb, wsPengeluaran, 'Pengeluaran');
-            }
+    // 2. Kegiatan
+    if (kegiatan.length > 0) {
+        const wsKegiatan = XLSX.utils.aoa_to_sheet([
+            [`Daftar Kegiatan - ${bulan} ${tahun}`], [],
+            ['Kode Kegiatan', 'Nama Kegiatan'],
+            ...kegiatan.map(k => [k.kode_kegiatan, k.nama_kegiatan])
+        ]);
+        wsKegiatan['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:1 } }];
+        XLSX.utils.book_append_sheet(wb, wsKegiatan, 'Kegiatan');
+    }
 
-            // 5. Pengeluaran per Sumber Dana
-            const groupedPengeluaran = {};
-            pengeluaranRows.forEach(row => {
-                const sumber = row[5] || 'Tanpa Sumber';
-                if (!groupedPengeluaran[sumber]) groupedPengeluaran[sumber] = [];
-                groupedPengeluaran[sumber].push(row);
+    // 3. Penerimaan
+    const penerimaanRows = rows.filter(r => r[2] > 0);
+    if (penerimaanRows.length > 0) {
+        const totalPenerimaan = penerimaanRows.reduce((sum, r) => sum + r[2], 0);
+        const wsPenerimaan = XLSX.utils.aoa_to_sheet([
+            [`Laporan Penerimaan - ${bulan} ${tahun}`], [],
+            ['Tanggal', 'Uraian', 'Penerimaan'],
+            ...penerimaanRows.map(r => [r[0], r[1], formatRupiah(r[2])]),
+            ['TOTAL', '', formatRupiah(totalPenerimaan)]
+        ]);
+        wsPenerimaan['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:2 } }];
+        XLSX.utils.book_append_sheet(wb, wsPenerimaan, 'Penerimaan');
+    }
+
+    // 4. Pengeluaran
+    const pengeluaranRows = rows.filter(r => r[3] > 0);
+    if (pengeluaranRows.length > 0) {
+        const totalPengeluaran = pengeluaranRows.reduce((sum, r) => sum + r[3], 0);
+        const wsPengeluaran = XLSX.utils.aoa_to_sheet([
+            [`Laporan Pengeluaran - ${bulan} ${tahun}`], [],
+            ['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran'],
+            ...pengeluaranRows.map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
+            ['TOTAL', '', '', '', formatRupiah(totalPengeluaran)]
+        ]);
+        wsPengeluaran['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:4 } }];
+        XLSX.utils.book_append_sheet(wb, wsPengeluaran, 'Pengeluaran');
+    }
+
+    // 5. Pengeluaran per Sumber Dana
+    const groupedPengeluaran = {};
+    pengeluaranRows.forEach(row => {
+        const sumber = row[5] || 'Tanpa Sumber';
+        if (!groupedPengeluaran[sumber]) groupedPengeluaran[sumber] = [];
+        groupedPengeluaran[sumber].push(row);
+    });
+
+    for (const sumber in groupedPengeluaran) {
+        const totalSumber = groupedPengeluaran[sumber].reduce((sum, r) => sum + r[3], 0);
+        const ws = XLSX.utils.aoa_to_sheet([
+            [`Laporan Pengeluaran ${sumber} - ${bulan} ${tahun}`], [],
+            ['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran'],
+            ...groupedPengeluaran[sumber].map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
+            ['TOTAL', '', '', '', formatRupiah(totalSumber)]
+        ]);
+        ws['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:4 } }];
+        XLSX.utils.book_append_sheet(wb, ws, `Pengeluaran ${sumber}`.substring(0, 31));
+    }
+
+    // 6. Realisasi per Sumber Dana
+    const wsRealisasi = XLSX.utils.aoa_to_sheet([
+        [`Laporan Realisasi Sumber Dana - ${bulan} ${tahun}`], [],
+        ['No', 'Nama Sumber', 'Total Penerimaan', 'Total Pengeluaran', 'Sisa Saldo'],
+        ...realisasi.map((r, i) => [
+            i + 1, r.nama_sumber,
+            formatRupiah(r.total_penerimaan),
+            formatRupiah(r.total_pengeluaran),
+            formatRupiah(r.saldo)
+        ])
+    ]);
+    wsRealisasi['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:4 } }];
+    XLSX.utils.book_append_sheet(wb, wsRealisasi, 'Realisasi');
+
+    // 7. Realisasi Matrix
+    if (Array.isArray(realisasiKegiatan) && realisasiKegiatan.length > 0) {
+        const header = ['Kode Kegiatan', 'Nama Kegiatan', ...sumberDanas, 'Total'];
+        const rowsMatrix = realisasiKegiatan.map(r => {
+            let total = 0;
+            const vals = [];
+            sumberDanas.forEach(sumber => {
+                const num = Number(r[sumber]) || 0;
+                vals.push(num);
+                total += num;
             });
-
-            for (const sumber in groupedPengeluaran) {
-                const totalSumber = groupedPengeluaran[sumber].reduce((sum, r) => sum + r[3], 0);
-                const ws = XLSX.utils.aoa_to_sheet([
-                    ['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran'],
-                    ...groupedPengeluaran[sumber].map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
-                    ['TOTAL', '', '', '', formatRupiah(totalSumber)]
-                ]);
-                XLSX.utils.book_append_sheet(wb, ws, `Pengeluaran ${sumber}`.substring(0, 31));
-            }
-
-            // 6. Realisasi per Sumber Dana
-            const groupedRealisasi = {};
-            rows.forEach(r => {
-                const sumber = r[5] || 'Tanpa Sumber';
-                if (!groupedRealisasi[sumber]) groupedRealisasi[sumber] = {
-                    penerimaan: 0,
-                    pengeluaran: 0
-                };
-                groupedRealisasi[sumber].penerimaan += r[2];
-                groupedRealisasi[sumber].pengeluaran += r[3];
-            });
-
-           const wsRealisasi = XLSX.utils.aoa_to_sheet([
-    ['No', 'Nama Sumber', 'Total Penerimaan', 'Total Pengeluaran', 'Sisa Saldo'],
-    ...realisasi.map((r, i) => [
-        i + 1,
-        r.nama_sumber,
-    formatRupiah(r.total_penerimaan),
-    formatRupiah(r.total_pengeluaran),
-    formatRupiah(r.saldo)
-    ])
-]);
-
-XLSX.utils.book_append_sheet(wb, wsRealisasi, 'Realisasi');
-XLSX.writeFile(wb, 'laporan.xlsx');
+            return [r.kode_kegiatan ?? '', r.nama_kegiatan ?? '', ...vals, total];
         });
-    </script>
+
+        const wsMatrix = XLSX.utils.aoa_to_sheet([
+            [`Realisasi per Kegiatan - ${bulan} ${tahun}`], [],
+            header, ...rowsMatrix
+        ]);
+        wsMatrix['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:header.length-1 } }];
+        XLSX.utils.book_append_sheet(wb, wsMatrix, 'Realisasi Matrix');
+    }
+
+    XLSX.writeFile(wb, 'laporan.xlsx');
+});
+</script>
+
 
 
 

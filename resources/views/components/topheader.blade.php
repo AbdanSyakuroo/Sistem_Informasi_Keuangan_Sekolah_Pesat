@@ -1,75 +1,48 @@
- <header class="header">
-        <div class="container-fluid">
-          <div class="row">
+<header class="header bg-primary text-white shadow">
+    <div class="container-fluid">
+        <div class="row align-items-center">
             <div class="col-lg-5 col-md-5 col-6">
-              <div class="header-left d-flex align-items-center">
-                <div class="menu-toggle-btn mr-15">
-                  <button id="menu-toggle" class="main-btn primary-btn btn-hover">
-                    <i class="lni lni-chevron-left me-2"></i> Menu
-                  </button>
+                <div class="header-left d-flex align-items-center">
+                    <div class="menu-toggle-btn mr-15">
+                        <button id="menu-toggle" class="main-btn btn-light btn-hover text-primary">
+                            <i class="lni lni-menu me-2"></i> Menu
+                        </button>
+                    </div>
                 </div>
-                
-              </div>
             </div>
             <div class="col-lg-7 col-md-7 col-6">
-              <div class="header-right">
-                <!-- notification start -->
-               
-                <!-- notification end -->
-                <!-- message start -->
-                
-                <!-- message end -->
-                <!-- profile start -->
-                <div class="profile-box ml-15">
-                  <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="profile-info">
-                      <div class="info">
-                        <div>
-                          <h6 class="fw-500 text-center">{{ Auth::user()->name }}</h6>
-                          <p >Admin</p>
-                        </div>
-                      </div>
+                <div class="header-right d-flex justify-content-end align-items-center">
+                    <div class="notification-box mx-3">
+                        <a href="#" class="notification-icon text-white">
+                            <i class="lni lni-bell"></i>
+                        </a>
                     </div>
-                  </button>
-                  {{-- <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li>
-                      <div class="author-info flex items-center !p-1">
-                        <div class="image">
-                          <img src="assets/images/profile/profile-image.png" alt="image">
-                        </div>
-                        <div class="content">
-                          <h4 class="text-sm">Adam Joe</h4>
-                          <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#">Email@gmail.com</a>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="#0">
-                        <i class="lni lni-user"></i> View Profile
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#0">
-                        <i class="lni lni-alarm"></i> Notifications
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                    </li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
-                    </li>
-                  </ul> --}}
+                    
+                    <div class="profile-box ml-15 dropdown">
+                        <button class="dropdown-toggle bg-transparent border-0 text-white d-flex align-items-center" type="button" id="profile"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-info text-end d-none d-md-block">
+                                <h6 class="fw-500 mb-0 text-white">{{ Auth::user()->name }}</h6>
+                                <p class="mb-0 text-light small">Admin</p>
+                            </div>
+                            <i class="lni lni-user ms-md-2" style="font-size: 24px;"></i>
+                        </button>
+                        {{-- <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                            <li><a class="dropdown-item" href="#"><i class="lni lni-user"></i> View Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="lni lni-cog"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        <i class="lni lni-exit"></i> Sign Out
+                                    </button>
+                                </form>
+                            </li>
+                        </ul> --}}
+                    </div>
                 </div>
-                <!-- profile end -->
-              </div>
             </div>
-          </div>
         </div>
-      </header>
+    </div>
+</header>
