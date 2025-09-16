@@ -174,10 +174,19 @@ const bulanMap = {
     "10": "Oktober", "11": "November", "12": "Desember"
 };
 
-const bulan = bulanMap["{{ $bulan }}"]; // hasilnya langsung nama bulan
-const tahun = "{{ $tahun }}";
+// Ambil nilai dari blade
+const rawBulan = "{{ $bulan }}";
+const rawTahun = "{{ $tahun }}";
 
+// Tentukan label periode
+let periode = 'Semua Periode';
+if (rawBulan && rawTahun) {
+    periode = `${bulanMap[rawBulan] ?? rawBulan} ${rawTahun}`;
+} else if (rawTahun) {
+    periode = `Semua Bulan ${rawTahun}`;
+}
 
+// Data JSON dari blade
 const kegiatan = @json($kegiatan);
 const realisasi = @json($realisasi);
 const sumberDanas = @json($sumberDanas);
@@ -201,7 +210,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
         }));
 
     // === 1. Laporan Keseluruhan ===
-    doc.text(`Laporan Keseluruhan - ${bulan} ${tahun}`, 14, 10);
+    doc.text(`Laporan Keseluruhan - ${periode}`, 14, 10);
     doc.autoTable({
         head: [['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber', 'Saldo']],
         body: rows.map(r => [r[0], r[1], formatRupiah(r[2]), formatRupiah(r[3]), r[4], r[5], formatRupiah(r[6])]),
@@ -211,7 +220,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
     // === 2. Daftar Kegiatan ===
     if (kegiatan.length > 0) {
         doc.addPage();
-        doc.text(`Daftar Kegiatan - ${bulan} ${tahun}`, 14, 10);
+        doc.text(`Daftar Kegiatan - ${periode}`, 14, 10);
         doc.autoTable({
             head: [['Kode Kegiatan', 'Nama Kegiatan']],
             body: kegiatan.map(k => [k.kode_kegiatan, k.nama_kegiatan]),
@@ -224,7 +233,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
     if (penerimaanRows.length > 0) {
         const totalPenerimaan = penerimaanRows.reduce((sum, r) => sum + r[2], 0);
         doc.addPage();
-        doc.text(`Laporan Penerimaan - ${bulan} ${tahun}`, 14, 10);
+        doc.text(`Laporan Penerimaan - ${periode}`, 14, 10);
         doc.autoTable({
             head: [['Tanggal', 'Uraian', 'Penerimaan']],
             body: [
@@ -240,7 +249,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
     if (pengeluaranRows.length > 0) {
         const totalPengeluaran = pengeluaranRows.reduce((sum, r) => sum + r[3], 0);
         doc.addPage();
-        doc.text(`Laporan Pengeluaran - ${bulan} ${tahun}`, 14, 10);
+        doc.text(`Laporan Pengeluaran - ${periode}`, 14, 10);
         doc.autoTable({
             head: [['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran']],
             body: [
@@ -262,7 +271,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
     for (const sumber in groupedPengeluaran) {
         const totalSumber = groupedPengeluaran[sumber].reduce((sum, r) => sum + r[3], 0);
         doc.addPage();
-        doc.text(`Laporan Pengeluaran ${sumber} - ${bulan} ${tahun}`, 14, 10);
+        doc.text(`Laporan Pengeluaran ${sumber} - ${periode}`, 14, 10);
         doc.autoTable({
             head: [['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran']],
             body: [
@@ -283,7 +292,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
         ]);
 
         doc.addPage();
-        doc.text(`Laporan Realisasi Sumber Dana - ${bulan} ${tahun}`, 14, 10);
+        doc.text(`Laporan Realisasi Sumber Dana - ${periode}`, 14, 10);
         doc.autoTable({
             head: [['No', 'Nama Sumber', 'Total Penerimaan', 'Total Pengeluaran', 'Sisa Saldo']],
             body: realisasiBody,
@@ -307,7 +316,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
         });
 
         doc.addPage();
-        doc.text(`Realisasi per Kegiatan - ${bulan} ${tahun}`, 14, 10);
+        doc.text(`Realisasi per Kegiatan - ${periode}`, 14, 10);
         doc.autoTable({ head, body, startY: 20 });
     }
 
@@ -434,13 +443,6 @@ document.getElementById('exportExcel').addEventListener('click', function() {
     XLSX.writeFile(wb, 'laporan.xlsx');
 });
 </script>
-
-
-
-
-
-
-
 
     <!-- ========= All Javascript files linkup ======== -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>

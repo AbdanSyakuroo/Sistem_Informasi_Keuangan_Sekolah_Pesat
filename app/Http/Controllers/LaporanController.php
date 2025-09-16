@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kegiatan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -10,8 +9,9 @@ class LaporanController extends Controller
 {
     public function index(Request $request)
     {
-        $bulan = $request->input('bulan') ?? date('m');
-        $tahun = $request->input('tahun') ?? date('Y');
+        // Ambil filter dari request (boleh kosong)
+        $bulan = $request->filled('bulan') ? str_pad($request->input('bulan'), 2, '0', STR_PAD_LEFT) : null;
+        $tahun = $request->filled('tahun') ? $request->input('tahun') : null;
 
         /**
          * ==========================
@@ -61,8 +61,8 @@ class LaporanController extends Controller
 
         $saldo = 0;
         foreach ($laporan as $item) {
-            $penerimaan  = $item->penerimaan ?? 0;
-            $pengeluar   = $item->pengeluaran ?? 0;
+            $penerimaan = $item->penerimaan ?? 0;
+            $pengeluar = $item->pengeluaran ?? 0;
             $saldo += $penerimaan - $pengeluar;
             $item->saldo = $saldo;
         }
@@ -91,16 +91,16 @@ class LaporanController extends Controller
                 'sumber_danas.nama_sumber',
                 DB::raw("(SELECT COALESCE(SUM(nominal),0) 
                           FROM penerimaan_danas 
-                          WHERE sumber_dana_id = sumber_danas.id
-                            AND MONTH(tanggal) = $bulan 
-                            AND YEAR(tanggal) = $tahun
-                         ) as total_penerimaan"),
+                          WHERE sumber_dana_id = sumber_danas.id"
+                          . ($bulan ? " AND MONTH(tanggal) = $bulan" : "")
+                          . ($tahun ? " AND YEAR(tanggal) = $tahun" : "")
+                          . ") as total_penerimaan"),
                 DB::raw("(SELECT COALESCE(SUM(nominal),0) 
                           FROM pengeluarans 
-                          WHERE sumber_dana_id = sumber_danas.id
-                            AND MONTH(tanggal) = $bulan 
-                            AND YEAR(tanggal) = $tahun
-                         ) as total_pengeluaran")
+                          WHERE sumber_dana_id = sumber_danas.id"
+                          . ($bulan ? " AND MONTH(tanggal) = $bulan" : "")
+                          . ($tahun ? " AND YEAR(tanggal) = $tahun" : "")
+                          . ") as total_pengeluaran")
             )
             ->get()
             ->map(function ($item) {
@@ -143,7 +143,6 @@ class LaporanController extends Controller
                 }
                 $realisasiKegiatan[$kode]['total'] = 0;
             }
-
             $realisasiKegiatan[$kode][$row->nama_sumber] = $row->total_realisasi;
             $realisasiKegiatan[$kode]['total'] += $row->total_realisasi;
         }

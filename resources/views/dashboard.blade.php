@@ -126,648 +126,110 @@
 </div>
 
 
-          <!-- End Row -->
-          <div class="row">
-            <div class="col-lg-7">
-              <div class="card-style mb-30">
-                <div class="title d-flex flex-wrap justify-content-between">
-                  <div class="left">
-                    <h6 class="text-medium mb-10">Yearly Stats</h6>
-                    <h3 class="text-bold">$245,479</h3>
-                  </div>
-                  {{-- <div class="right">
-                    <div class="select-style-1">
-                      <div class="select-position select-sm">
-                        <select class="light-bg">
-                          <option value="">Yearly</option>
-                          <option value="">Monthly</option>
-                          <option value="">Weekly</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end select -->
-                  </div> --}}
-                </div>
-                <!-- End Title -->
-                <div class="chart">
-                  <canvas id="Chart1" style="width: 100%; height: 400px; margin-left: -35px;"></canvas>
-                </div>
-                <!-- End Chart -->
-              </div>
+         <div class="row">
+  <div class="col-12">
+    <div class="card-style-3 mb-30">
+      <div class="card-content">
+        <div class="d-flex align-items-center mb-3">
+            <div class="icon-container bg-primary text-white me-3">
+                <i class="lni lni-target-revenue"></i>
             </div>
-            <!-- End Col -->
-            <div class="col-lg-5">
-              <div class="card-style mb-30">
-                <div class="title d-flex flex-wrap align-items-center justify-content-between">
-                  <div class="left">
-                    <h6 class="text-medium mb-30">Sales/Revenue</h6>
-                  </div>
-                  <div class="right">
-                    <div class="select-style-1">
-                      <div class="select-position select-sm">
-                        <select class="light-bg">
-                          <option value="">Yearly</option>
-                          <option value="">Monthly</option>
-                          <option value="">Weekly</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end select -->
-                  </div>
-                </div>
-                <!-- End Title -->
-                <div class="chart">
-                  <canvas id="Chart2" style="width: 100%; height: 400px; margin-left: -45px;"></canvas>
-                </div>
-                <!-- End Chart -->
-              </div>
+            <div>
+                <h4>Tujuan Sistem Informasi Keuangan FINSchool</h4>
             </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-          <div class="row">
-            <div class="col-lg-5">
-              <div class="card-style mb-30">
-                <div class="title d-flex justify-content-between align-items-center">
-                  <div class="left">
-                    <h6 class="text-medium mb-30">Sells by State</h6>
-                  </div>
-                </div>
-                <!-- End Title -->
-                <div id="map" style="width: 100%; height: 400px; overflow: hidden;"></div>
-                <p>Last updated: 7 days ago</p>
-              </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-lg-7">
-              <div class="card-style mb-30">
-                <div class="title d-flex flex-wrap justify-content-between align-items-center">
-                  <div class="left">
-                    <h6 class="text-medium mb-30">Top Selling Products</h6>
-                  </div>
-                  <div class="right">
-                    <div class="select-style-1">
-                      <div class="select-position select-sm">
-                        <select class="light-bg">
-                          <option value="">Yearly</option>
-                          <option value="">Monthly</option>
-                          <option value="">Weekly</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end select -->
-                  </div>
-                </div>
-                <!-- End Title -->
-                <div class="table-responsive">
-                  <table class="table top-selling-table">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>
-                          <h6 class="text-sm text-medium">Products</h6>
-                        </th>
-                        <th class="min-width">
-                          <h6 class="text-sm text-medium">Category</h6>
-                        </th>
-                        <th class="min-width">
-                          <h6 class="text-sm text-medium">Price</h6>
-                        </th>
-                        <th class="min-width">
-                          <h6 class="text-sm text-medium">Sold</h6>
-                        </th>
-                        <th class="min-width">
-                          <h6 class="text-sm text-medium">Profit</h6>
-                        </th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="check-input-primary">
-                            <input class="form-check-input" type="checkbox" id="checkbox-1" />
-                          </div>
-                        </td>
-                        <td>
-                          <div class="product">
-                            <div class="image">
-                              <img src="assets/images/products/product-mini-1.jpg" alt="" />
-                            </div>
-                            <p class="text-sm">Arm Chair</p>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm">Interior</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$345</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">43</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$45</p>
-                        </td>
-                        <td>
-                          <div class="action justify-content-end">
-                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i class="lni lni-more-alt"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Remove</a>
-                              </li>
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="check-input-primary">
-                            <input class="form-check-input" type="checkbox" id="checkbox-1" />
-                          </div>
-                        </td>
-                        <td>
-                          <div class="product">
-                            <div class="image">
-                              <img src="assets/images/products/product-mini-2.jpg" alt="" />
-                            </div>
-                            <p class="text-sm">SOfa</p>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm">Interior</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$145</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">13</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$15</p>
-                        </td>
-                        <td>
-                          <div class="action justify-content-end">
-                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i class="lni lni-more-alt"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Remove</a>
-                              </li>
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="check-input-primary">
-                            <input class="form-check-input" type="checkbox" id="checkbox-1" />
-                          </div>
-                        </td>
-                        <td>
-                          <div class="product">
-                            <div class="image">
-                              <img src="assets/images/products/product-mini-3.jpg" alt="" />
-                            </div>
-                            <p class="text-sm">Dining Table</p>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm">Interior</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$95</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">32</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$215</p>
-                        </td>
-                        <td>
-                          <div class="action justify-content-end">
-                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i class="lni lni-more-alt"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Remove</a>
-                              </li>
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="check-input-primary">
-                            <input class="form-check-input" type="checkbox" id="checkbox-1" />
-                          </div>
-                        </td>
-                        <td>
-                          <div class="product">
-                            <div class="image">
-                              <img src="assets/images/products/product-mini-4.jpg" alt="" />
-                            </div>
-                            <p class="text-sm">Office Chair</p>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm">Interior</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$105</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">23</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$345</p>
-                        </td>
-                        <td>
-                          <div class="action justify-content-end">
-                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i class="lni lni-more-alt"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Remove</a>
-                              </li>
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- End Table -->
-                </div>
-              </div>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-          <div class="row">
-            <div class="col-lg-7">
-              <div class="card-style mb-30">
-                <div class="title d-flex flex-wrap align-items-center justify-content-between">
-                  <div class="left">
-                    <h6 class="text-medium mb-2">Sales Forecast</h6>
-                  </div>
-                  <div class="right">
-                    <div class="select-style-1 mb-2">
-                      <div class="select-position select-sm">
-                        <select class="light-bg">
-                          <option value="">Last Month</option>
-                          <option value="">Last 3 Months</option>
-                          <option value="">Last Year</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end select -->
-                  </div>
-                </div>
-                <!-- End Title -->
-                <div class="chart">
-                  <div id="legend3">
-                    <ul class="legend3 d-flex flex-wrap align-items-center mb-30">
-                      <li>
-                        <div class="d-flex">
-                          <span class="bg-color primary-bg"> </span>
-                          <div class="text">
-                            <p class="text-sm text-success">
-                              <span class="text-dark">Revenue</span> +25.55%
-                              <i class="lni lni-arrow-up"></i>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <span class="bg-color purple-bg"></span>
-                          <div class="text">
-                            <p class="text-sm text-success">
-                              <span class="text-dark">Net Profit</span> +45.55%
-                              <i class="lni lni-arrow-up"></i>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <span class="bg-color orange-bg"></span>
-                          <div class="text">
-                            <p class="text-sm text-danger">
-                              <span class="text-dark">Order</span> -4.2%
-                              <i class="lni lni-arrow-down"></i>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <canvas id="Chart3" style="width: 100%; height: 450px; margin-left: -35px;"></canvas>
-                </div>
-              </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-lg-5">
-              <div class="card-style mb-30">
-                <div class="title d-flex flex-wrap align-items-center justify-content-between">
-                  <div class="left">
-                    <h6 class="text-medium mb-2">Traffic</h6>
-                  </div>
-                  <div class="right">
-                    <div class="select-style-1 mb-2">
-                      <div class="select-position select-sm">
-                        <select class="bg-ligh">
-                          <option value="">Last 6 Months</option>
-                          <option value="">Last 3 Months</option>
-                          <option value="">Last Year</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end select -->
-                  </div>
-                </div>
-                <!-- End Title -->
-                <div class="chart">
-                  <div id="legend4">
-                    <ul class="legend3 d-flex flex-wrap gap-3 gap-sm-0 align-items-center mb-30">
-                      <li>
-                        <div class="d-flex">
-                          <span class="bg-color primary-bg"> </span>
-                          <div class="text">
-                            <p class="text-sm text-success">
-                              <span class="text-dark">Store Visits</span>
-                              +25.55%
-                              <i class="lni lni-arrow-up"></i>
-                            </p>
-                            <h2>3456</h2>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <span class="bg-color danger-bg"></span>
-                          <div class="text">
-                            <p class="text-sm text-danger">
-                              <span class="text-dark">Visitors</span> -2.05%
-                              <i class="lni lni-arrow-down"></i>
-                            </p>
-                            <h2>3456</h2>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <canvas id="Chart4" style="width: 100%; height: 420px; margin-left: -35px;"></canvas>
-                </div>
-                <!-- End Chart -->
-              </div>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-          <div class="row">
-            <div class="col-lg-5">
-              <div class="card-style calendar-card mb-30">
-                <div id="calendar-mini"></div>
-              </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-lg-7">
-              <div class="card-style mb-30">
-                <div class="title d-flex flex-wrap align-items-center justify-content-between">
-                  <div class="left">
-                    <h6 class="text-medium mb-30">Sales History</h6>
-                  </div>
-                  <div class="right">
-                    <div class="select-style-1">
-                      <div class="select-position select-sm">
-                        <select class="light-bg">
-                          <option value="">Today</option>
-                          <option value="">Yesterday</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end select -->
-                  </div>
-                </div>
-                <!-- End Title -->
-                <div class="table-responsive">
-                  <table class="table top-selling-table">
-                    <thead>
-                      <tr>
-                        <th>
-                          <h6 class="text-sm text-medium">Products</h6>
-                        </th>
-                        <th class="min-width">
-                          <h6 class="text-sm text-medium">
-                            Category <i class="lni lni-arrows-vertical"></i>
-                          </h6>
-                        </th>
-                        <th class="min-width">
-                          <h6 class="text-sm text-medium">
-                            Revenue <i class="lni lni-arrows-vertical"></i>
-                          </h6>
-                        </th>
-                        <th class="min-width">
-                          <h6 class="text-sm text-medium">
-                            Status <i class="lni lni-arrows-vertical"></i>
-                          </h6>
-                        </th>
-                        <th>
-                          <h6 class="text-sm text-medium text-end">
-                            Actions <i class="lni lni-arrows-vertical"></i>
-                          </h6>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="product">
-                            <div class="image">
-                              <img src="assets/images/products/product-mini-1.jpg" alt="" />
-                            </div>
-                            <p class="text-sm">Bedroom</p>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm">Interior</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$345</p>
-                        </td>
-                        <td>
-                          <span class="status-btn close-btn">Pending</span>
-                        </td>
-                        <td>
-                          <div class="action justify-content-end">
-                            <button class="edit">
-                              <i class="lni lni-pencil"></i>
-                            </button>
-                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i class="lni lni-more-alt"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Remove</a>
-                              </li>
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="product">
-                            <div class="image">
-                              <img src="assets/images/products/product-mini-2.jpg" alt="" />
-                            </div>
-                            <p class="text-sm">Arm Chair</p>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm">Interior</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$345</p>
-                        </td>
-                        <td>
-                          <span class="status-btn warning-btn">Refund</span>
-                        </td>
-                        <td>
-                          <div class="action justify-content-end">
-                            <button class="edit">
-                              <i class="lni lni-pencil"></i>
-                            </button>
-                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i class="lni lni-more-alt"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Remove</a>
-                              </li>
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="product">
-                            <div class="image">
-                              <img src="assets/images/products/product-mini-3.jpg" alt="" />
-                            </div>
-                            <p class="text-sm">Sofa</p>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm">Interior</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$345</p>
-                        </td>
-                        <td>
-                          <span class="status-btn success-btn">Completed</span>
-                        </td>
-                        <td>
-                          <div class="action justify-content-end">
-                            <button class="edit">
-                              <i class="lni lni-pencil"></i>
-                            </button>
-                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i class="lni lni-more-alt"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Remove</a>
-                              </li>
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="product">
-                            <div class="image">
-                              <img src="assets/images/products/product-mini-4.jpg" alt="" />
-                            </div>
-                            <p class="text-sm">Kitchen</p>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm">Interior</p>
-                        </td>
-                        <td>
-                          <p class="text-sm">$345</p>
-                        </td>
-                        <td>
-                          <span class="status-btn close-btn">Canceled</span>
-                        </td>
-                        <td>
-                          <div class="action justify-content-end">
-                            <button class="edit">
-                              <i class="lni lni-pencil"></i>
-                            </button>
-                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i class="lni lni-more-alt"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Remove</a>
-                              </li>
-                              <li class="dropdown-item">
-                                <a href="#0" class="text-gray">Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- End Table -->
-                </div>
-              </div>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
         </div>
-        <!-- end container -->
-      </section>
-      <!-- ========== section end ========== -->
+        
+        <p class="mt-4">
+          Selamat datang di <strong>FINSchool ITXPRO</strong>. Sistem ini dirancang secara khusus untuk menjadi pusat pengelolaan keuangan sekolah Anda. Tujuan utama kami adalah untuk menyederhanakan, mengefisienkan, dan meningkatkan transparansi dalam setiap aspek administrasi keuangan, mulai dari pencatatan transaksi harian hingga pembuatan laporan akhir tahun.
+        </p>
 
+        <h6 class="mt-4">Manfaat Utama yang Anda Dapatkan:</h6>
+        <ul>
+          <li><strong>Efisiensi Waktu:</strong> Mengurangi pekerjaan manual dalam pencatatan dan rekapitulasi data keuangan.</li>
+          <li><strong>Transparansi Data:</strong> Semua data keuangan terpusat, memudahkan pemantauan dan audit.</li>
+          <li><strong>Akurasi Tinggi:</strong> Meminimalkan risiko kesalahan manusia (human error) dalam perhitungan.</li>
+          <li><strong>Pelaporan Cepat:</strong> Menghasilkan laporan keuangan (bulanan, semester, tahunan) secara otomatis hanya dengan beberapa klik.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+/* Anda mungkin sudah punya style ini dari respons sebelumnya, pastikan ada di main.css Anda */
+.icon-container {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 24px;
+}
+</style>
+          <div class="row">
+  <div class="col-12">
+    <div class="card-style mb-30">
+      <h4 class="mb-4"> Petunjuk Cepat Penggunaan</h4>
+
+      <div class="accordion" id="accordionPetunjuk">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSatu">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSatu" aria-expanded="false" aria-controls="collapseSatu">
+              <strong>Bagaimana cara menggunakan menu navigasi?</strong>
+            </button>
+          </h2>
+          <div id="collapseSatu" class="accordion-collapse collapse" aria-labelledby="headingSatu" data-bs-parent="#accordionPetunjuk">
+            <div class="accordion-body">
+              Gunakan menu di <strong>sebelah kiri (sidebar)</strong> untuk mengakses semua fitur utama. Klik pada setiap item menu seperti "Pemasukan", "Pengeluaran", atau "Laporan" untuk membuka halaman yang sesuai.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingDua">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDua" aria-expanded="false" aria-controls="collapseDua">
+              <strong>Bagaimana cara mencatat transaksi baru?</strong>
+            </button>
+          </h2>
+          <div id="collapseDua" class="accordion-collapse collapse" aria-labelledby="headingDua" data-bs-parent="#accordionPetunjuk">
+            <div class="accordion-body">
+              Untuk mencatat uang masuk, buka menu <strong>"Pemasukan"</strong> lalu klik tombol "Tambah Pemasukan". Untuk mencatat uang keluar, buka menu <strong>"Pengeluaran"</strong> lalu klik tombol "Tambah Pengeluaran". Isi formulir yang muncul lalu simpan.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTiga">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTiga" aria-expanded="false" aria-controls="collapseTiga">
+              <strong>Bagaimana cara membuat laporan keuangan?</strong>
+            </button>
+          </h2>
+          <div id="collapseTiga" class="accordion-collapse collapse" aria-labelledby="headingTiga" data-bs-parent="#accordionPetunjuk">
+            <div class="accordion-body">
+              Masuk ke menu <strong>"Laporan"</strong>. Anda dapat memilih jenis laporan yang diinginkan (misalnya Laporan Harian, Bulanan, atau Arus Kas). Tentukan rentang tanggal, lalu klik tombol "Cetak" atau "Download" untuk menghasilkan laporan.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEmpat">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEmpat" aria-expanded="false" aria-controls="collapseEmpat">
+                <strong>Siapa yang harus dihubungi jika ada kendala?</strong>
+              </button>
+            </h2>
+            <div id="collapseEmpat" class="accordion-collapse collapse" aria-labelledby="headingEmpat" data-bs-parent="#accordionPetunjuk">
+              <div class="accordion-body">
+                Jika Anda mengalami kesulitan teknis atau memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi tim <strong>Support ITXPRO</strong> melalui email di <strong>support@itxpro.dev</strong>.
+              </div>
+            </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+          
       <!-- ========== footer start =========== -->
       <footer class="footer">
         <div class="container-fluid">

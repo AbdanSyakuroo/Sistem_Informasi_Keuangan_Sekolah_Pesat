@@ -25,8 +25,8 @@
                 <div class="text-center mb-8">
                     <!-- Placeholder Logo or Title -->
                     <div class="mb-4">
-                        <h1 class="text-4xl font-bold text-blue-600 tracking-tight">FINSchool</h1>
-                        <p class="text-sm font-medium text-blue-500 mt-1">Sistem Keuangan Profesional</p>
+                        <h1 class="text-4xl font-bold text-blue-600 tracking-tight"><span class="text-gray-800">FINSchool</span> ITXPRO</h1>
+                        <p class="text-sm font-medium text-gray-800 mt-1">Sistem Keuangan Profesional</p>
                     </div>
                     <h2 class="text-3xl font-semibold text-gray-800">Masuk ke Akun Anda</h2>
                     <p class="mt-2 text-sm text-gray-500">

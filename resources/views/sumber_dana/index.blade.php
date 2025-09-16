@@ -41,7 +41,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Title</h2>
+                  <h2>Data Sumber Dana</h2>
                 </div>
               </div>
               <!-- end col -->
@@ -50,7 +50,7 @@
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item">
-                        <a href="#0">Dashboard</a>
+                        <a href="dashboard">Dashboard</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">
                         Page
