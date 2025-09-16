@@ -320,7 +320,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
         doc.autoTable({ head, body, startY: 20 });
     }
 
-    doc.save('laporan.pdf');
+    doc.save('Laporan Keuangan.pdf');
 });
 
 // ======================= EXCEL =======================
@@ -338,7 +338,7 @@ document.getElementById('exportExcel').addEventListener('click', function() {
 
     // 1. Keseluruhan
     const wsAll = XLSX.utils.aoa_to_sheet([
-        [`Laporan Keseluruhan - ${bulan} ${tahun}`], [],
+        [`Laporan Keseluruhan - ${periode}`], [],
         ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber', 'Saldo'],
         ...rows.map(r => [r[0], r[1], formatRupiah(r[2]), formatRupiah(r[3]), r[4], r[5], formatRupiah(r[6])])
     ]);
@@ -348,7 +348,7 @@ document.getElementById('exportExcel').addEventListener('click', function() {
     // 2. Kegiatan
     if (kegiatan.length > 0) {
         const wsKegiatan = XLSX.utils.aoa_to_sheet([
-            [`Daftar Kegiatan - ${bulan} ${tahun}`], [],
+            [`Daftar Kegiatan - ${periode}`], [],
             ['Kode Kegiatan', 'Nama Kegiatan'],
             ...kegiatan.map(k => [k.kode_kegiatan, k.nama_kegiatan])
         ]);
@@ -361,7 +361,7 @@ document.getElementById('exportExcel').addEventListener('click', function() {
     if (penerimaanRows.length > 0) {
         const totalPenerimaan = penerimaanRows.reduce((sum, r) => sum + r[2], 0);
         const wsPenerimaan = XLSX.utils.aoa_to_sheet([
-            [`Laporan Penerimaan - ${bulan} ${tahun}`], [],
+            [`Laporan Penerimaan - ${periode}`], [],
             ['Tanggal', 'Uraian', 'Penerimaan'],
             ...penerimaanRows.map(r => [r[0], r[1], formatRupiah(r[2])]),
             ['TOTAL', '', formatRupiah(totalPenerimaan)]
@@ -375,7 +375,7 @@ document.getElementById('exportExcel').addEventListener('click', function() {
     if (pengeluaranRows.length > 0) {
         const totalPengeluaran = pengeluaranRows.reduce((sum, r) => sum + r[3], 0);
         const wsPengeluaran = XLSX.utils.aoa_to_sheet([
-            [`Laporan Pengeluaran - ${bulan} ${tahun}`], [],
+            [`Laporan Pengeluaran - ${periode}`], [],
             ['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran'],
             ...pengeluaranRows.map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
             ['TOTAL', '', '', '', formatRupiah(totalPengeluaran)]
@@ -395,7 +395,7 @@ document.getElementById('exportExcel').addEventListener('click', function() {
     for (const sumber in groupedPengeluaran) {
         const totalSumber = groupedPengeluaran[sumber].reduce((sum, r) => sum + r[3], 0);
         const ws = XLSX.utils.aoa_to_sheet([
-            [`Laporan Pengeluaran ${sumber} - ${bulan} ${tahun}`], [],
+            [`Laporan Pengeluaran ${sumber} - ${periode}`], [],
             ['Tanggal', 'Uraian', 'Kode Kegiatan', 'Nama Sumber', 'Pengeluaran'],
             ...groupedPengeluaran[sumber].map(r => [r[0], r[1], r[4], r[5], formatRupiah(r[3])]),
             ['TOTAL', '', '', '', formatRupiah(totalSumber)]
@@ -406,7 +406,7 @@ document.getElementById('exportExcel').addEventListener('click', function() {
 
     // 6. Realisasi per Sumber Dana
     const wsRealisasi = XLSX.utils.aoa_to_sheet([
-        [`Laporan Realisasi Sumber Dana - ${bulan} ${tahun}`], [],
+        [`Laporan Realisasi Sumber Dana - ${periode}`], [],
         ['No', 'Nama Sumber', 'Total Penerimaan', 'Total Pengeluaran', 'Sisa Saldo'],
         ...realisasi.map((r, i) => [
             i + 1, r.nama_sumber,
@@ -416,7 +416,7 @@ document.getElementById('exportExcel').addEventListener('click', function() {
         ])
     ]);
     wsRealisasi['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:4 } }];
-    XLSX.utils.book_append_sheet(wb, wsRealisasi, 'Realisasi');
+    XLSX.utils.book_append_sheet(wb, wsRealisasi, 'Realisasi Sumber Dana');
 
     // 7. Realisasi Matrix
     if (Array.isArray(realisasiKegiatan) && realisasiKegiatan.length > 0) {
@@ -433,11 +433,11 @@ document.getElementById('exportExcel').addEventListener('click', function() {
         });
 
         const wsMatrix = XLSX.utils.aoa_to_sheet([
-            [`Realisasi per Kegiatan - ${bulan} ${tahun}`], [],
+            [`Realisasi per Kegiatan - ${periode}`], [],
             header, ...rowsMatrix
         ]);
         wsMatrix['!merges'] = [{ s: { r:0, c:0 }, e: { r:0, c:header.length-1 } }];
-        XLSX.utils.book_append_sheet(wb, wsMatrix, 'Realisasi Matrix');
+        XLSX.utils.book_append_sheet(wb, wsMatrix, 'Realisasi Kegiatan');
     }
 
     XLSX.writeFile(wb, 'laporan.xlsx');

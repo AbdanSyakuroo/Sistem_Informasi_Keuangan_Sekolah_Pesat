@@ -14,6 +14,50 @@
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+
+
+    <style>
+/* Anda mungkin sudah punya style ini dari respons sebelumnya, pastikan ada di main.css Anda */
+.icon-container {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 24px;
+}
+
+    .icon-container {
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 24px;
+    }
+    .step-number-container {
+        flex-shrink: 0;
+    }
+    .step-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #4A6CF7; /* Warna primer dari template Anda */
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .step-content {
+        padding-top: 5px; /* Agar sejajar dengan teks di step-number */
+    }
+</style>
   </head>
   <body>
     <!-- ======== Preloader =========== -->
@@ -42,7 +86,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>FINSchool Dashboard</h2>
+                  <h2>Dashboard</h2>
                 </div>
               </div>
               <!-- end col -->
@@ -126,6 +170,8 @@
 </div>
 
 
+
+
          <div class="row">
   <div class="col-12">
     <div class="card-style-3 mb-30">
@@ -154,47 +200,122 @@
     </div>
   </div>
 </div>
-<style>
-/* Anda mungkin sudah punya style ini dari respons sebelumnya, pastikan ada di main.css Anda */
-.icon-container {
-    width: 45px;
-    height: 45px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 24px;
-}
-</style>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-style-3 mb-30">
+            <div class="card-content">
+                
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h4>Alur Kerja dan Petunjuk Penggunaan</h4>
+                    </div>
+                </div>
+
+                <p class="mt-2">
+                    Ikuti alur kerja berikut untuk menggunakan aplikasi FINSchool ITXPRO secara optimal, mulai dari pengaturan awal hingga pelaporan.
+                </p>
+                <hr class="my-4">
+
+                <div class="single-step d-flex">
+                    <div class="step-number-container me-4">
+                        <span class="step-number">1</span>
+                    </div>
+                    <div class="step-content">
+                        <h6 class="mb-2">Pengaturan Setup Awal</h6>
+                        <p class="text-sm">Langkah ini krusial dan hanya perlu dilakukan sekali di awal. Pastikan data ini lengkap sebelum melakukan transaksi.</p>
+                        <div class="sub-step mt-3">
+                            <strong>A. Input Jenis Kegiatan:</strong>
+                            <p class="text-sm mb-2">Buka menu <strong>"Kegiatan"</strong> dan masukkan semua jenis kegiatan yang mungkin memerlukan anggaran (Contoh: Pembelian ATK, Studi Tur, Bayar Listrik).</p>
+                        </div>
+                        <div class="sub-step mt-2">
+                            <strong>B. Input Jenis Sumber Dana:</strong>
+                            <p class="text-sm mb-0">Buka menu <strong>Sumber Dana > Jenis Sumber Dana</strong>. Masukkan jenis sumber dana yang diperoleh untuk Sekolah (Contoh: Dana BOS, Dana Komite, Kas Sekolah).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="single-step d-flex">
+                    <div class="step-number-container me-4">
+                        <span class="step-number">2</span>
+                    </div>
+                    <div class="step-content">
+                        <h6 class="mb-2">Mencatat Semua Penerimaan Dana</h6>
+                        <p class="text-sm">Catat setiap dana yang masuk sesuai dengan jenisnya.</p>
+                        <div class="sub-step mt-3">
+                            <strong>A. Penerimaan Dana Spesifik:</strong>
+                            <p class="text-sm mb-2">Gunakan menu <strong>Sumber Dana > Penerimaan Dana</strong> untuk mencatat dana besar yang diterima (Contoh: Dana BOS). Ini akan menambah saldo di pos dana yang dapat di cek pada halaman laporan > realisasi.</p>
+                        </div>
+                        <div class="sub-step mt-2">
+                            <strong>B. Penerimaan Harian:</strong>
+                            <p class="text-sm mb-0">Gunakan menu <strong>"Penerimaan Harian"</strong> untuk dana tunai operasional (Contoh: Penjualan formulir). Ini akan menambah saldo kas harian Anda.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="single-step d-flex">
+                    <div class="step-number-container me-4">
+                        <span class="step-number">3</span>
+                    </div>
+                    <div class="step-content">
+                        <h6 class="mb-2">Mencatat Pengeluaran</h6>
+                        <p class="text-sm">
+                            Buka menu <strong>"Pengeluaran"</strong>, klik "Tambah Data". Isi formulir dengan memilih <strong>Kegiatan</strong> dan <strong>Sumber Dana</strong> yang sesuai dari dropdown. Nominal yang diinput akan otomatis mengurangi saldo dari sumber dana yang Anda pilih dan dapat diperiksa di halaman laporan > realisasi.
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="single-step d-flex">
+                    <div class="step-number-container me-4">
+                        <span class="step-number">4</span>
+                    </div>
+                    <div class="step-content">
+                        <h6 class="mb-2">Melihat Laporan Keuangan</h6>
+                        <p class="text-sm">
+                            Buka menu <strong>"Laporan"</strong> untuk memantau keuangan. Gunakan laporan > <strong> Realisasi </strong> dengan filter untuk melihat penggunaan per sumber dana, atau laporan ><strong>Keseluruhan</strong> untuk melihat arus kas operasional harian.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
           <div class="row">
   <div class="col-12">
     <div class="card-style mb-30">
-      <h4 class="mb-4"> Petunjuk Cepat Penggunaan</h4>
+      <h4 class="mb-4">Frequently Asked Questions / Pertanyaan yang Sering Diajukan</h4>
 
       <div class="accordion" id="accordionPetunjuk">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingSatu">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSatu" aria-expanded="false" aria-controls="collapseSatu">
-              <strong>Bagaimana cara menggunakan menu navigasi?</strong>
+              <strong>Bagaimana cara melihat ringkasan keuangan harian?</strong>
             </button>
           </h2>
           <div id="collapseSatu" class="accordion-collapse collapse" aria-labelledby="headingSatu" data-bs-parent="#accordionPetunjuk">
             <div class="accordion-body">
-              Gunakan menu di <strong>sebelah kiri (sidebar)</strong> untuk mengakses semua fitur utama. Klik pada setiap item menu seperti "Pemasukan", "Pengeluaran", atau "Laporan" untuk membuka halaman yang sesuai.
-            </div>
+              Anda dapat melihatnya di <strong>Halaman Dashboard</strong> Di sana tersedia informasi total penerimaan harian, total pengeluaran, dan sisa saldo saat ini.
           </div>
         </div>
 
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingDua">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDua" aria-expanded="false" aria-controls="collapseDua">
-              <strong>Bagaimana cara mencatat transaksi baru?</strong>
+              <strong>Di mana saya bisa mencatat dana yang diterima sekolah?</strong>
             </button>
           </h2>
           <div id="collapseDua" class="accordion-collapse collapse" aria-labelledby="headingDua" data-bs-parent="#accordionPetunjuk">
             <div class="accordion-body">
-              Untuk mencatat uang masuk, buka menu <strong>"Pemasukan"</strong> lalu klik tombol "Tambah Pemasukan". Untuk mencatat uang keluar, buka menu <strong>"Pengeluaran"</strong> lalu klik tombol "Tambah Pengeluaran". Isi formulir yang muncul lalu simpan.
+              Pertama, di menu <strong>Sumber Dana > Jenis,</strong> Anda perlu mendaftarkan jenis-jenis sumber dana yang ada. <br> Kedua, di menu<strong>Sumber Dana > Penerimaan Dana,</strong> Anda mencatat nominal dana yang diterima untuk setiap jenis yang sudah Anda daftarkan.
             </div>
           </div>
         </div>
@@ -202,12 +323,12 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTiga">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTiga" aria-expanded="false" aria-controls="collapseTiga">
-              <strong>Bagaimana cara membuat laporan keuangan?</strong>
+              <strong>Bagaimana cara mencatat uang masuk harian dari kegiatan sekolah?</strong>
             </button>
           </h2>
           <div id="collapseTiga" class="accordion-collapse collapse" aria-labelledby="headingTiga" data-bs-parent="#accordionPetunjuk">
             <div class="accordion-body">
-              Masuk ke menu <strong>"Laporan"</strong>. Anda dapat memilih jenis laporan yang diinginkan (misalnya Laporan Harian, Bulanan, atau Arus Kas). Tentukan rentang tanggal, lalu klik tombol "Cetak" atau "Download" untuk menghasilkan laporan.
+             Gunakan menu <strong>Penerimaan Harian.</strong> Halaman ini khusus untuk mencatat penerimaan nominal yang diterima secara langsung.
             </div>
           </div>
         </div>
@@ -215,12 +336,55 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingEmpat">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEmpat" aria-expanded="false" aria-controls="collapseEmpat">
-                <strong>Siapa yang harus dihubungi jika ada kendala?</strong>
+                <strong>Jika ingin mencatat pengeluaran, apakah saya harus mengisi data kegiatan terlebih dahulu?</strong>
               </button>
             </h2>
             <div id="collapseEmpat" class="accordion-collapse collapse" aria-labelledby="headingEmpat" data-bs-parent="#accordionPetunjuk">
               <div class="accordion-body">
-                Jika Anda mengalami kesulitan teknis atau memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi tim <strong>Support ITXPRO</strong> melalui email di <strong>support@itxpro.dev</strong>.
+                Ya. Sebelum mencatat pengeluaran, Anda harus terlebih dahulu memasukkan nama-nama kegiatan di menu <strong>Kegiatan.</strong>  Nama-nama ini akan muncul sebagai opsi yang bisa Anda pilih saat mengisi formulir pengeluaran.
+              </div>
+            </div>
+          </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingLima">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLima" aria-expanded="false" aria-controls="collapseLima">
+                <strong>Data apa saja yang harus diisi saat mencatat pengeluaran?</strong>
+              </button>
+            </h2>
+            <div id="collapseLima" class="accordion-collapse collapse" aria-labelledby="headingLima" data-bs-parent="#accordionPetunjuk">
+              <div class="accordion-body">
+                Saat mencatat pengeluaran di menu Pengeluaran, Anda akan mengisi formulir yang mencakup: <br>
+<strong>1. Tanggal pengeluaran <br>
+2. Kegiatan (pilih dari daftar yang sudah Anda input sebelumnya) <br>
+3. Sumber dana yang digunakan (sesuai dengan yang sudah didaftarkan) <br>
+4. Uraian dan nominal pengeluaran</strong>
+              </div>
+            </div>
+          </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEnam">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnam" aria-expanded="false" aria-controls="collapseEnam">
+                <strong>Bagaimana cara melihat laporan keuangan secara keseluruhan?</strong>
+              </button>
+            </h2>
+            <div id="collapseEnam" class="accordion-collapse collapse" aria-labelledby="headingEnam" data-bs-parent="#accordionPetunjuk">
+              <div class="accordion-body">
+                Saat mencatat pengeluaran di menu Pengeluaran, Anda akan mengisi formulir yang mencakup: <br>
+<strong>1. Realisasi: </strong> Menampilkan total penerimaan dan pengeluaran. Anda bisa melihat detail pengeluaran berdasarkan sumber dana yang dipilih dan menggunakan filter untuk mencari data tertentu. <br>
+<strong>2. Keseluruhan: </strong> Menampilkan data operasi keuangan secara menyeluruh, mencakup penerimaan langsung dan pengeluaran yang mengurangi saldo. <br>
+
+              </div>
+            </div>
+          </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTujuh">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTujuh" aria-expanded="false" aria-controls="collapseTujuh">
+                <strong>Apakah data saldo sumber dana akan otomatis terpotong saat saya mencatat pengeluaran?</strong>
+              </button>
+            </h2>
+            <div id="collapseTujuh" class="accordion-collapse collapse" aria-labelledby="headingTujuh" data-bs-parent="#accordionPetunjuk">
+              <div class="accordion-body">
+                Ya. Ketika Anda mencatat pengeluaran dan memilih sumber dana yang digunakan, sistem akan secara otomatis mengurangi saldo dari sumber dana tersebut.
               </div>
             </div>
           </div>
@@ -229,33 +393,97 @@
     </div>
   </div>
 </div>
-          
-      <!-- ========== footer start =========== -->
-      <footer class="footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6 order-last order-md-first">
-              <div class="copyright text-center text-md-start">
+
+{{-- <div class="row">
+  <div class="col-12">
+    <div class="card-style-3 mb-30">
+      <div class="card-content">
+        
+        <div class="d-flex align-items-center mb-3">
+            <div class="icon-container bg-primary text-white me-3">
+                <i class="lni lni-book"></i>
+            </div>
+            <div>
+                <h4>Petunjuk Lengkap Penggunaan FINSchool</h4>
+            </div>
+        </div>
+
+        <p class="mt-4">
+          Berikut adalah panduan langkah demi langkah untuk memanfaatkan fitur-fitur utama dalam sistem FINSchool secara efektif. Ikuti alur kerja ini untuk memastikan pengelolaan keuangan yang rapi dan akurat.
+        </p>
+        <hr class="my-4">
+
+        <div class="row">
+          <div class="col-lg-6 mb-4">
+            <div class="d-flex">
+              <div class="me-3 fs-4 text-primary">
+                <i class="lni lni-rocket"></i>
+              </div>
+              <div>
+                <h6 class="mb-2">Langkah 1: Orientasi Dashboard</h6>
                 <p class="text-sm">
-                  Designed and Developed by
-                  <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                    PlainAdmin
-                  </a>
+                  Saat pertama kali masuk, kenali dashboard utama Anda. Perhatikan kartu ringkasan di bagian atas yang menampilkan **Total Penerimaan, Pengeluaran, dan Sisa Saldo** secara real-time. Ini adalah pusat pantauan kesehatan keuangan sekolah Anda.
                 </p>
               </div>
             </div>
-            <!-- end col-->
-            <div class="col-md-6">
-              <div class="terms d-flex justify-content-center justify-content-md-end">
-                <a href="#0" class="text-sm">Term & Conditions</a>
-                <a href="#0" class="text-sm ml-15">Privacy & Policy</a>
+          </div>
+
+          <div class="col-lg-6 mb-4">
+            <div class="d-flex">
+              <div class="me-3 fs-4 text-success">
+                <i class="lni lni-arrow-up-circle"></i>
+              </div>
+              <div>
+                <h6 class="mb-2">Langkah 2: Mencatat Semua Pemasukan</h6>
+                <p class="text-sm">
+                  Setiap dana yang masuk ke sekolah harus dicatat. Buka menu <strong>"Pemasukan"</strong>, klik "Tambah Data", dan isi semua kolom dengan detail: tanggal, sumber dana (misal: SPP, Dana BOS), jumlah, dan keterangan yang jelas.
+                </p>
               </div>
             </div>
           </div>
-          <!-- end row -->
+
+          <div class="col-lg-6 mb-4">
+            <div class="d-flex">
+              <div class="me-3 fs-4 text-danger">
+                <i class="lni lni-arrow-down-circle"></i>
+              </div>
+              <div>
+                <h6 class="mb-2">Langkah 3: Mencatat Semua Pengeluaran</h6>
+                <p class="text-sm">
+                  Sama pentingnya dengan pemasukan, catat setiap dana yang keluar. Buka menu <strong>"Pengeluaran"</strong>, klik "Tambah Data", dan lengkapi informasinya. Jika memungkinkan, lampirkan bukti transaksi untuk arsip digital yang kuat.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mb-4">
+            <div class="d-flex">
+              <div class="me-3 fs-4 text-dark">
+                <i class="lni lni-printer"></i>
+              </div>
+              <div>
+                <h6 class="mb-2">Langkah 4: Membuat dan Menganalisis Laporan</h6>
+                <p class="text-sm">
+                  Setelah data terkumpul, saatnya membuat laporan. Buka menu <strong>"Laporan"</strong>, pilih periode yang diinginkan (harian, bulanan, tahunan), lalu sistem akan menyusunnya secara otomatis. Gunakan laporan ini untuk evaluasi dan perencanaan.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <!-- end container -->
-      </footer>
+
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+
+<style>
+
+</style>
+          
+      <!-- ========== footer start =========== -->
+
       <!-- ========== footer end =========== -->
     </main>
     <!-- ======== main-wrapper end =========== -->
@@ -271,541 +499,7 @@
     <script src="assets/js/polyfill.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <script>
-      // ======== jvectormap activation
-      var markers = [
-        { name: "Egypt", coords: [26.8206, 30.8025] },
-        { name: "Russia", coords: [61.524, 105.3188] },
-        { name: "Canada", coords: [56.1304, -106.3468] },
-        { name: "Greenland", coords: [71.7069, -42.6043] },
-        { name: "Brazil", coords: [-14.235, -51.9253] },
-      ];
 
-      var jvm = new jsVectorMap({
-        map: "world_merc",
-        selector: "#map",
-        zoomButtons: true,
-
-        regionStyle: {
-          initial: {
-            fill: "#d1d5db",
-          },
-        },
-
-        labels: {
-          markers: {
-            render: (marker) => marker.name,
-          },
-        },
-
-        markersSelectable: true,
-        selectedMarkers: markers.map((marker, index) => {
-          var name = marker.name;
-
-          if (name === "Russia" || name === "Brazil") {
-            return index;
-          }
-        }),
-        markers: markers,
-        markerStyle: {
-          initial: { fill: "#4A6CF7" },
-          selected: { fill: "#ff5050" },
-        },
-        markerLabelStyle: {
-          initial: {
-            fontWeight: 400,
-            fontSize: 14,
-          },
-        },
-      });
-      // ====== calendar activation
-      document.addEventListener("DOMContentLoaded", function () {
-        var calendarMiniEl = document.getElementById("calendar-mini");
-        var calendarMini = new FullCalendar.Calendar(calendarMiniEl, {
-          initialView: "dayGridMonth",
-          headerToolbar: {
-            end: "today prev,next",
-          },
-        });
-        calendarMini.render();
-      });
-
-      // =========== chart one start
-      const ctx1 = document.getElementById("Chart1").getContext("2d");
-      const chart1 = new Chart(ctx1, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan",
-            "Fab",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "",
-              backgroundColor: "transparent",
-              borderColor: "#365CF5",
-              data: [
-                600, 800, 750, 880, 940, 880, 900, 770, 920, 890, 976, 1100,
-              ],
-              pointBackgroundColor: "transparent",
-              pointHoverBackgroundColor: "#365CF5",
-              pointBorderColor: "transparent",
-              pointHoverBorderColor: "#fff",
-              pointHoverBorderWidth: 5,
-              borderWidth: 5,
-              pointRadius: 8,
-              pointHoverRadius: 8,
-              cubicInterpolationMode: "monotone", // Add this line for curved line
-            },
-          ],
-        },
-        options: {
-          plugins: {
-            tooltip: {
-              callbacks: {
-                labelColor: function (context) {
-                  return {
-                    backgroundColor: "#ffffff",
-                    color: "#171717"
-                  };
-                },
-              },
-              intersect: false,
-              backgroundColor: "#f9f9f9",
-              title: {
-                fontFamily: "Plus Jakarta Sans",
-                color: "#8F92A1",
-                fontSize: 12,
-              },
-              body: {
-                fontFamily: "Plus Jakarta Sans",
-                color: "#171717",
-                fontStyle: "bold",
-                fontSize: 16,
-              },
-              multiKeyBackground: "transparent",
-              displayColors: false,
-              padding: {
-                x: 30,
-                y: 10,
-              },
-              bodyAlign: "center",
-              titleAlign: "center",
-              titleColor: "#8F92A1",
-              bodyColor: "#171717",
-              bodyFont: {
-                family: "Plus Jakarta Sans",
-                size: "16",
-                weight: "bold",
-              },
-            },
-            legend: {
-              display: false,
-            },
-          },
-          responsive: true,
-          maintainAspectRatio: false,
-          title: {
-            display: false,
-          },
-          scales: {
-            y: {
-              grid: {
-                display: false,
-                drawTicks: false,
-                drawBorder: false,
-              },
-              ticks: {
-                padding: 35,
-                max: 1200,
-                min: 500,
-              },
-            },
-            x: {
-              grid: {
-                drawBorder: false,
-                color: "rgba(143, 146, 161, .1)",
-                zeroLineColor: "rgba(143, 146, 161, .1)",
-              },
-              ticks: {
-                padding: 20,
-              },
-            },
-          },
-        },
-      });
-      // =========== chart one end
-
-      // =========== chart two start
-      const ctx2 = document.getElementById("Chart2").getContext("2d");
-      const chart2 = new Chart(ctx2, {
-        type: "bar",
-        data: {
-          labels: [
-            "Jan",
-            "Fab",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "",
-              backgroundColor: "#365CF5",
-              borderRadius: 30,
-              barThickness: 6,
-              maxBarThickness: 8,
-              data: [
-                600, 700, 1000, 700, 650, 800, 690, 740, 720, 1120, 876, 900,
-              ],
-            },
-          ],
-        },
-        options: {
-          plugins: {
-            tooltip: {
-              callbacks: {
-                titleColor: function (context) {
-                  return "#8F92A1";
-                },
-                label: function (context) {
-                  let label = context.dataset.label || "";
-
-                  if (label) {
-                    label += ": ";
-                  }
-                  label += context.parsed.y;
-                  return label;
-                },
-              },
-              backgroundColor: "#F3F6F8",
-              titleAlign: "center",
-              bodyAlign: "center",
-              titleFont: {
-                size: 12,
-                weight: "bold",
-                color: "#8F92A1",
-              },
-              bodyFont: {
-                size: 16,
-                weight: "bold",
-                color: "#171717",
-              },
-              displayColors: false,
-              padding: {
-                x: 30,
-                y: 10,
-              },
-          },
-          },
-          legend: {
-            display: false,
-            },
-          legend: {
-            display: false,
-          },
-          layout: {
-            padding: {
-              top: 15,
-              right: 15,
-              bottom: 15,
-              left: 15,
-            },
-          },
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: {
-              grid: {
-                display: false,
-                drawTicks: false,
-                drawBorder: false,
-              },
-              ticks: {
-                padding: 35,
-                max: 1200,
-                min: 0,
-              },
-            },
-            x: {
-              grid: {
-                display: false,
-                drawBorder: false,
-                color: "rgba(143, 146, 161, .1)",
-                drawTicks: false,
-                zeroLineColor: "rgba(143, 146, 161, .1)",
-              },
-              ticks: {
-                padding: 20,
-              },
-            },
-          },
-          plugins: {
-            legend: {
-              display: false,
-            },
-            title: {
-              display: false,
-            },
-          },
-        },
-      });
-      // =========== chart two end
-
-      // =========== chart three start
-      const ctx3 = document.getElementById("Chart3").getContext("2d");
-      const chart3 = new Chart(ctx3, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "Revenue",
-              backgroundColor: "transparent",
-              borderColor: "#365CF5",
-              data: [80, 120, 110, 100, 130, 150, 115, 145, 140, 130, 160, 210],
-              pointBackgroundColor: "transparent",
-              pointHoverBackgroundColor: "#365CF5",
-              pointBorderColor: "transparent",
-              pointHoverBorderColor: "#365CF5",
-              pointHoverBorderWidth: 3,
-              pointBorderWidth: 5,
-              pointRadius: 5,
-              pointHoverRadius: 8,
-              fill: false,
-              tension: 0.4,
-            },
-            {
-              label: "Profit",
-              backgroundColor: "transparent",
-              borderColor: "#9b51e0",
-              data: [
-                120, 160, 150, 140, 165, 210, 135, 155, 170, 140, 130, 200,
-              ],
-              pointBackgroundColor: "transparent",
-              pointHoverBackgroundColor: "#9b51e0",
-              pointBorderColor: "transparent",
-              pointHoverBorderColor: "#9b51e0",
-              pointHoverBorderWidth: 3,
-              pointBorderWidth: 5,
-              pointRadius: 5,
-              pointHoverRadius: 8,
-              fill: false,
-              tension: 0.4,
-            },
-            {
-              label: "Order",
-              backgroundColor: "transparent",
-              borderColor: "#f2994a",
-              data: [180, 110, 140, 135, 100, 90, 145, 115, 100, 110, 115, 150],
-              pointBackgroundColor: "transparent",
-              pointHoverBackgroundColor: "#f2994a",
-              pointBorderColor: "transparent",
-              pointHoverBorderColor: "#f2994a",
-              pointHoverBorderWidth: 3,
-              pointBorderWidth: 5,
-              pointRadius: 5,
-              pointHoverRadius: 8,
-              fill: false,
-              tension: 0.4,
-            },
-          ],
-        },
-        options: {
-          plugins: {
-            tooltip: {
-              intersect: false,
-              backgroundColor: "#fbfbfb",
-              titleColor: "#8F92A1",
-              bodyColor: "#272727",
-              titleFont: {
-                size: 16,
-                family: "Plus Jakarta Sans",
-                weight: "400",
-              },
-              bodyFont: {
-                family: "Plus Jakarta Sans",
-                size: 16,
-              },
-              multiKeyBackground: "transparent",
-              displayColors: false,
-              padding: {
-                x: 30,
-                y: 15,
-              },
-              borderColor: "rgba(143, 146, 161, .1)",
-              borderWidth: 1,
-              enabled: true,
-            },
-            title: {
-              display: false,
-            },
-            legend: {
-              display: false,
-            },
-          },
-          layout: {
-            padding: {
-              top: 0,
-            },
-          },
-          responsive: true,
-          // maintainAspectRatio: false,
-          legend: {
-            display: false,
-          },
-          scales: {
-            y: {
-              grid: {
-                display: false,
-                drawTicks: false,
-                drawBorder: false,
-              },
-              ticks: {
-                padding: 35,
-              },
-              max: 350,
-              min: 50,
-            },
-            x: {
-              grid: {
-                drawBorder: false,
-                color: "rgba(143, 146, 161, .1)",
-                drawTicks: false,
-                zeroLineColor: "rgba(143, 146, 161, .1)",
-              },
-              ticks: {
-                padding: 20,
-              },
-            },
-          },
-        },
-      });
-      // =========== chart three end
-
-      // ================== chart four start
-      const ctx4 = document.getElementById("Chart4").getContext("2d");
-      const chart4 = new Chart(ctx4, {
-        type: "bar",
-        data: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-          datasets: [
-            {
-              label: "",
-              backgroundColor: "#365CF5",
-              borderColor: "transparent",
-              borderRadius: 20,
-              borderWidth: 5,
-              barThickness: 20,
-              maxBarThickness: 20,
-              data: [600, 700, 1000, 700, 650, 800],
-            },
-            {
-              label: "",
-              backgroundColor: "#d50100",
-              borderColor: "transparent",
-              borderRadius: 20,
-              borderWidth: 5,
-              barThickness: 20,
-              maxBarThickness: 20,
-              data: [690, 740, 720, 1120, 876, 900],
-            },
-          ],
-        },
-        options: {
-          plugins: {
-            tooltip: {
-              backgroundColor: "#F3F6F8",
-              titleColor: "#8F92A1",
-              titleFontSize: 12,
-              bodyColor: "#171717",
-              bodyFont: {
-                weight: "bold",
-                size: 16,
-              },
-              multiKeyBackground: "transparent",
-              displayColors: false,
-              padding: {
-                x: 30,
-                y: 10,
-              },
-              bodyAlign: "center",
-              titleAlign: "center",
-              enabled: true,
-            },
-            legend: {
-              display: false,
-            },
-          },
-          layout: {
-            padding: {
-              top: 0,
-            },
-          },
-          responsive: true,
-          // maintainAspectRatio: false,
-          title: {
-            display: false,
-          },
-          scales: {
-            y: {
-              grid: {
-                display: false,
-                drawTicks: false,
-                drawBorder: false,
-              },
-              ticks: {
-                padding: 35,
-                max: 1200,
-                min: 0,
-              },
-            },
-            x: {
-              grid: {
-                display: false,
-                drawBorder: false,
-                color: "rgba(143, 146, 161, .1)",
-                zeroLineColor: "rgba(143, 146, 161, .1)",
-              },
-              ticks: {
-                padding: 20,
-              },
-            },
-          },
-        },
-      });
-        // =========== chart four end
-    </script>
   </body>
 </html>
 

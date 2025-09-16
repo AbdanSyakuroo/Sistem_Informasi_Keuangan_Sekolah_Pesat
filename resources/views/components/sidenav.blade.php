@@ -267,9 +267,9 @@
                         <span class="text">Sumber Dana</span>
                     </a>
                     <ul id="ddmenu_sumberdana" class="collapse dropdown-nav {{ $sumberdana_active ? 'show' : '' }}">
-                        <li><a href="{{ url('sumber_dana') }}" class="{{ Request::is('sumber_dana') ? 'active' : '' }}">Jenis</a></li>
+                        <li><a href="{{ url('sumber_dana') }}" class="{{ Request::is('sumber_dana') ? 'active' : '' }}">Jenis Sumber</a></li>
                         <li><a href="{{ url('penerimaan-sumber-dana') }}"
-                                class="{{ Request::is('penerimaan-sumber-dana') ? 'active' : '' }}">Data Penerimaan</a></li>
+                                class="{{ Request::is('penerimaan-sumber-dana') ? 'active' : '' }}">Penerimaan Dana</a></li>
                     </ul>
                 </li>
 
@@ -277,7 +277,7 @@
                 <li class="nav-item {{ Request::is('penerimaans') ? 'active' : '' }}">
                     <a href="{{ url('penerimaans') }}">
                         <span class="icon"><i data-lucide="arrow-right-to-line"></i></span>
-                        <span class="text">Penerimaan</span>
+                        <span class="text">Penerimaan Harian</span>
                     </a>
                 </li>
 
