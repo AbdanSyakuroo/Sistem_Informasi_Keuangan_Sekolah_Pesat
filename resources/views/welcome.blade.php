@@ -20,11 +20,11 @@
             <div class="flex items-center space-x-4">
                     <span class="text-2xl font-semibold text-gray-800 tracking-tight">FINSchool<span class="text-indigo-600"> ITXPRO</span></span>
             </div>
-            <div>
+            {{-- <div>
                 <a href="{{ route('register') }}" class="inline-block px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-base font-medium transition-all duration-300 ease-in-out shadow-md hover:shadow-lg">
                     Registrasi
                 </a>
-            </div>
+            </div> --}}
         </div>
     </header>
 
