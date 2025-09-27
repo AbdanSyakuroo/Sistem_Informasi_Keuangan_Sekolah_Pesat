@@ -89,8 +89,8 @@
                       <th><h6>Kegiatan</h6></th>
                       <th><h6>Sumber Dana</h6></th>
                       <th><h6>Uraian</h6></th>
-                      <th><h6>Nominal</h6></th>
-                      <th><h6>Aksi</h6></th>
+                      <th class="text-end"><h6>Nominal</h6></th>
+                      <th class="ps-3"><h6>Aksi</h6></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -101,8 +101,8 @@
                         <td><p>{{ $item->kegiatan->kode_kegiatan }}</p></td>
                         <td><p>{{ $item->sumberDana->nama_sumber }}</p></td>
                         <td><p>{{ $item->uraian }}</p></td>
-                        <td><p>Rp {{ number_format($item->nominal, 0, ',', '.') }}</p></td>
-                        <td>
+                        <td class="text-end"><p class="fw-bold">Rp {{ number_format($item->nominal, 0, ',', '.') }}</p></td>
+                        <td class="ps-3">
                           <div class="action d-flex gap-2">
                             <a href="{{ route('pengeluarans.edit', $item->id) }}" class="text-primary">
                               <i class="lni lni-pencil"></i>

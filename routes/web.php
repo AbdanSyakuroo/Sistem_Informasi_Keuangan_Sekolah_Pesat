@@ -9,6 +9,7 @@ use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenerimaanDanaController;
 use App\Http\Controllers\RealisasiController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,34 +21,42 @@ Route::get('/home', function () {
 });
 
 
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->middleware(['auth', 'verified'])
+        ->name('dashboard');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
 
 
 
-Route::resource('sumber_dana', SumberDanaController::class);
-Route::resource('kegiatans', KegiatanController::class);
-Route::resource('penerimaans', PenerimaanController::class);
-Route::resource('pengeluarans', PengeluaranController::class)->except(['show']);
+    Route::resource('sumber_dana', SumberDanaController::class);
+    Route::resource('kegiatans', KegiatanController::class);
+    Route::resource('penerimaans', PenerimaanController::class);
+    Route::resource('pengeluarans', PengeluaranController::class)->except(['show']);
+    Route::resource('users', UserController::class);
 
-// Route::get('/pengeluarans/sumber-dana/{id}', [PengeluaranController::class, 'bySumberDana'])
-//     ->name('pengeluarans.bySumberDana');
+    // Route::get('/pengeluarans/sumber-dana/{id}', [PengeluaranController::class, 'bySumberDana'])
+    //     ->name('pengeluarans.bySumberDana');
+    
+    Route::get('/pengeluarans/filter', [PengeluaranController::class, 'filterForm'])->name('pengeluarans.filterForm');
+    Route::get('/pengeluarans/by-sumber-dana', [PengeluaranController::class, 'bySumberDana'])->name('pengeluarans.bySumberDana');
+});
 
-Route::get('/pengeluarans/filter', [PengeluaranController::class, 'filterForm'])->name('pengeluarans.filterForm');
-Route::get('/pengeluarans/by-sumber-dana', [PengeluaranController::class, 'bySumberDana'])->name('pengeluarans.bySumberDana');
 
-Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-Route::get('/laporan1', [LaporanController::class, 'laporan1'])->name('laporan1.index');
+Route::middleware('auth')->group(function () {
 
-Route::get('laporan_realisasi', [RealisasiController::class, 'index'])
-    ->name('laporan_realisasi.index');
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 
-Route::get('laporan_realisasi/{id}', [RealisasiController::class, 'show'])
-    ->name('laporan_realisasi.show');
+    Route::get('laporan_realisasi', [RealisasiController::class, 'index'])
+        ->name('laporan_realisasi.index');
 
-Route::resource('penerimaan-sumber-dana', PenerimaanDanaController::class)->only(['index','create','store']);
+    Route::get('laporan_realisasi/{id}', [RealisasiController::class, 'show'])
+        ->name('laporan_realisasi.show');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::resource('penerimaan-sumber-dana', PenerimaanDanaController::class)->only(['index', 'create', 'store']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -55,4 +64,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

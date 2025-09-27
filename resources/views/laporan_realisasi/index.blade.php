@@ -108,9 +108,9 @@
         <tr>
           <td><p>{{ $i+1 }}</p></td>
           <td><p>{{ $sd->nama_sumber }}</p></td>
-          <td class="text-end"><p>{{ number_format($sd->total_penerimaan, 0, ',', '.') }}</p></td>
-          <td class="text-end"><p>{{ number_format($sd->total_pengeluaran, 0, ',', '.') }}</p></td>
-          <td class="text-end fw-bold"><p>{{ number_format($sd->saldo, 0, ',', '.') }}</p></td>
+          <td class="text-end"><p class="fw-bold">{{ number_format($sd->total_penerimaan, 0, ',', '.') }}</p></td>
+          <td class="text-end"><p class="fw-bold">{{ number_format($sd->total_pengeluaran, 0, ',', '.') }}</p></td>
+          <td class="text-end "><p class="fw-bold">{{ number_format($sd->saldo, 0, ',', '.') }}</p></td>
           <td class="text-center">
             <a href="{{ route('laporan_realisasi.show', $sd->id) }}" class="btn btn-primary btn-sm text-white">
               Detail

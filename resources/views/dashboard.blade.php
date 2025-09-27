@@ -111,7 +111,7 @@
           <!-- ========== title-wrapper end ========== -->
           <div class="row">
   <!-- Total Penerimaan -->
-  <div class="col-xl-3 col-lg-4 col-sm-6">
+  <div class="col-xl-6 col-lg-6 col-sm-12">
     <div class="icon-card mb-30">
       <div class="icon success">
         <i class="lni lni-dollar"></i>
@@ -126,7 +126,7 @@
   </div>
 
   <!-- Total Pengeluaran -->
-  <div class="col-xl-3 col-lg-4 col-sm-6">
+  <div class="col-xl-6 col-lg-6 col-sm-12">
     <div class="icon-card mb-30">
       <div class="icon danger">
         <i class="lni lni-credit-cards"></i>
@@ -141,7 +141,7 @@
   </div>
 
   <!-- Sisa Saldo -->
-  <div class="col-xl-3 col-lg-4 col-sm-6">
+  <div class="col-xl-6 col-lg-6 col-sm-12">
     <div class="icon-card mb-30">
       <div class="icon primary">
         <i class="lni lni-wallet"></i>
@@ -156,7 +156,7 @@
   </div>
 
   <!-- Jumlah Kegiatan -->
-  <div class="col-xl-3 col-lg-4 col-sm-6">
+  <div class="col-xl-6 col-lg-6 col-sm-12">
     <div class="icon-card mb-30">
       <div class="icon orange">
         <i class="lni lni-book"></i>

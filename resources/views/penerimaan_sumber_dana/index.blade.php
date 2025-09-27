@@ -83,8 +83,8 @@
                       <tr>
                         <th><h6>Tanggal</h6></th>
                         <th><h6>Sumber Dana</h6></th>
+                        <th class="text-end"><h6>Nominal</h6></th>
                         {{-- <th><h6>Uraian</h6></th> --}}
-                        <th><h6>Nominal</h6></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -92,7 +92,7 @@
                       <tr>
                         <td><p>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</p></td>
                         <td class="min-width"><p>{{ $p->sumberDana->nama_sumber }}</p></td>
-                        <td class="min-width"><p>{{ number_format($p->nominal, 0, ',', '.') }}</p></td>
+                        <td class="min-width text-end"><p class="fw-bold">Rp {{ number_format($p->nominal, 0, ',', '.') }}</p></td>
                       </tr>
                       @empty
                       <tr>
