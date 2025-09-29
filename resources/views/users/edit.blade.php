@@ -31,7 +31,7 @@
         <!-- Header Section -->
         <div class="mb-8">
             <h1 class="text-3xl font-extrabold text-blue-800 tracking-tight">Edit User</h1>
-            <p class="text-gray-600 mt-2">Memperbarui data pengguna **{{ $user->name ?? '...' }}**.</p>
+            <p class="text-gray-600 mt-2">Memperbarui data pengguna :{{ $user->name ?? '...' }}.</p>
         </div>
 
         <!-- Tampilan pesan error dari Laravel ($errors->any()) -->
@@ -90,7 +90,7 @@
             <hr class="my-8 border-gray-200">
             
             <p class="text-sm text-gray-500 mb-4 font-medium">
-                Isi kolom **Password Saat Ini**, **Password Baru**, dan **Konfirmasi Password Baru** jika Anda ingin mengganti password. Jika tidak, biarkan kosong.
+                Isi kolom <strong> Password Saat Ini</strong>, <strong>Password Baru</strong>, dan <strong>Konfirmasi Password Baru</strong>  jika Anda ingin mengganti password. Jika tidak, biarkan kosong.
             </p>
 
             {{-- 5. Password Baru (Opsional) --}}
