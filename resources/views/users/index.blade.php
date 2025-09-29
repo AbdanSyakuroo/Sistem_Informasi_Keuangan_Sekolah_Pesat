@@ -13,6 +13,66 @@
     <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        /* Custom CSS for responsiveness */
+        @media (max-width: 767.98px) {
+            .table-responsive.card-list .table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            .table-responsive.card-list thead {
+                display: none;
+            }
+
+            .table-responsive.card-list tbody,
+            .table-responsive.card-list tr {
+                display: block;
+            }
+
+            .table-responsive.card-list td {
+                display: block;
+                text-align: right !important;
+                padding-left: 50% !important;
+                position: relative;
+            }
+
+            .table-responsive.card-list td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                width: calc(50% - 30px);
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .table-responsive.card-list .action-buttons {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .title-wrapper .title h2,
+            .title-wrapper .title p {
+                text-align: center;
+            }
+
+            .breadcrumb-wrapper {
+                text-align: center;
+            }
+
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .d-flex.justify-content-between .btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -65,7 +125,7 @@
                             </div>
 
                             {{-- Tabel Daftar User --}}
-                            <div class="table-wrapper table-responsive">
+                            <div class="table-wrapper table-responsive card-list">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -86,38 +146,39 @@
                                     <tbody>
                                         @foreach ($users as $key => $user)
                                             <tr>
-                                                <td class="text-center">
+                                                <td class="text-center" data-label="No.">
                                                     <p>{{ $key + 1 }}</p>
                                                 </td>
-                                                <td>
+                                                <td data-label="Nama Lengkap">
                                                     <p>{{ $user->name }}</p>
                                                 </td>
-                                                <td>
+                                                <td data-label="Email">
                                                     <p>{{ $user->email }}</p>
                                                 </td>
-                                                <td class="text-center">
-                                                    {{-- Tombol Edit --}}
-                                                    <a href="{{ url('users/' . $user->id . '/edit') }}"
-                                                        class="btn btn-warning btn-sm me-1" title="Edit">
-                                                        <i data-lucide="pencil" style="width: 14px; height: 14px;"></i>
-                                                    </a>
-                                                    {{-- Tombol Hapus --}}
-                                                    <form action="{{ url('users/' . $user->id) }}" method="POST"
-                                                        class="d-inline"
-                                                        onsubmit="return confirm('Anda yakin ingin menghapus user ini?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm"
-                                                            title="Hapus">
-                                                            <i data-lucide="trash-2"
-                                                                style="width: 14px; height: 14px;"></i>
-                                                        </button>
-                                                    </form>
+                                                <td class="text-center" data-label="Aksi">
+                                                    <div class="action-buttons">
+                                                        {{-- Tombol Edit --}}
+                                                        <a href="{{ url('users/' . $user->id . '/edit') }}"
+                                                            class="btn btn-warning btn-sm me-1" title="Edit">
+                                                            <i data-lucide="pencil" style="width: 14px; height: 14px;"></i>
+                                                        </a>
+                                                        {{-- Tombol Hapus --}}
+                                                        <form action="{{ url('users/' . $user->id) }}" method="POST"
+                                                            class="d-inline"
+                                                            onsubmit="return confirm('Anda yakin ingin menghapus user ini?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                title="Hapus">
+                                                                <i data-lucide="trash-2"
+                                                                    style="width: 14px; height: 14px;"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>

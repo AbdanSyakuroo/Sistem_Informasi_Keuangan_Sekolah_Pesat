@@ -124,11 +124,11 @@
                                             </form>
 
                                             <!-- Tombol Export -->
-                                            <div style="margin: 15px 0;">
-                                                <button id="exportPDF" class="btn btn-danger mb-3">Cetak PDF</button>
-                                                <button id="exportExcel" class="btn btn-success mb-3">Export
-                                                    Excel</button>
-                                            </div>
+                                            <div class="d-flex flex-lg-row flex-column align-items-lg-end align-items-start" style="margin: 15px 0;">
+    <button id="exportPDF" class="btn btn-danger mb-2 mb-lg-0 me-lg-2">Cetak PDF</button>
+    <button id="exportExcel" class="btn btn-success">Export Excel</button>
+</div>
+
                                         </div>
 
                                         @if (session('success'))
