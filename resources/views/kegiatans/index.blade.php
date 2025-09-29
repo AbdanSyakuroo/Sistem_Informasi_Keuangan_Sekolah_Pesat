@@ -1,54 +1,3 @@
-{{-- <x-app-layout>
-    <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <div class="flex justify-between items-center mb-4">
-            <h1 class="text-xl font-bold">Daftar Kegiatan</h1>
-            <a href="{{ route('kegiatans.create') }}" 
-               class="bg-blue-500 text-black px-4 py-2 rounded">Tambah</a>
-        </div>
-
-        @if (session('success'))
-            <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <table class="min-w-full border border-gray-200">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="px-4 py-2">#</th>
-                    <th class="px-4 py-2">Kode</th>
-                    <th class="px-4 py-2">Nama Kegiatan</th>
-                    <th class="px-4 py-2">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($kegiatans as $key => $item)
-                    <tr class="border-b">
-                        <td class="px-4 py-2">{{ $kegiatans->firstItem() + $key }}</td>
-                        <td class="px-4 py-2">{{ $item->kode_kegiatan }}</td>
-                        <td class="px-4 py-2">{{ $item->nama_kegiatan }}</td>
-                        <td class="px-4 py-2">
-                            <a href="{{ route('kegiatans.edit', $item->id) }}" 
-                               class="text-blue-600">Edit</a>
-                            <form action="{{ route('kegiatans.destroy', $item->id) }}" 
-                                  method="POST" class="inline">
-                                @csrf @method('DELETE')
-                                <button type="submit" 
-                                        class="text-red-600 ml-2" 
-                                        onclick="return confirm('Hapus data ini?')">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <div class="mt-4">
-            {{ $kegiatans->links() }}
-        </div>
-    </div>
-</x-app-layout> --}}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,36 +7,52 @@
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
     <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
 
-    <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/lineicons.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      /* Ensure the table responsive wrapper works as intended */
+      .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      /* Optional: Reduce padding on smaller screens for more space */
+      @media (max-width: 575.98px) {
+          .card-style {
+              padding: 15px; /* Smaller padding on very small screens */
+          }
+      }
+
+      /* Adjust action column display on small screens */
+      @media (max-width: 767.98px) { /* Adjusts for sm and xs screens */
+        .action.flex {
+            /* Change from flex-row to flex-col on small screens if necessary, 
+               but for two small icons, gap-2 works fine. Keep it concise. */
+            gap: 0.5rem !important;
+        }
+        
+        /* Reduce min-width on table columns to allow table to shrink */
+        .table td.min-width, .table th.min-width {
+            min-width: 100px; /* Adjust as needed */
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- ======== Preloader =========== -->
     <div id="preloader">
       <div class="spinner"></div>
     </div>
-    <!-- ======== Preloader =========== -->
-
-    <!-- ======== sidebar-nav start =========== -->
     <x-sidenav></x-sidenav>
     
     <div class="overlay"></div>
-    <!-- ======== sidebar-nav end =========== -->
-
-    <!-- ======== main-wrapper start =========== -->
     <main class="main-wrapper">
-      <!-- ========== header start ========== -->
       <x-topheader></x-topheader>
-      <!-- ========== header end ========== -->
-
- <section class="section">
+      <section class="section">
         <div class="container-fluid">
-          <!-- ========== title-wrapper start ========== -->
           <div class="title-wrapper pt-30">
             <div class="row align-items-center">
               <div class="col-md-6">
@@ -95,7 +60,6 @@
                   <h2>Data Kegiatan</h2>
                 </div>
               </div>
-              <!-- end col -->
               <div class="col-md-6">
                 <div class="breadcrumb-wrapper">
                   <nav aria-label="breadcrumb">
@@ -113,72 +77,73 @@
 
 
               <div class="tables-wrapper">
-           <div class="row">
-  <div class="col-lg-12">
-    <div class="card-style mb-30">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-          <h6 class="mb-0">Daftar Kegiatan</h6>
-          <a href="{{ route('kegiatans.create') }}" class="btn btn-primary btn-sm">
-            Tambah
-          </a>
-        </div>
-      <p class="text-sm mb-20">
-        Daftar kegiatan yang tersedia dalam database.
-      </p>
-      <div class="table-wrapper table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th><h6>No</h6></th>
-              <th><h6>Kode Kegiatan</h6></th>
-              <th><h6>Nama Kegiatan</h6></th>
-              <th><h6>Aksi</h6></th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($kegiatans as $key => $item)
-            <tr>
-              <td>
-                <p>{{ $kegiatans->firstItem() + $key }}</p>
-              </td>
-              <td class="min-width">
-                <p>{{ $item->kode_kegiatan }}</p>
-              </td>
-              <td class="min-width">
-                <p>{{ $item->nama_kegiatan }}</p>
-              </td>
-              <td class="min-width">
-                <div class="action flex gap-2">
-                  <a href="{{ route('kegiatans.edit', $item->id) }}" class="text-primary">
-                    <i class="lni lni-pencil"></i>
-                  </a>
-                  <form action="{{ route('kegiatans.destroy', $item->id) }}" method="POST" class="inline">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="text-danger" onclick="return confirm('Hapus data ini?')">
-                      <i class="lni lni-trash-can"></i>
-                    </button>
-                  </form>
-                </div>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-        <!-- Pagination -->
-        <div class="mt-4">
-          {{ $kegiatans->links() }}
-        </div>
-      </div>
-    </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="card-style mb-30">
+                      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-3">
+                        <h6 class="mb-2 mb-sm-0 text-center text-lg-start">Daftar Kegiatan</h6>
+                        <a href="{{ route('kegiatans.create') }}" class="btn btn-primary btn-sm">
+                          Tambah
+                        </a>
+                      </div>
+                      <p class="text-sm mb-20 text-center text-lg-start">
+                        Daftar kegiatan yang tersedia dalam database.
+                      </p>
+<div class="table-wrapper table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-nowrap" style="width: 5%"><h6>#</h6></th>
+        <th class="text-nowrap" style="width: 25%"><h6>Kode Kegiatan</h6></th>
+        <th style="width: 55%"><h6>Nama Kegiatan</h6></th>
+        <th class="text-nowrap" style="width: 15%"><h6>Aksi</h6></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($kegiatans as $key => $item)
+      <tr>
+        <td>
+          <p class="text-nowrap">{{ $kegiatans->firstItem() + $key }}</p>
+        </td>
+        <td class="text-nowrap">
+          <p>{{ $item->kode_kegiatan }}</p>
+        </td>
+        <td>
+          <p>{{ $item->nama_kegiatan }}</p>
+        </td>
+        <td>
+          <div class="action flex flex-nowrap justify-content-start gap-2">
+            <a href="{{ route('kegiatans.edit', $item->id) }}" class="text-primary" title="Edit">
+              <i class="lni lni-pencil"></i>
+            </a>
+            <form action="{{ route('kegiatans.destroy', $item->id) }}" method="POST" class="inline">
+              @csrf @method('DELETE')
+              <button type="submit" class="text-danger" onclick="return confirm('Hapus data ini?')" title="Hapus">
+                <i class="lni lni-trash-can"></i>
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+  <div class="mt-4">
+    {{ $kegiatans->links() }}
   </div>
 </div>
-        <!-- end container -->
-      </footer>
-      <!-- ========== footer end =========== -->
-    </main>
-    <!-- ======== main-wrapper end =========== -->
+                    </div>
+                  </div>
+                </div>
+                </div>
+          </div>
+        </section>
 
-    <!-- ========= All Javascript files linkup ======== -->
+      <footer class="footer">
+        <div class="container-fluid">
+          </div>
+      </footer>
+      </main>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/Chart.min.js"></script>
     <script src="assets/js/dynamic-pie-chart.js"></script>
@@ -190,4 +155,3 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
-

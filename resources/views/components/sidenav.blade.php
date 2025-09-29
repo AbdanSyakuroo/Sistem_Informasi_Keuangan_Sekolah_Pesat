@@ -282,7 +282,7 @@
     <aside class="sidebar-nav-wrapper">
         <div class="navbar-logo">
             <a href="{{ url('dashboard') }}">
-                <img src="{{ asset('img/pesat.png') }}" alt="Logo" style="height: 50px; width: auto;">
+                <img src="{{ asset('img/pesat.png') }}" alt="Logo" style="height: 60px; width: auto;">
             </a>
         </div>
 

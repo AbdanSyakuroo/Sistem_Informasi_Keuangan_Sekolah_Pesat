@@ -64,50 +64,66 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="card-style mb-30">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h6 class="mb-0">Daftar Penerimaan</h6>
-                  <a href="{{ route('penerimaan-sumber-dana.create') }}" class="btn btn-primary btn-sm">
-                    + Tambah Penerimaan
-                  </a>
-                </div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h6 class="mb-0">Daftar Penerimaan</h6>
+    <a href="{{ route('penerimaan-sumber-dana.create') }}" class="btn btn-primary btn-sm">
+      + Tambah Penerimaan
+    </a>
+  </div>
 
-                @if(session('success'))
-                  <div class="alert alert-success mb-3">
-                    {{ session('success') }}
-                  </div>
-                @endif
+  @if(session('success'))
+    <div class="alert alert-success mb-3">
+      {{ session('success') }}
+    </div>
+  @endif
 
-                <div class="table-wrapper table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th><h6>Tanggal</h6></th>
-                        <th><h6>Sumber Dana</h6></th>
-                        <th class="text-end"><h6>Nominal</h6></th>
-                        {{-- <th><h6>Uraian</h6></th> --}}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @forelse($penerimaans as $p)
-                      <tr>
-                        <td><p>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</p></td>
-                        <td class="min-width"><p>{{ $p->sumberDana->nama_sumber }}</p></td>
-                        <td class="min-width text-end"><p class="fw-bold">Rp {{ number_format($p->nominal, 0, ',', '.') }}</p></td>
-                      </tr>
-                      @empty
-                      <tr>
-                        <td colspan="4" class="text-center">Belum ada data penerimaan</td>
-                      </tr>
-                      @endforelse
-                    </tbody>
-                  </table>
-                </div>
+  <!-- === TABLE UNTUK DESKTOP === -->
+  <div class="table-wrapper table-responsive d-none d-md-block">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><h6>Tanggal</h6></th>
+          <th><h6>Sumber Dana</h6></th>
+          <th class="text-end"><h6>Nominal</h6></th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse($penerimaans as $p)
+        <tr>
+          <td><p>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</p></td>
+          <td class="min-width"><p>{{ $p->sumberDana->nama_sumber }}</p></td>
+          <td class="min-width text-end"><p class="fw-bold">Rp {{ number_format($p->nominal, 0, ',', '.') }}</p></td>
+        </tr>
+        @empty
+        <tr>
+          <td colspan="3" class="text-center">Belum ada data penerimaan</td>
+        </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
 
-                <!-- Pagination -->
-                <div class="mt-4">
-                  {{ $penerimaans->links() }}
-                </div>
-              </div>
+  <!-- === CARD LIST UNTUK MOBILE === -->
+  <div class="d-block d-md-none">
+    @forelse($penerimaans as $p)
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <p class="mb-1"><strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</p>
+          <p class="mb-1"><strong>Sumber Dana:</strong> {{ $p->sumberDana->nama_sumber }}</p>
+          <p class="mb-0"><strong>Nominal:</strong> Rp {{ number_format($p->nominal, 0, ',', '.') }}</p>
+        </div>
+      </div>
+    @empty
+      <div class="alert alert-info">Belum ada data penerimaan</div>
+    @endforelse
+  </div>
+
+  <!-- Pagination -->
+  <div class="mt-4">
+    {{ $penerimaans->links() }}
+  </div>
+</div>
+
             </div>
           </div>
           <!-- ========== table end ========== -->
