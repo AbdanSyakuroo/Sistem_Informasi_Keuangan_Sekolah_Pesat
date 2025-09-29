@@ -88,7 +88,7 @@
                         <a href="dashboard">Dashboard</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">
-                        Penerimaan
+                        Penerimaan Harian
                       </li>
                     </ol>
                   </nav>

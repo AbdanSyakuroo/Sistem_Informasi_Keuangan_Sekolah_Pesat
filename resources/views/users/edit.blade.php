@@ -31,7 +31,7 @@
         <!-- Header Section -->
         <div class="mb-8">
             <h1 class="text-3xl font-extrabold text-blue-800 tracking-tight">Edit User</h1>
-            <p class="text-gray-600 mt-2">Memperbarui data pengguna :{{ $user->name ?? '...' }}.</p>
+            <p class="text-gray-600 mt-2">Memperbarui data pengguna : <strong>{{ $user->name ?? '...' }}.</strong></p>
         </div>
 
         <!-- Tampilan pesan error dari Laravel ($errors->any()) -->

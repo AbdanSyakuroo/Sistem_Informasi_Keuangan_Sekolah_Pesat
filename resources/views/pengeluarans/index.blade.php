@@ -113,19 +113,17 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th><h6>No</h6></th>
                           <th><h6>Tanggal</h6></th>
                           <th><h6>Kegiatan</h6></th>
                           <th><h6>Sumber Dana</h6></th>
                           <th><h6>Uraian</h6></th>
-                          <th class="text-end"><h6>Nominal</h6></th>
+                          <th class=""><h6>Nominal</h6></th>
                           <th class="ps-3"><h6>Aksi</h6></th>
                         </tr>
                       </thead>
                       <tbody>
                         @forelse ($pengeluarans as $key => $item)
                           <tr>
-                            <td data-label="No"><span>{{ $pengeluarans->firstItem() + $key }}</span></td>
                             <td data-label="Tanggal"><span>{{ $item->tanggal }}</span></td>
                             <td data-label="Kegiatan"><span>{{ $item->kegiatan->kode_kegiatan }}</span></td>
                             <td data-label="Sumber Dana"><span>{{ $item->sumberDana->nama_sumber }}</span></td>

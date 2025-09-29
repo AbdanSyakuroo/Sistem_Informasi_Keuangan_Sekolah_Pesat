@@ -131,28 +131,39 @@
             color: var(--accent-color);
         }
 
-        /* Dropdown Arrow */
+        /*
+        ========================================
+        KOREKSI PANAH DROPDOWN
+        ========================================
+        */
         .nav-item-has-children>a::after {
-            content: '\203A';
+            content: '\203A'; /* Karakter '>' */
             font-size: 1.2rem;
             line-height: 1;
             margin-left: auto;
             transition: transform 0.3s ease;
-
-            /* 1. ROTASI DEFAULT: 90deg agar panah '>' menunjuk ke BAWAH/KANAN secara visual */
-            transform: rotate(90deg);
             color: var(--sidebar-text-color);
         }
 
-        .nav-item-has-children>a[aria-expanded="true"]::after {
-            /* 2. ROTASI SAAT TERBUKA: 0deg agar panah '>' kembali menunjuk ke SAMPING/KANAN */
+        /* KONDISI TERTUTUP (DEFAULT / collapsed): Panah '>' menunjuk ke KANAN (0deg) */
+        .nav-item-has-children>a:not([aria-expanded="true"])::after {
             transform: rotate(0deg);
         }
 
-        /* 3. Aturan warna untuk item aktif (dipertahankan) */
+        /* KONDISI TERBUKA: Panah '>' diputar 90deg (menunjuk ke BAWAH/KE ATAS) */
+        .nav-item-has-children>a[aria-expanded="true"]::after {
+            transform: rotate(90deg);
+        }
+
+        /* Aturan warna untuk item aktif (dipertahankan) */
         .nav-item-has-children.active>a[aria-expanded="true"]::after {
             color: var(--accent-color);
         }
+        /*
+        ========================================
+        AKHIR KOREKSI
+        ========================================
+        */
 
         /* Dropdown Menu */
         .dropdown-nav {
@@ -274,8 +285,6 @@
             --item-index: 6;
         }
     </style>
-
-
 </head>
 
 <body>
@@ -296,12 +305,14 @@
                     </a>
                 </li>
 
-                {{-- Sumber Dana --}}
+                
                 @php
                     $sumberdana_active = Request::is('sumber_dana*') || Request::is('penerimaan-sumber-dana');
                 @endphp
+                {{-- PERBAIKAN: Tambahkan kelas 'collapsed' jika menu tidak aktif (aria-expanded="false") --}}
                 <li class="nav-item nav-item-has-children {{ $sumberdana_active ? 'active' : '' }}">
                     <a href="#ddmenu_sumberdana" data-bs-toggle="collapse"
+                        class="{{ $sumberdana_active ? '' : 'collapsed' }}"
                         aria-expanded="{{ $sumberdana_active ? 'true' : 'false' }}">
                         <span class="icon"><i data-lucide="piggy-bank"></i></span>
                         <span class="text">Sumber Dana</span>
@@ -339,22 +350,16 @@
                     </a>
                 </li>
 
-                {{-- ======== AWAL MENU BARU ======== --}}
-                {{-- Manajemen User --}}
-                <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
-                    <a href="{{ url('users') }}">
-                        <span class="icon"><i data-lucide="users"></i></span>
-                        <span class="text">Manajemen User</span>
-                    </a>
-                </li>
-                {{-- ======== AKHIR MENU BARU ======== --}}
+                
 
                 {{-- Laporan --}}
                 @php
                     $laporan_active = Request::is('laporan*') || Request::is('pengeluarans/filter');
                 @endphp
+                {{-- PERBAIKAN: Tambahkan kelas 'collapsed' jika menu tidak aktif (aria-expanded="false") --}}
                 <li class="nav-item nav-item-has-children {{ $laporan_active ? 'active' : '' }}">
                     <a href="#ddmenu_laporan" data-bs-toggle="collapse"
+                        class="{{ $laporan_active ? '' : 'collapsed' }}"
                         aria-expanded="{{ $laporan_active ? 'true' : 'false' }}">
                         <span class="icon"><i data-lucide="scroll-text"></i></span>
                         <span class="text">Laporan</span>
@@ -369,6 +374,17 @@
             </ul>
 
             <ul class="logout-nav">
+
+                {{-- ======== AWAL MENU BARU ======== --}}
+                {{-- Manajemen User --}}
+                <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
+                    <a href="{{ url('users') }}">
+                        <span class="icon"><i data-lucide="users"></i></span>
+                        <span class="text">Manajemen User</span>
+                    </a>
+                </li>
+                {{-- ======== AKHIR MENU BARU ======== --}}
+                {{-- Logout --}}
                 <li class="nav-item nav-item-logout">
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

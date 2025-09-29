@@ -93,7 +93,7 @@
                         <a href="dashboard">Dashboard</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">
-                        Page
+                        Jenis Sumber
                       </li>
                     </ol>
                   </nav>
