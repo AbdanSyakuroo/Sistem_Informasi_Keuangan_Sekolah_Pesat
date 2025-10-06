@@ -18,6 +18,12 @@ class PenerimaanController extends Controller
         return view('penerimaans.create');
     }
 
+        public function show($id)
+    {
+        return redirect()
+            ->route('penerimaans.index')
+            ->with('info', 'Fitur detail data tidak tersedia.');
+    }
     public function store(Request $request)
     {
         $request->validate([

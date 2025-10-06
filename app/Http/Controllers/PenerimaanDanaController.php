@@ -42,10 +42,12 @@ class PenerimaanDanaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PenerimaanDana $penerimaanDana)
-    {
-        //
-    }
+public function show($id)
+{
+    return redirect()
+        ->route('penerimaan-sumber-dana.index')
+        ->with('info', 'Fitur detail data tidak tersedia.');
+}
 
     /**
      * Show the form for editing the specified resource.

@@ -9,7 +9,7 @@ class SumberDanaController extends Controller
 {
     /**
      * Tampilkan daftar sumber dana
-    */
+     */
     public function index()
     {
         $sumberDana = SumberDana::latest()->paginate(10);
@@ -18,7 +18,15 @@ class SumberDanaController extends Controller
 
     /**
      * Form tambah sumber dana
-    */
+     */
+
+    public function show($id)
+    {
+        return redirect()
+            ->route('sumber_dana.index')
+            ->with('info', 'Fitur detail data tidak tersedia.');
+    }
+
 
     public function create()
     {
@@ -27,7 +35,7 @@ class SumberDanaController extends Controller
 
     /**
      * Simpan sumber dana baru
-    */
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -37,12 +45,12 @@ class SumberDanaController extends Controller
         SumberDana::create($request->only('nama_sumber'));
 
         return redirect()->route('sumber_dana.index')
-                         ->with('success', 'Sumber dana berhasil ditambahkan.');
+            ->with('success', 'Sumber dana berhasil ditambahkan.');
     }
 
     /**
      * Form edit sumber dana
-    */
+     */
     public function edit(SumberDana $sumber_dana)
     {
         return view('sumber_dana.edit', compact('sumber_dana'));
@@ -50,30 +58,29 @@ class SumberDanaController extends Controller
 
     /**
      * Update sumber dana
-    */
+     */
 
     public function update(Request $request, SumberDana $sumber_dana)
     {
         $request->validate([
-            'nama_sumber' => 'required|string' ,
+            'nama_sumber' => 'required|string',
         ]);
 
         $sumber_dana->update($request->only('nama_sumber'));
 
         return redirect()->route('sumber_dana.index')
-                         ->with('success', 'Sumber dana berhasil diperbarui.');
+            ->with('success', 'Sumber dana berhasil diperbarui.');
     }
 
     /**
      * Hapus sumber dana
-    */
+     */
 
     public function destroy(SumberDana $sumber_dana)
     {
         $sumber_dana->delete();
 
         return redirect()->route('sumber_dana.index')
-                         ->with('success', 'Sumber dana berhasil dihapus.');
+            ->with('success', 'Sumber dana berhasil dihapus.');
     }
-  
 }

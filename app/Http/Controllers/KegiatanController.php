@@ -18,6 +18,12 @@ class KegiatanController extends Controller
         return view('kegiatans.create');
     }
 
+    public function show($id)
+    {
+        return redirect()
+            ->route('kegiatans.index')
+            ->with('info', 'Fitur detail data tidak tersedia.');
+    }
     public function store(Request $request)
     {
         $request->validate([
@@ -28,7 +34,7 @@ class KegiatanController extends Controller
         Kegiatan::create($request->only('kode_kegiatan', 'nama_kegiatan'));
 
         return redirect()->route('kegiatans.index')
-                         ->with('success', 'Kegiatan berhasil ditambahkan.');
+            ->with('success', 'Kegiatan berhasil ditambahkan.');
     }
 
     public function edit(Kegiatan $kegiatan)
@@ -46,7 +52,7 @@ class KegiatanController extends Controller
         $kegiatan->update($request->only('kode_kegiatan', 'nama_kegiatan'));
 
         return redirect()->route('kegiatans.index')
-                         ->with('success', 'Kegiatan berhasil diperbarui.');
+            ->with('success', 'Kegiatan berhasil diperbarui.');
     }
 
     public function destroy(Kegiatan $kegiatan)
@@ -54,6 +60,6 @@ class KegiatanController extends Controller
         $kegiatan->delete();
 
         return redirect()->route('kegiatans.index')
-                         ->with('success', 'Kegiatan berhasil dihapus.');
+            ->with('success', 'Kegiatan berhasil dihapus.');
     }
 }

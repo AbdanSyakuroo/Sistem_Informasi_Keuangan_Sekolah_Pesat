@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('sumber_dana', SumberDanaController::class);
     Route::resource('kegiatans', KegiatanController::class);
     Route::resource('penerimaans', PenerimaanController::class);
-    Route::resource('pengeluarans', PengeluaranController::class)->except(['show']);
+    Route::resource('pengeluarans', PengeluaranController::class);
     Route::resource('users', UserController::class);
 
     // Route::get('/pengeluarans/sumber-dana/{id}', [PengeluaranController::class, 'bySumberDana'])
@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('penerimaan-sumber-dana', PenerimaanDanaController::class)->only(['index', 'create', 'store']);
+    Route::resource('penerimaan-sumber-dana', PenerimaanDanaController::class)->only(['index', 'create', 'store', 'show']);
 });
 
 Route::middleware('auth')->group(function () {
