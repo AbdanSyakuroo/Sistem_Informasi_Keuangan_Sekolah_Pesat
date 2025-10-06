@@ -128,7 +128,7 @@
                 <a href="{{ route('users.index') }}" class="w-full sm:w-auto px-8 py-3 bg-gray-200 text-gray-700 font-semibold rounded-full shadow-md hover:bg-gray-300 transition-colors duration-200 text-center">
                     Batal
                 </a>
-                <button type="submit" class="w-full sm:w-auto px-8 py-3 font-semibold rounded-full text-white shadow-lg bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 transition-all duration-200 transform hover:scale-105">
+                <button type="submit" id="editBtn" class="w-full sm:w-auto px-8 py-3 font-semibold rounded-full text-white shadow-lg bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 transition-all duration-200 transform hover:scale-105">
                     Simpan Perubahan
                 </button>
             </div>
@@ -138,5 +138,11 @@
 </body>
 <script>
     console.log("Halaman Edit User dimuat. Kolom Password Saat Ini telah ditambahkan.");
+
+    document.getElementById("editBtn").addEventListener("click", function() {
+            this.disabled = true;
+            this.innerText = "Memproses..."; // optional
+            this.form.submit();
+        });
 </script>
 </html>

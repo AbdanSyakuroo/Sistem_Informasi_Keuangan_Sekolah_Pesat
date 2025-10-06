@@ -117,7 +117,7 @@
                 <a href="{{ route('users.index') }}" class="w-full sm:w-auto px-8 py-3 bg-gray-200 text-gray-700 font-semibold rounded-full shadow-md hover:bg-gray-300 transition-colors duration-200 text-center">
                     Batal
                 </a>
-                <button type="submit" class="w-full sm:w-auto px-8 py-3 font-semibold rounded-full text-white shadow-lg bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 transition-all duration-200 transform hover:scale-105">
+                <button type="submit" id="createBtn" class="w-full sm:w-auto px-8 py-3 font-semibold rounded-full text-white shadow-lg bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 transition-all duration-200 transform hover:scale-105">
                     Simpan User
                 </button>
             </div>
@@ -127,5 +127,11 @@
 </body>
 <script>
     console.log("Halaman Tambah User Baru dimuat.");
+
+    document.getElementById("createBtn").addEventListener("click", function() {
+            this.disabled = true;
+            this.innerText = "Memproses..."; // optional
+            this.form.submit();
+        });
 </script>
 </html>
