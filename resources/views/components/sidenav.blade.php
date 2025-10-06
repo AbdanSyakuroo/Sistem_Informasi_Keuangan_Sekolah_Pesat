@@ -38,7 +38,7 @@
             width: var(--sidebar-width);
             height: 100vh;
             background-color: var(--sidebar-bg);
-            padding: 2rem 1.5rem;
+            padding: 1rem 1.5rem;
             border-right: 1px solid var(--divider-color);
             display: flex;
             flex-direction: column;
@@ -51,10 +51,17 @@
 
         /* Logo Section */
         .navbar-logo {
-            padding: 0 0.5rem;
-            margin-bottom: 2.5rem;
+            padding: 0 0 ;
+            margin-bottom: 0;
             opacity: 0;
             animation: fadeInUp 0.5s 0.1s ease forwards;
+        }
+
+        .nav-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 0rem;
         }
 
         /* Navigation Lists */
@@ -289,9 +296,9 @@
 
 <body>
     <aside class="sidebar-nav-wrapper">
-        <div class="navbar-logo">
+        <div class="nav-logo">
             <a href="{{ url('dashboard') }}">
-                <img src="{{ asset('img/pesat.png') }}" alt="Logo" style="height: 60px; width: auto;">
+                <img src="{{ asset('img/pesat.png') }}" alt="Logo" style="height: 110px; width: auto;">
             </a>
         </div>
 

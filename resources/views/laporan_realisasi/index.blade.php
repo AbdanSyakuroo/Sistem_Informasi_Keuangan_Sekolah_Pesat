@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
-    <title>Laporan Realisasi Sumber Dana | Admin Panel</title>
+    <link rel="shortcut icon" href="img/pesat.png" type="image/x-icon" />
+    <title>Laporan Realisasi Sumber Dana</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/lineicons.css" />
@@ -136,24 +136,22 @@
   <table class="table">
     <thead>
       <tr>
-        <th><h6>No</h6></th>
         <th><h6>Nama Sumber Dana</h6></th>
-        <th class="text-end"><h6>Total Penerimaan</h6></th>
-        <th class="text-end"><h6>Total Pengeluaran</h6></th>
-        <th class="text-end"><h6>Sisa Saldo</h6></th>
-        <th class="text-center"><h6>Aksi</h6></th>
+        <th class="text-start"><h6>Total Penerimaan</h6></th>
+        <th class="text-start"><h6>Total Pengeluaran</h6></th>
+        <th class="text-start"><h6>Sisa Saldo</h6></th>
+        <th class="text-center ps-5"><h6>Aksi</h6></th>
       </tr>
     </thead>
     <tbody>
       @forelse($sumberDanas as $i => $sd)
         <tr>
-          <td data-label="No"><p>{{ $i+1 }}</p></td>
           <td data-label="Nama Sumber Dana"><p>{{ $sd->nama_sumber }}</p></td>
-          <td class="text-end" data-label="Total Penerimaan"><p class="fw-bold">{{ number_format($sd->total_penerimaan, 0, ',', '.') }}</p></td>
-          <td class="text-end" data-label="Total Pengeluaran"><p class="fw-bold">{{ number_format($sd->total_pengeluaran, 0, ',', '.') }}</p></td>
-          <td class="text-end" data-label="Sisa Saldo"><p class="fw-bold">{{ number_format($sd->saldo, 0, ',', '.') }}</p></td>
-          <td class="text-center" data-label="Aksi">
-            <a href="{{ route('laporan_realisasi.show', $sd->id) }}" class="btn btn-primary btn-sm text-white">
+          <td class="text-start" data-label="Total Penerimaan"><p class="fw-bold">{{ number_format($sd->total_penerimaan, 0, ',', '.') }}</p></td>
+          <td class="text-start" data-label="Total Pengeluaran"><p class="fw-bold">{{ number_format($sd->total_pengeluaran, 0, ',', '.') }}</p></td>
+          <td class="text-start" data-label="Sisa Saldo"><p class="fw-bold">{{ number_format($sd->saldo, 0, ',', '.') }}</p></td>
+          <td class="text-end" data-label="Aksi">
+            <a href="{{ route('laporan_realisasi.show', $sd->id) }}" class="btn btn-primary btn-xs text-white">
               Detail
             </a>
           </td>

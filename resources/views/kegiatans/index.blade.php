@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
-    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
+    <link rel="shortcut icon" href="img/pesat.png" type="image/x-icon" />
+    <title>Daftar Kegiatan</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/lineicons.css" rel="stylesheet" type="text/css" />
@@ -93,18 +93,15 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="text-nowrap" style="width: 5%"><h6>#</h6></th>
-        <th class="text-nowrap" style="width: 25%"><h6>Kode Kegiatan</h6></th>
+        <th class="text-nowrap" style="width: 40%"><h6>Kode Kegiatan</h6></th>
         <th style="width: 55%"><h6>Nama Kegiatan</h6></th>
-        <th class="text-nowrap" style="width: 15%"><h6>Aksi</h6></th>
+        <th class="text-nowrap" style="width: 5%"><h6>Aksi</h6></th>
       </tr>
     </thead>
     <tbody>
       @foreach ($kegiatans as $key => $item)
       <tr>
-        <td>
-          <p class="text-nowrap">{{ $kegiatans->firstItem() + $key }}</p>
-        </td>
+        
         <td class="text-nowrap">
           <p>{{ $item->kode_kegiatan }}</p>
         </td>

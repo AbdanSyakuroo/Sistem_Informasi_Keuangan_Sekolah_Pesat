@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/pesat.png" type="image/x-icon" />
     <title>Penerimaan Harian</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -116,23 +116,21 @@
                         <table class="table">
                           <thead>
                             <tr>
-                              <th class="text-nowrap" style="width: 5%"><h6>#</h6></th>
-                              <th class="text-nowrap" style="width: 15%"><h6>Tanggal</h6></th>
+                              <th class="text-nowrap" style="width: 25%"><h6>Tanggal</h6></th>
                               <th style="width: 45%"><h6>Uraian</h6></th>
                               <th class="text-end text-nowrap" style="width: 25%"><h6>Nominal</h6></th>
-                              <th class="text-nowrap text-end" style="width: 10%"><h6>Aksi</h6></th>
+                              <th class="text-nowrap text-end" style="width: 5%"><h6>Aksi</h6></th>
                             </tr>
                           </thead>
                           <tbody>
                             @foreach ($penerimaans as $key => $item)
                               <tr>
-                                <td data-label="#"><span>{{ $penerimaans->firstItem() + $key }}</span></td>
                                 <td data-label="Tanggal"><span>{{ $item->tanggal }}</span></td>
                                 <td data-label="Uraian"><span>{{ $item->uraian }}</span></td>
                                 <td data-label="Nominal" class="text-end">
                                   <span class="fw-bold text-nowrap">Rp {{ number_format($item->nominal, 0, ',', '.') }}</span>
                                 </td>
-                                <td data-label="Aksi" class="text-end">
+                                <td data-label="Aksi" class="text-end ps-4">
                                   <span>
                                     <div class="action d-flex flex-nowrap gap-2 justify-content-end">
                                       <a href="{{ route('penerimaans.edit', $item->id) }}" class="text-primary" title="Edit">

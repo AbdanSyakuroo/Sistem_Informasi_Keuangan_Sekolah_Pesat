@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/pesat.png" type="image/x-icon" />
     <title>Login Admin Keuangan</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,10 +25,7 @@
                 <!-- Header Section -->
                 <div class="text-center mb-8">
                     <!-- Placeholder Logo or Title -->
-                    <div class="mb-4">
-                        <h1 class="text-4xl font-bold text-blue-600 tracking-tight"><span class="text-gray-800">FINSchool</span> ITXPRO</h1>
-                        <p class="text-sm font-medium text-gray-800 mt-1">Sistem Keuangan Profesional</p>
-                    </div>
+                    
                     <h2 class="text-3xl font-semibold text-gray-800">Masuk ke Akun Anda</h2>
                     <p class="mt-2 text-sm text-gray-500">
                         Silakan masukkan email dan password untuk melanjutkan.

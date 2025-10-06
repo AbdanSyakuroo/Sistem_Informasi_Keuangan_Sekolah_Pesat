@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/pesat.png" type="image/x-icon" />
     <title>Daftar Pengeluaran</title>
 
     <!-- ========== All CSS files linkup ========= -->
@@ -48,6 +48,60 @@
         table tbody td span {
           flex: 2;
           text-align: right;
+        }
+      }
+
+      /* === Responsive Table Style for Medium Screens (Tablet) === */
+      @media (min-width: 768px) and (max-width: 991.98px) {
+        /* Hide less important columns */
+        .table th:nth-child(4), /* Uraian column */
+        .table td:nth-child(4) {
+          display: none;
+        }
+        
+        /* Adjust table layout */
+        .table {
+          font-size: 0.9rem;
+        }
+        
+        .table th, .table td {
+          padding: 0.5rem;
+          white-space: nowrap;
+        }
+        
+        /* Make table horizontally scrollable */
+        .table-responsive {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Optimize action buttons */
+        .table td:last-child {
+          text-align: center;
+        }
+        
+        .table td:last-child .d-flex {
+          justify-content: center;
+        }
+        
+        /* Add ellipsis for long text */
+        .table td span {
+          display: inline-block;
+          max-width: 120px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          vertical-align: middle;
+        }
+        
+        /* Show full text on hover */
+        .table td span:hover {
+          max-width: none;
+          overflow: visible;
+          background: #f8f9fa;
+          padding: 2px 4px;
+          border-radius: 4px;
+          position: relative;
+          z-index: 1;
         }
       }
     </style>

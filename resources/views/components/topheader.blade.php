@@ -22,8 +22,8 @@
                         <button class="dropdown-toggle bg-transparent border-0 text-white d-flex align-items-center" type="button" id="profile"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="profile-info text-end d-none d-md-block">
-                                <h6 class="fw-500 mb-0 text-white">{{ Auth::user()->name }}</h6>
-                                <p class="mb-0 text-light small">Admin</p>
+                                <h6 class="fw-600 mb-0 text-white">{{ Auth::user()->name }}</h6>
+                                <p class="mb-0 text-light small">{{ Auth::user()->email }}</p>
                             </div>
                             <i class="lni lni-user ms-md-2" style="font-size: 24px;"></i>
                         </button>

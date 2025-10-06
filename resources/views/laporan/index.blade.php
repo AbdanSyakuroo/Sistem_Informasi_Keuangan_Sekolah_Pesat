@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
-    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
+    <link rel="shortcut icon" href="img/pesat.png" type="image/x-icon" />
+    <title>Laporan Keseluruhan</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -16,23 +16,223 @@
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
-
     <style>
         /* Menargetkan semua sel data (td) dan header (th) di tabel laporan */
         #laporanTable th,
         #laporanTable td {
-            /* Tambahkan padding horizontal dan vertikal yang lebih besar */
-            padding: 0.75rem 1.25rem;
-            /* Default Bootstrap biasanya 0.5rem - 0.75rem */
+            padding: 0.75rem 1rem;
             white-space: nowrap;
-            /* Mencegah wrap pada data penting (opsional) */
+        }
+
+        /* Padding khusus untuk kolom tanggal */
+        #laporanTable th:first-child,
+        #laporanTable td:first-child {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            font-weight: 500;
         }
 
         /* Meningkatkan jarak antar batas sel */
         #laporanTable {
             border-collapse: separate;
             border-spacing: 0 0.25rem;
-            /* 0 horizontal, 0.25rem (sekitar 4px) vertical spacing */
+        }
+        
+        /* Responsif untuk tabel - layar medium dan kecil */
+        @media (max-width: 992px) {
+            #laporanTable th,
+            #laporanTable td {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.875rem;
+            }
+            
+            /* Padding khusus untuk kolom tanggal pada layar medium */
+            #laporanTable th:first-child,
+            #laporanTable td:first-child {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .table-responsive {
+                font-size: 0.875rem;
+                margin: 0 -15px;
+                width: calc(100% + 30px);
+            }
+            
+            .card-style {
+                padding: 1.25rem;
+            }
+        }
+        
+        /* Responsif untuk layar kecil */
+        @media (max-width: 768px) {
+            #laporanTable th,
+            #laporanTable td {
+                padding: 0.4rem 0.5rem;
+                font-size: 0.8rem;
+                white-space: normal;
+            }
+            
+            /* Padding khusus untuk kolom tanggal pada layar kecil */
+            #laporanTable th:first-child,
+            #laporanTable td:first-child {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                font-size: 0.9rem;
+                min-width: 90px;
+                white-space: nowrap;
+            }
+            
+            #laporanTable th.text-nowrap,
+            #laporanTable td.text-nowrap {
+                white-space: nowrap;
+            }
+            
+            /* Perbaikan untuk kolom nominal pada layar kecil */
+            #laporanTable .nominal-cell {
+                white-space: nowrap;
+                min-width: 120px;
+                text-align: right;
+            }
+            
+            .table-responsive {
+                font-size: 0.8rem;
+                margin: 0 -15px;
+                width: calc(100% + 30px);
+                border-radius: 0;
+            }
+            
+            .card-style {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .section {
+                padding: 1.5rem 0;
+            }
+            
+            /* Perbaikan untuk tombol filter dan export pada layar kecil */
+            .filter-form .col-auto {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .filter-form button,
+            .export-buttons button {
+                width: 100%;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .export-buttons {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            .export-buttons button {
+                margin-bottom: 0.5rem;
+            }
+            
+            .export-buttons button:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Responsif untuk layar sangat kecil (mobile) */
+        @media (max-width: 576px) {
+            /* Format tanggal yang lebih pendek */
+            .date-short {
+                display: block;
+            }
+            
+            /* Meningkatkan ukuran font untuk tanggal */
+            #laporanTable th:first-child,
+            #laporanTable td:first-child {
+                font-size: 0.95rem;
+                min-width: 80px;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            
+            /* Mengurangi padding tabel secara keseluruhan */
+            #laporanTable th,
+            #laporanTable td {
+                padding: 0.3rem 0.4rem;
+            }
+            
+            /* Perbaikan untuk kolom nominal pada layar sangat kecil */
+            #laporanTable .nominal-cell {
+                min-width: 100px;
+                font-size: 0.75rem;
+                padding: 0.2rem 0.3rem;
+            }
+            
+            /* Membuat kolom tanggal lebih menonjol */
+            #laporanTable td:first-child {
+                font-weight: 600;
+                color: #0d6efd;
+            }
+            
+            /* Mengganti tag p menjadi span untuk kolom nominal */
+            .nominal-cell span {
+                display: inline;
+                font-weight: 600;
+            }
+        }
+        
+        /* Responsif untuk form filter */
+        @media (max-width: 992px) {
+            .filter-form {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .filter-form .col-auto {
+                flex: 0 0 auto;
+                width: auto;
+                max-width: 100%;
+            }
+        }
+        
+        /* Responsif untuk tombol export */
+        @media (max-width: 992px) {
+            .export-buttons {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+        
+        /* Responsif untuk judul dan breadcrumb */
+        @media (max-width: 768px) {
+            .title-wrapper {
+                padding-bottom: 1rem;
+            }
+            
+            .title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .breadcrumb {
+                padding: 0.5rem 0;
+            }
+        }
+        
+        /* Perbaikan untuk tabel yang terlalu lebar */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Perbaikan untuk card pada layar kecil */
+        @media (max-width: 768px) {
+            .card-style {
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
         }
     </style>
 </head>
@@ -59,10 +259,10 @@
         <section class="section">
             <div class="container-fluid">
                 <!-- ========== title-wrapper start ========== -->
-                <div class="title-wrapper pt-30">
+                <div class="title-wrapper pt-30 mb-3">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <div class="title">
+                            <div class="title mb-3 mb-md-0">
                                 <h2>Laporan</h2>
                             </div>
                         </div>
@@ -70,7 +270,7 @@
                         <div class="col-md-6">
                             <div class="breadcrumb-wrapper">
                                 <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
+                                    <ol class="breadcrumb flex-wrap">
                                         <li class="breadcrumb-item">
                                             <a href="#0">Dashboard</a>
                                         </li>
@@ -86,103 +286,107 @@
                                 </nav>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <!-- ========== title-wrapper end ========== -->
 
-
-                        <div class="tables-wrapper">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card-style mb-30">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <form method="GET" action="{{ url('/laporan') }}" class="row g-3 mb-3">
-                                                <div class="col-auto">
-                                                    <label for="bulan" class="form-label">Bulan</label>
-                                                    <select name="bulan" id="bulan" class="form-select">
-                                                        <option value="">-- Semua --</option>
-                                                        @foreach (range(1, 12) as $m)
-                                                            <option value="{{ $m }}"
-                                                                {{ request('bulan') == $m ? 'selected' : '' }}>
-                                                                {{ \Carbon\Carbon::create()->month($m)->translatedFormat('F') }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <label for="tahun" class="form-label">Tahun</label>
-                                                    <select name="tahun" id="tahun" class="form-select">
-                                                        <option value="">-- Semua --</option>
-                                                        @foreach (range(date('Y'), date('Y') - 5) as $y)
-                                                            <option value="{{ $y }}"
-                                                                {{ request('tahun') == $y ? 'selected' : '' }}>
-                                                                {{ $y }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="col-auto align-self-end">
-                                                    <button type="submit" class="btn btn-primary">Filter</button>
-                                                </div>
-                                            </form>
-
-                                            <!-- Tombol Export -->
-                                            <div class="d-flex flex-lg-row flex-column align-items-lg-end align-items-start" style="margin: 15px 0;">
-    <button id="exportPDF" class="btn btn-danger mb-2 mb-lg-0 me-lg-2">Cetak PDF</button>
-    <button id="exportExcel" class="btn btn-success">Export Excel</button>
-</div>
-
+                <div class="tables-wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-style mb-30">
+                                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4">
+                                    <form method="GET" action="{{ url('/laporan') }}" class="filter-form row g-3 mb-3 mb-lg-0">
+                                        <div class="col-auto">
+                                            <label for="bulan" class="form-label">Bulan</label>
+                                            <select name="bulan" id="bulan" class="form-select">
+                                                <option value="">-- Semua --</option>
+                                                @foreach (range(1, 12) as $m)
+                                                    <option value="{{ $m }}"
+                                                        {{ request('bulan') == $m ? 'selected' : '' }}>
+                                                        {{ \Carbon\Carbon::create()->month($m)->translatedFormat('F') }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
-
-                                        @if (session('success'))
-                                            <div class="alert alert-success mb-3">
-                                                {{ session('success') }}
-                                            </div>
-                                        @endif
-
-                                        <div class="table-wrapper table-responsive">
-                                            <table class="table table-striped table-hover align-middle"
-                                                id="laporanTable">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-nowrap">Tanggal</th>
-                                                        <th class="text-nowrap">Uraian</th>
-                                                        <th class="text-nowrap">Kode Kegiatan</th>
-                                                        <th class="text-nowrap">Nama Sumber</th>
-                                                        <th class="text-nowrap text-end">Penerimaan</th>
-                                                        <th class="text-nowrap text-end">Pengeluaran</th>
-                                                        <th class="text-nowrap text-end">Saldo</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($laporan as $row)
-                                                        <tr>
-                                                            <td>{{ $row->tanggal }}</td>
-                                                            <td>{{ $row->uraian }}</td>
-                                                            <td>{{ $row->kode_kegiatan }}</td>
-                                                            <td>{{ $row->nama_sumber }}</td>
-                                                            <td class="text-end"> <p class="fw-bold">Rp
-                                                                {{ number_format($row->penerimaan, 0, ',', '.') }}</p>
-                                                            </td>
-                                                            <td class="text-end">
-                                                                <p class="fw-bold">Rp
-                                                                    {{ number_format($row->pengeluaran, 0, ',', ',') }}
-                                                                </p>
-                                                            </td>
-                                                            <td class="text-end">
-                                                                <p class="fw-bold">Rp
-                                                                    {{ number_format($row->saldo, 0, ',', ',') }}</p>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                                        <div class="col-auto">
+                                            <label for="tahun" class="form-label">Tahun</label>
+                                            <select name="tahun" id="tahun" class="form-select">
+                                                <option value="">-- Semua --</option>
+                                                @foreach (range(date('Y'), date('Y') - 5) as $y)
+                                                    <option value="{{ $y }}"
+                                                        {{ request('tahun') == $y ? 'selected' : '' }}>
+                                                        {{ $y }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
+                                        <div class="col-auto align-self-end">
+                                            <button type="submit" class="btn btn-primary w-100">Filter</button>
+                                        </div>
+                                    </form>
+
+                                    <!-- Tombol Export -->
+                                    <div class="export-buttons d-flex flex-lg-row flex-column">
+                                        <button id="exportPDF" class="btn btn-danger mb-2 mb-lg-0 me-lg-2">Cetak PDF</button>
+                                        <button id="exportExcel" class="btn btn-success">Export Excel</button>
                                     </div>
+                                </div>
+
+                                @if (session('success'))
+                                    <div class="alert alert-success mb-3">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+
+                                <div class="table-wrapper table-responsive">
+                                    <table class="table table-striped table-hover align-middle" id="laporanTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">Tanggal</th>
+                                                <th class="text-nowrap">Uraian</th>
+                                                <th class="text-nowrap">Kode Kegiatan</th>
+                                                <th class="text-nowrap">Nama Sumber</th>
+                                                <th class="text-nowrap text-end">Penerimaan</th>
+                                                <th class="text-nowrap text-end">Pengeluaran</th>
+                                                <th class="text-nowrap text-end">Saldo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($laporan as $row)
+                                                <tr>
+                                                    <td>
+                                                        <!-- Format tanggal panjang (default) -->
+                                                        <span class="date-short">{{ \Carbon\Carbon::parse($row->tanggal)->format('d/m/y') }}</span>
+                                                    </td>
+                                                    <td>{{ $row->uraian }}</td>
+                                                    <td>{{ $row->kode_kegiatan }}</td>
+                                                    <td>{{ $row->nama_sumber }}</td>
+                                                    <td class="text-end nominal-cell">
+                                                        <span>Rp {{ number_format($row->penerimaan, 0, ',', '.') }}</span>
+                                                    </td>
+                                                    <td class="text-end nominal-cell">
+                                                        <span>Rp {{ number_format($row->pengeluaran, 0, ',', ',') }}</span>
+                                                    </td>
+                                                    <td class="text-end nominal-cell">
+                                                        <span>Rp {{ number_format($row->saldo, 0, ',', ',') }}</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- end container -->
-                        </footer>
-                        <!-- ========== footer end =========== -->
+                    </div>
+                </div>
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- ========== footer start ========== -->
+        <footer>
+            <!-- Footer content here -->
+        </footer>
+        <!-- ========== footer end =========== -->
     </main>
     <!-- ======== main-wrapper end =========== -->
 
@@ -610,172 +814,4 @@
 
 </html>
 
-{{-- <x-app-layout>
-    <div class="container">
-        <h3>Laporan Keseluruhan</h3>
 
-        <button id="exportPDF" class="btn btn-danger mb-3">Cetak PDF</button>
-        <button id="exportExcel" class="btn btn-success mb-3">Export Excel</button>
-
-        <table id="laporanTable" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Uraian</th>
-                    <th>Penerimaan</th>
-                    <th>Pengeluaran</th>
-                    <th>Kode Kegiatan</th>
-                    <th>Nama Sumber</th>
-                    <th>Saldo</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($laporan as $row)
-                    <tr>
-                        <td>{{ $row->tanggal }}</td>
-                        <td>{{ $row->uraian }}</td>
-                        <td>Rp {{ number_format($row->penerimaan, 0, ',', '.') }}</td>
-                        <td>Rp {{ number_format($row->pengeluaran, 0, ',', ',') }}</td>
-                        <td>{{ $row->kode_kegiatan }}</td>
-                        <td>{{ $row->nama_sumber }}</td>
-                        <td>Rp {{ number_format($row->saldo, 0, ',', ',') }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-    <script>
-        // Fungsi format Rupiah
-        function formatRupiah(angka) {
-            return 'Rp ' + parseInt(angka, 10).toLocaleString('id-ID');
-        }
-
-        document.getElementById('exportPDF').addEventListener('click', function() {
-            const {
-                jsPDF
-            } = window.jspdf;
-            const doc = new jsPDF();
-
-            // Ambil angka murni dari tabel
-            const rows = Array.from(document.querySelectorAll('#laporanTable tbody tr'))
-                .map(tr => Array.from(tr.children).map((td, i) => {
-                    if ([2, 3, 6].includes(i)) { // kolom nominal
-                        const val = parseInt(td.innerText.replace(/[^0-9\-]+/g, ""), 10) || 0;
-                        return formatRupiah(val);
-                    }
-                    return td.innerText.trim();
-                }));
-
-            // Halaman pertama: keseluruhan
-            doc.text("Laporan Keseluruhan", 14, 10);
-            doc.autoTable({
-                head: [
-                    ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber',
-                        'Saldo'
-                    ]
-                ],
-                body: rows,
-                startY: 20
-            });
-
-            // Group per sumber dana
-            const grouped = {};
-            rows.forEach(row => {
-                const sumber = row[5] || 'Penerimaan';
-                if (!grouped[sumber]) grouped[sumber] = [];
-                grouped[sumber].push(row);
-            });
-
-            for (const sumber in grouped) {
-                doc.addPage();
-                doc.text(`Laporan : ${sumber}`, 14, 10);
-                doc.autoTable({
-                    head: [
-                        ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan',
-                            'Nama Sumber', 'Saldo'
-                        ]
-                    ],
-                    body: grouped[sumber],
-                    startY: 20
-                });
-            }
-
-            // Halaman terakhir: Pengeluaran
-            const pengeluaranRows = rows.filter(r => parseInt(r[3].replace(/[^0-9\-]+/g, ""), 10) > 0);
-            if (pengeluaranRows.length > 0) {
-                doc.addPage();
-                doc.text("Laporan Pengeluaran", 14, 10);
-                doc.autoTable({
-                    head: [
-                        ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan',
-                            'Nama Sumber', 'Saldo'
-                        ]
-                    ],
-                    body: pengeluaranRows,
-                    startY: 20
-                });
-            }
-
-            doc.save('laporan.pdf');
-        });
-
-        document.getElementById('exportExcel').addEventListener('click', function() {
-            const wb = XLSX.utils.book_new();
-
-            const rows = Array.from(document.querySelectorAll('#laporanTable tbody tr'))
-                .map(tr => Array.from(tr.children).map((td, i) => {
-                    if ([2, 3, 6].includes(i)) {
-                        const val = parseInt(td.innerText.replace(/[^0-9\-]+/g, ""), 10) || 0;
-                        return formatRupiah(val);
-                    }
-                    return td.innerText.trim();
-                }));
-
-            // Sheet 1: Keseluruhan
-            const wsAll = XLSX.utils.aoa_to_sheet([
-                ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber', 'Saldo'],
-                ...rows
-            ]);
-            XLSX.utils.book_append_sheet(wb, wsAll, 'Keseluruhan');
-
-            // Sheet per sumber dana
-            const grouped = {};
-            rows.forEach(row => {
-                const sumber = row[5] || 'Penerimaan';
-                if (!grouped[sumber]) grouped[sumber] = [];
-                grouped[sumber].push(row);
-            });
-
-            for (const sumber in grouped) {
-                const ws = XLSX.utils.aoa_to_sheet([
-                    ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber',
-                        'Saldo'
-                    ],
-                    ...grouped[sumber]
-                ]);
-                XLSX.utils.book_append_sheet(wb, ws, sumber.substring(0, 31));
-            }
-
-            // Sheet terakhir: Pengeluaran
-            const pengeluaranRows = rows.filter(r => parseInt(r[3].replace(/[^0-9\-]+/g, ""), 10) > 0);
-            if (pengeluaranRows.length > 0) {
-                const wsPengeluaran = XLSX.utils.aoa_to_sheet([
-                    ['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran', 'Kode Kegiatan', 'Nama Sumber',
-                        'Saldo'
-                    ],
-                    ...pengeluaranRows
-                ]);
-                XLSX.utils.book_append_sheet(wb, wsPengeluaran, 'Pengeluaran');
-            }
-
-            XLSX.writeFile(wb, 'laporan.xlsx');
-        });
-    </script>
-
-
-</x-app-layout> --}}
