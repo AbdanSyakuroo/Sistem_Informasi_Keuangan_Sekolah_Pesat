@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class PenerimaanController extends Controller
 {
-    public function index()
-    {
-        $penerimaans = Penerimaan::latest()->paginate(10);
-        return view('penerimaans.index', compact('penerimaans'));
-    }
+public function index()
+{
+    $penerimaans = Penerimaan::orderBy('tanggal', 'desc')->paginate(10);
+    return view('penerimaans.index', compact('penerimaans'));
+}
+
 
     public function create()
     {

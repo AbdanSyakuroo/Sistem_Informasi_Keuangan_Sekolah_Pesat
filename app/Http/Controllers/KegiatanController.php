@@ -9,9 +9,10 @@ class KegiatanController extends Controller
 {
     public function index()
     {
-        $kegiatans = Kegiatan::latest()->paginate(10);
+        $kegiatans = Kegiatan::orderBy('kode_kegiatan', 'asc')->paginate(5);
         return view('kegiatans.index', compact('kegiatans'));
     }
+
 
     public function create()
     {

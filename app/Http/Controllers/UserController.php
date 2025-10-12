@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index(): View
     {
-        $users = User::all(); // ambil semua data user
+        $users = User::paginate(5); // ambil semua data user
         return view('users.index', compact('users'));
     }
 

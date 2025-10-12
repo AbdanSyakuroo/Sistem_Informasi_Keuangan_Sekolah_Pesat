@@ -54,10 +54,14 @@ class LaporanController extends Controller
          * 3. Gabungan Laporan (Saldo Berjalan)
          * ==========================
          */
-        $laporan = $pemasukan
-            ->unionAll($pengeluaran)
-            ->orderBy('tanggal', 'asc')
-            ->get();
+        $laporan = DB::query()
+            ->fromSub(
+                $pemasukan->unionAll($pengeluaran),
+                'laporan'
+            )
+            ->orderBy('tanggal', 'desc')
+            ->paginate(10);
+
 
         $saldo = 0;
         foreach ($laporan as $item) {
@@ -92,15 +96,15 @@ class LaporanController extends Controller
                 DB::raw("(SELECT COALESCE(SUM(nominal),0) 
                           FROM penerimaan_danas 
                           WHERE sumber_dana_id = sumber_danas.id"
-                          . ($bulan ? " AND MONTH(tanggal) = $bulan" : "")
-                          . ($tahun ? " AND YEAR(tanggal) = $tahun" : "")
-                          . ") as total_penerimaan"),
+                    . ($bulan ? " AND MONTH(tanggal) = $bulan" : "")
+                    . ($tahun ? " AND YEAR(tanggal) = $tahun" : "")
+                    . ") as total_penerimaan"),
                 DB::raw("(SELECT COALESCE(SUM(nominal),0) 
                           FROM pengeluarans 
                           WHERE sumber_dana_id = sumber_danas.id"
-                          . ($bulan ? " AND MONTH(tanggal) = $bulan" : "")
-                          . ($tahun ? " AND YEAR(tanggal) = $tahun" : "")
-                          . ") as total_pengeluaran")
+                    . ($bulan ? " AND MONTH(tanggal) = $bulan" : "")
+                    . ($tahun ? " AND YEAR(tanggal) = $tahun" : "")
+                    . ") as total_pengeluaran")
             )
             ->get()
             ->map(function ($item) {
@@ -163,6 +167,4 @@ class LaporanController extends Controller
             'realisasiKegiatan'
         ));
     }
-
-    
 }

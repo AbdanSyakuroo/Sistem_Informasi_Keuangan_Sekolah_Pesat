@@ -12,7 +12,7 @@ class SumberDanaController extends Controller
      */
     public function index()
     {
-        $sumberDana = SumberDana::latest()->paginate(10);
+        $sumberDana = SumberDana::paginate(10);
         return view('sumber_dana.index', compact('sumberDana'));
     }
 

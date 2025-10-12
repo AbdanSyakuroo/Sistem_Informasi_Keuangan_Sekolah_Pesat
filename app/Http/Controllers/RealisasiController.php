@@ -92,7 +92,7 @@ class RealisasiController extends Controller
         if ($tahun) {
             $query->whereYear('tanggal', $tahun);
         }
-        $query->with('kegiatan');
+         $query->with('kegiatan')->orderBy('tanggal', 'desc');
     }])->findOrFail($id);
 
     $pengeluarans = $sumberDana->pengeluarans;

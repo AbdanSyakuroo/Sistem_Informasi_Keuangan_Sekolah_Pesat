@@ -373,13 +373,19 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
+                                        
                                     </table>
+
+                                    {{ $laporan->appends(request()->all())->links() }}
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            
             <!-- end container -->
         </section>
         <!-- ========== footer start ========== -->
