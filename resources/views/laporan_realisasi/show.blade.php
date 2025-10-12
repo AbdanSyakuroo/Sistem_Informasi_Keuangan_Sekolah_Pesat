@@ -112,7 +112,7 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                        <th colspan="4" class="text-end fw-bold">Total Pengeluaran</th>
+                        <th colspan="4" class="text-start fw-bold">Total Pengeluaran</th>
                         <th class="text-end fw-bold">Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}</th>
                       </tr>
                     </tfoot>
